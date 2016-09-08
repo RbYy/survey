@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .content{
+            padding: 100px;
+            padding-left: 100px;
+        }
+    </style>
+</head>    
+<body class="container-fluid">
+<div class="content">
+    <a href="/raport/">raport</a>
+    <h3>{{ survey.title }}</h3>
+    <h4>{{ survey.description }}</h4>
+    <hr>
+    <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
+
+        <h4>{{ poll1.question }}</h4>
+        <fieldset id="idpoll{{ poll1.pk }}">
+            {% for choice in choices1 %}
+                <label class="radio control-label"><input type="radio" name="idpoll{{ poll1.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+            {% endfor %}
+        </fieldset>
+        <hr>
+
+        <h4>{{ poll2.question }}</h4>
+        <fieldset id="idpoll{{ poll2.pk }}">
+            {% for choice in choices2 %}
+                <label class="radio control-label"><input type="radio" name="idpoll{{ poll2.pk }}" value="{{ choice.pk }}">{{ choice.choice_text }}</label>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>

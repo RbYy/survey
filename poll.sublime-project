@@ -1,0 +1,23 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"/home/jr/Koda/poll/bin/python3\" -u \"$file\""
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"python_interpreter": "/home/jr/Koda/poll/bin/python3",
+		"virtualenv": "/home/jr/Koda/poll"
+	},
+	"virtualenv": "/home/jr/Koda/poll"
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=webdata
+Group=webdata
+WorkingDirectory=/home/webdata/sites/brumatr-staging.noip.me/source
+ExecStart=/home/webdata/sites/brumatr-staging.noip.me/virtualenv/bin/gunicorn --workers 3 --bind unix:/home/webdata/sites/brumatr-staging.noip.me/myproject.sock gettingstarted.wsgi:application
+
+
+[Install]
+WantedBy=multi-user.target

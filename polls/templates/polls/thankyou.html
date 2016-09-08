@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>    
+<body class="container-fluid">
+<h3>Thank You!</h3>
+<table>
+<tr>
+        {% for visitor in visitors %}
+        <tr><td>visitor {{ visitor.pk }} - </td>
+            {% for choice in visitor.choices.all %}
+                <td>---- poll nr: {{ choice.poll.pk }}, </td>
+                <td>choice: {{ choice.pk }}, </td> 
+            {% endfor %}
+        {% endfor %}
+</tr>
+</table>
+</body>
+</html>

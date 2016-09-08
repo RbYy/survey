@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        td { 
+            padding: 10px;
+            text-align: top;
+        }
+        .chtext {
+            width: 100px;
+        }
+        .question {
+            width: 200px;
+        }
+    </style>
+</head>    
+<body class="container-fluid">
+<h3>Thank You!</h3>
+<table>
+    {% for poll, choices in sum_dict.items %}
+        <tr><td class="question"><h4>{{poll}}<h4></td>
+            <td><table>
+            {% for key, value in choices.items %}
+                <tr>
+                    <td class="chtext">{{ key }}</td><td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <td>
+        </tr>
+    {% endfor %}
+    
+
+</table>
+<a href="/">survey</a>
+</body>
+</html>

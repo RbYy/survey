@@ -1,0 +1,7 @@
+bin/
+db.sqlite3
+include/
+lib/
+*.pyc
+**/__pycache__/
+

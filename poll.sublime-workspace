@@ -1,0 +1,875 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fun",
+				"function"
+			],
+			[
+				"ap",
+				"myApp"
+			],
+			[
+				"gitH",
+				"githubService"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"con",
+				"controller"
+			],
+			[
+				"Ma",
+				"MathService"
+			],
+			[
+				"di",
+				"div	Tag"
+			],
+			[
+				"max",
+				"max_length"
+			],
+			[
+				"V",
+				"VRSTE_JEDI	statement"
+			],
+			[
+				"Vrsta",
+				"VrstaSerializer"
+			],
+			[
+				"C",
+				"ChoiceField	class"
+			],
+			[
+				"o",
+				"objects"
+			],
+			[
+				"Je",
+				"JediSerializers	class"
+			],
+			[
+				"ret",
+				"RetrieveUpdateDestroyAPIView	class"
+			],
+			[
+				"seri",
+				"serializers"
+			],
+			[
+				"Li",
+				"ListCreateAPIView	class"
+			],
+			[
+				"res",
+				"rest_framework	module"
+			],
+			[
+				"url",
+				"urlpatterns	statement"
+			],
+			[
+				"Fo",
+				"ForeignKey"
+			],
+			[
+				"Mod",
+				"Model	class"
+			],
+			[
+				"fu",
+				"func_code"
+			],
+			[
+				"el",
+				"else	keyword"
+			],
+			[
+				"urll",
+				"urllib	module"
+			],
+			[
+				"urlli",
+				"urllib2	module"
+			],
+			[
+				"th",
+				"thawing-spire-73185	module"
+			],
+			[
+				"rep",
+				"repl-django	module"
+			],
+			[
+				"dic",
+				"dicta	param"
+			],
+			[
+				"auth_",
+				"auth_logout"
+			],
+			[
+				"mode",
+				"Model	class"
+			],
+			[
+				"__di",
+				"__dict__"
+			],
+			[
+				"emp",
+				"EMPTY_ITEM_ERROR	statement"
+			],
+			[
+				"get_",
+				"get_item_input_box	function"
+			],
+			[
+				"g",
+				"get_item_input_box	function"
+			],
+			[
+				"It",
+				"ItemForm	class"
+			],
+			[
+				"Item",
+				"ItemForm	import"
+			],
+			[
+				"Ite",
+				"ItemForm"
+			],
+			[
+				"E",
+				"EMPTY_ITEM_ERROR	statement"
+			],
+			[
+				"view",
+				"view_list	function"
+			],
+			[
+				"e",
+				"error	statement"
+			],
+			[
+				"f",
+				"full_clean"
+			],
+			[
+				"ass",
+				"assertTemplateUsed"
+			],
+			[
+				"respon",
+				"response	statement"
+			],
+			[
+				"asse",
+				"assertEqual"
+			],
+			[
+				"ex",
+				"expected_error	statement"
+			],
+			[
+				"asser",
+				"assertContains"
+			],
+			[
+				"lis",
+				"list_	statement"
+			],
+			[
+				"sta",
+				"status_code"
+			],
+			[
+				"syste",
+				"systemctl"
+			],
+			[
+				"si",
+				"site_name	param"
+			],
+			[
+				"sys",
+				"sysd_service	statement"
+			],
+			[
+				"gun",
+				"gunic_renamed"
+			],
+			[
+				"site",
+				"site_folder	param"
+			],
+			[
+				"u",
+				"user"
+			],
+			[
+				"en",
+				"env	instance"
+			],
+			[
+				"gu",
+				"gunic_renamed	statement"
+			],
+			[
+				"gunic",
+				"gunic_template	statement"
+			],
+			[
+				"sit",
+				"site_name"
+			],
+			[
+				"depl",
+				"deploy_tools"
+			],
+			[
+				"te",
+				"template"
+			],
+			[
+				"ng",
+				"nginx_site_renamed	statement"
+			],
+			[
+				"nginx_site_",
+				"nginx_site_renamed	statement"
+			],
+			[
+				"delpy",
+				"deploy_folder	statement"
+			],
+			[
+				"ngi",
+				"nginx_site_renamed"
+			],
+			[
+				"site_",
+				"site_name	param"
+			],
+			[
+				"deploy_",
+				"deploy_folder"
+			],
+			[
+				"nginx",
+				"nginx_site	statement"
+			],
+			[
+				"deplo",
+				"deploy_tools_path"
+			],
+			[
+				"sour",
+				"source_folder"
+			],
+			[
+				"PG",
+				"PG_DB_SETTINGS	statement"
+			],
+			[
+				"settings",
+				"settings_path	statement"
+			],
+			[
+				"stat",
+				"STATIC_ROOT	statement"
+			],
+			[
+				"Stati",
+				"STATIC_ROOT	statement"
+			],
+			[
+				"text-a",
+				"text-align: 〔property〕"
+			],
+			[
+				"li",
+				"list_id	param"
+			],
+			[
+				"htt",
+				"HttpResponse	import"
+			],
+			[
+				"cre",
+				"create"
+			],
+			[
+				"ti",
+				"title	Tag"
+			],
+			[
+				"ne",
+				"new_item_text〔variable〕"
+			],
+			[
+				"date",
+				"datetime	class"
+			],
+			[
+				"v",
+				"value"
+			],
+			[
+				"django",
+				"djangoenv	module"
+			],
+			[
+				"get",
+				"getcwd"
+			],
+			[
+				"setti",
+				"settings"
+			],
+			[
+				"gets",
+				"getsizeof"
+			],
+			[
+				"prin",
+				"print"
+			],
+			[
+				"dja",
+				"djangoenv	module"
+			],
+			[
+				"a",
+				"ajax〔function〕"
+			],
+			[
+				"re",
+				"restlab"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "poll.sublime-project",
+			"settings":
+			{
+				"buffer_size": 439,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "shell",
+		"selected_items":
+		[
+			[
+				"shell",
+				"Django: Shell"
+			],
+			[
+				"virt",
+				"Virtualenv: Activate"
+			],
+			[
+				"djang",
+				"Django: DB Shell"
+			],
+			[
+				"replv",
+				"SublimeREPL: Python - virtualenv"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python - virtualenv"
+			],
+			[
+				"test",
+				"Django: Test All"
+			],
+			[
+				"anaco",
+				"Anaconda: Run Project Tests"
+			],
+			[
+				"tes",
+				"Django: Test"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"codei",
+				"SublimeCodeIntel: Enable Live Autocompletion for Current Language"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"te",
+				"Django: Test All"
+			],
+			[
+				"rep",
+				"Virtualenv: SublimeREPL - Python"
+			],
+			[
+				"migr",
+				"Django: Migrate Database"
+			],
+			[
+				"runse",
+				"Django: Run Server"
+			],
+			[
+				"ter",
+				"Django: Terminal Here"
+			],
+			[
+				"djangot",
+				"Django: Test"
+			],
+			[
+				"ma",
+				"Django: Make Migration"
+			],
+			[
+				"m",
+				"Django: Migrate Database"
+			],
+			[
+				"make",
+				"Django: Make Migration"
+			],
+			[
+				"mak",
+				"Django: Make Migration"
+			],
+			[
+				"",
+				"Anaconda: Set Python interpreter"
+			],
+			[
+				"intel",
+				"SublimeCodeIntel: Enable Live Autocompletion for Current Language"
+			],
+			[
+				"migra",
+				"Django: Migrate Database"
+			],
+			[
+				"mi",
+				"Django: Migrate Database"
+			],
+			[
+				"django mi",
+				"Django: Make Migration"
+			],
+			[
+				"django test a",
+				"Django: Test All"
+			],
+			[
+				"django tes",
+				"Django: Test"
+			],
+			[
+				"repl v",
+				"SublimeREPL: Python - virtualenv"
+			],
+			[
+				"django ",
+				"Django: Test"
+			],
+			[
+				"django",
+				"Django: Test"
+			],
+			[
+				"venv",
+				"Django: Set Virtual Environment"
+			],
+			[
+				"anacond",
+				"Anaconda: Run Project Tests"
+			],
+			[
+				"run",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"debug",
+				"Snippet: pdb debug tool"
+			],
+			[
+				"ven",
+				"Virtualenv: Activate"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"view",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"side ba",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"anaconda",
+				"Anaconda: Autoformat PEP8 Errors"
+			],
+			[
+				"syntajs",
+				"Set Syntax: JSON"
+			],
+			[
+				"synta",
+				"Set Syntax: Python (Django)"
+			],
+			[
+				"replr",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"ana",
+				"Build With: Anaconda Python Builder"
+			],
+			[
+				"acti",
+				"Anaconda: Set Python interpreter"
+			],
+			[
+				"anac",
+				"Anaconda: Vagrant Enable"
+			]
+		],
+		"width": 401.0
+	},
+	"console":
+	{
+		"height": 232.0,
+		"history":
+		[
+			"a=ZalozbaViewSet()",
+			"5+5",
+			"print('gg')",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jr/Koda/poll"
+	],
+	"file_history":
+	[
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/serializers.py",
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/permissions.py",
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/settings.py",
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/views.py",
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/urls.py",
+		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/models.py",
+		"/home/jr/.config/sublime-text-3/Packages/User/Virtualenv.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/SublimeREPL.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/Python (Django).sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/Python Django.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/DjangoCommands.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/HTML (Django).sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/JSON.sublime-settings",
+		"/home/jr/Koda/heroku/thawing-spire-73185/heroku.sublime-project",
+		"/home/jr/Koda/heroku/thawing-spire-73185/p.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/db.sqlite3",
+		"/home/jr/Koda/heroku/thawing-spire-73185/lab.py",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/core/urlresolvers.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/static/tests/qunit.js",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/test/testcases.py",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/test/client.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/static/tests/tests.html",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/forms/models.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/gettingstarted/staticfiles/admin/js/vendor/jquery/jquery.107fbe9555bf.js",
+		"/home/jr/Koda/heroku/thawing-spire-73185/gettingstarted/staticfiles/admin/js/vendor/jquery/jquery.js",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/db/models/fields/related.py",
+		"/home/jr/Koda/heroku/lib/python3.4/site-packages/django/db/models/__init__.py",
+		"/home/jr/.config/sublime-text-3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/User/SublimeCodeIntel.sublime-settings",
+		"/usr/lib/python2.7/unittest/__init__.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/static/base.css",
+		"/home/jr/buildozer.spec",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/tests.py",
+		"/home/jr/Koda/buildozer-venv.sh",
+		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/fabfile.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/functional_tests/tests.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/gunicorn.service.template",
+		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/nginx.site.template",
+		"/home/jr/Koda/restlab/restlab/lab.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/gettingstarted/settings_pg.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/prijava",
+		"/home/jr/Koda/heroku/include/python3.5m/eval.h",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/templates/list.html",
+		"/home/jr/Koda/heroku/thawing-spire-73185/functional_tests.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/templates/base.html",
+		"/home/jr/Koda/heroku/thawing-spire-73185/djangoenv.py",
+		"/home/jr/Koda/heroku/thawing-spire-73185/README.md",
+		"/home/jr/Koda/heroku/thawing-spire-73185/.env",
+		"/home/jr/.config/sublime-text-3/Packages/Django Manage Commands/DjangoCommands.sublime-settings",
+		"/home/jr/Koda/heroku/thawing-spire-73185/repl-django.py",
+		"/home/jr/.config/sublime-text-3/Packages/Plugin Debugger/debug_example.py",
+		"/home/jr/Koda/quinepy2.py",
+		"/home/jr/Koda/heroku/python-getting-started/bin/activate",
+		"/home/jr/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/jr/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/jr/.config/sublime-text-3/Packages/Djaneiro/Settings/Python (Django).sublime-settings",
+		"/home/jr/.config/sublime-text-3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/home/jr/Koda/restlab/djangoenv.py",
+		"/home/jr/Koda/restlab/lib/python3.4/ooo.py",
+		"/home/jr/Koda/restlab/restlab/__init__.py",
+		"/home/jr/.config/sublime-text-3/Packages/Virtualenv/Virtualenv.sublime-settings",
+		"/home/jr/Koda/restlab/bin/__init__.py",
+		"/home/jr/.config/sublime-text-3/Packages/Djaneiro/Settings/HTML (Django).sublime-settings",
+		"/home/jr/.config/sublime-text-2/Packages/User/Python.sublime-settings",
+		"/usr/share/applications/skype.desktop",
+		"/usr/share/applications/sublime.desktop"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"sele",
+			"phone",
+			"svincniks",
+			"snippet",
+			"serializers",
+			"reverse",
+			">\n",
+			"instance",
+			"item_text",
+			"root",
+			"depl",
+			"databases",
+			"SECURE_PROXY_SSL_HEADER",
+			"db_",
+			"dj_",
+			"3",
+			"<.[\\s\\S]*?>",
+			"<.+>",
+			"<.+?>",
+			"<([a-zA-Z][a-zA-Z0-9]*)[^>]*>[\\s\\S]*?</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]*).*?>.+?</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]*).*?>.+ ?</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]*).*?>.+?</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]+).+?>+</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]+).+?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]+).*?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \\\"\\=\\/\\-\\:]*).*?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \"=/\\-:]*).*?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 \"=]*).*?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9 ]*).*?>*</\\1>",
+			"<([a-zA-Z][a-zA-Z0-9]*).*?>*</\\1>",
+			"<([A-Z][a-z][0-9])></\\1>",
+			"<([A-Z][A-Z0-9]*)\\b[^>]*>.*?</\\1>",
+			"<([A-Z][A-Z0-9]*)\\b*>.*?</\\1>",
+			"([a-c])x\\1x\\1",
+			"[a-c])x\\1x\\1",
+			" [a-c])x\\1x\\1",
+			"^[A-Za-z ]*\\.$",
+			"^[A-Za-z ]*/.$",
+			"^[A-Za-z ]*.$",
+			"reg[a-z-[u]}",
+			"applications",
+			"most",
+			"index",
+			"side bar",
+			"sidebar",
+			"//\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"svincnik",
+			"models",
+			"text"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "poll.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 204.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Virtualenv/Python + Virtualenv.sublime-build",
+	"project": "poll.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 263.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 378.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 143.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
