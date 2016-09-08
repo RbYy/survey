@@ -19,21 +19,17 @@
     <h4>{{ survey.description }}</h4>
     <hr>
     <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
-
-        <h4>{{ poll1.question }}</h4>
-        <fieldset id="idpoll{{ poll1.pk }}">
-            {% for choice in choices1 %}
+        {% for poll in polls %}
+        <h4>{{ poll.question }}</h4>
+        <fieldset id="idpoll{{ poll.pk }}">
+            {% for choice in poll.charchoice_set.all %}
                 <label class="radio control-label"><input type="radio" name="idpoll{{ poll1.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
             {% endfor %}
         </fieldset>
         <hr>
+	{% endfor %}
 
-        <h4>{{ poll2.question }}</h4>
-        <fieldset id="idpoll{{ poll2.pk }}">
-            {% for choice in choices2 %}
-                <label class="radio control-label"><input type="radio" name="idpoll{{ poll2.pk }}" value="{{ choice.pk }}">{{ choice.choice_text }}</label>
-            {% endfor %}
-        </fieldset>
+     
         <input type="submit" value="Submit">
     </form>
 </div>
