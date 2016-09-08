@@ -57,21 +57,21 @@ def _get_latest_source(source_folder):
 
 
 def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
-    settings_path = source_folder + '/svincnik/settings.py'
+    settings_path = source_folder + '/pollproject/settings.py'
     requirements_path = source_folder + '/requirements.txt'
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(settings_path,
         'ALLOWED_HOSTS =.+$',
         'ALLOWED_HOSTS = ["%s"]' % (site_name,)
         )
-    secret_key_file = source_folder + '/svincnik/secret_key.py'
+    secret_key_file = source_folder + '/pollproject/secret_key.py'
     if not exists(secret_key_file):
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
         key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
         append(secret_key_file, "SECRET_KEY = '%s'" % (key,))
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')
     append(settings_path, '\n%s' % (PG_DB_SETTINGS))
-    append(requirements_path, 'psycopg2==2.6.1\ngunicorn==19.4.5')
+    append(requirements_path, 'psycopg2==2.6.2\ngunicorn==19.6.0')
 
 
 def _update_virtualenv(source_folder):
@@ -169,7 +169,7 @@ def set_gunicorn(site_folder, site_name):
             "ExecSta.+$",
             "ExecStart={0}/virtualenv/bin/gunicorn \
  --workers 3 --bind unix:{0}/myproject.sock \
- svincnik.wsgi:application".format(site_folder))
+ survey.wsgi:application".format(site_folder))
     sudo("cp {0} {1}".format(gunic_renamed, sysd_service))
     sudo("systemctl enable gunicorn.{0}.service".format(site_name))
     sudo("systemctl start gunicorn.{0}.service".format(site_name))
