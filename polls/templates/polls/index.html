@@ -23,13 +23,13 @@
     <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
         <h4>{{ poll.question }}</h4>
-        <fieldset id="idpoll{{ poll.pk }}">
-            {% for choice in poll.charchoice_set.all %}
-                <label class="radio control-label"><input type="radio" name="idpoll{{ poll1.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
-            {% endfor %}
-        </fieldset>
+            <fieldset id="idpoll{{ poll.pk }}">
+                {% for choice in poll.charchoice_set.all %}
+                    <label class="radio control-label"><input type="radio" name="idpoll{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+                {% endfor %}
+            </fieldset>
         <hr>
-	{% endfor %}
+	   {% endfor %}
 
      
         <input type="submit" value="Submit">
