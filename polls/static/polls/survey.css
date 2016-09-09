@@ -1,0 +1,33 @@
+.chtext, .question {
+    text-align: right;  
+
+}
+.question {
+
+}
+.blue {
+    background-color: #cceeff;
+}
+.white {
+    background-color: #e6f7ff;
+}
+
+.chvalue {
+    text-align: left;
+}
+
+.content {
+    padding-top: 100px;
+    padding-left: 20px;
+}
+ .value {
+    text-align: center;
+}
+
+.navbar {
+    background-color: gray;
+}
+
+.navbar-brand, .nav-link {
+    color: white;
+}
