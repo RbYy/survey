@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^thankyou/', thankyou, name="thankyou"),
     url(r'^raport/', raport, name="raport"),
     url(r'^details/', details, name="details"),
+
 ]
