@@ -20,15 +20,9 @@ def index(request):
 
         return HttpResponseRedirect("thankyou/")
 
-    poll1 = Poll.objects.filter(survey=survey)[0]
-    poll2 = Poll.objects.filter(survey=survey)[1]
-    choices1 = CharChoice.objects.filter(poll=poll1)
-    choices2 = CharChoice.objects.filter(poll=poll2)
+    polls = Poll.objects.filter(survey=survey)
     context = {'survey': survey,
-               'poll1': poll1,
-               'poll2': poll2,
-               'choices1': choices1,
-               'choices2': choices2}
+               'polls': polls}
     return render(request, 'polls/index.html', context)
 
 
