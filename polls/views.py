@@ -45,3 +45,8 @@ def raport(request):
     context = {"polls": polls,
                "sum_dict": sum_dict}
     return render(request, 'polls/raport.html', context)
+
+
+def details(request):
+    visitors = Visitor.objects.all()
+    return render(request, 'polls/visitors.html', {'visitors': visitors})

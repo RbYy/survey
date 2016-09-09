@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
     url(r'^thankyou/', thankyou, name="thankyou"),
-    url(r'^raport/', raport, name="raport")
+    url(r'^raport/', raport, name="raport"),
+    url(r'^details/', details, name="details"),
 ]
