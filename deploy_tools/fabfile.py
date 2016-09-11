@@ -71,6 +71,7 @@ def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
         append(secret_key_file, "SECRET_KEY = '%s'" % (key,))
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')
     append(settings_path, '\n%s' % (PG_DB_SETTINGS))
+    sed(settings_path, 'STATIC_ROOT = os.path.join(.+$', "STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), 'static')")
     append(requirements_path, 'psycopg2==2.6.2\ngunicorn==19.6.0')
 
 
@@ -78,9 +79,7 @@ def _update_virtualenv(source_folder):
     virtualenv_folder = source_folder + '/../virtualenv'
     if not exists(virtualenv_folder + '/bin/pip'):
         run('virtualenv --python=python3 %s' % (virtualenv_folder,))
-    run('%s/bin/pip install -r %s/requirements.txt' % (
-            virtualenv_folder, source_folder
-    ))
+    run('%s/bin/pip install -r %s/requirements.txt' % (virtualenv_folder, source_folder))
 
 
 def _update_static_files(source_folder):
@@ -169,7 +168,7 @@ def set_gunicorn(site_folder, site_name):
             "ExecSta.+$",
             "ExecStart={0}/virtualenv/bin/gunicorn \
  --workers 3 --bind unix:{0}/myproject.sock \
- projectpoll.wsgi:application".format(site_folder))
+ pollproject.wsgi:application".format(site_folder))
     sudo("cp {0} {1}".format(gunic_renamed, sysd_service))
     sudo("systemctl enable gunicorn.{0}.service".format(site_name))
     sudo("systemctl start gunicorn.{0}.service".format(site_name))
