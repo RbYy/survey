@@ -37,5 +37,5 @@ Assume we have a user account at /home/username
 
 #fab command:
 	eg, $ fab deploy:site=dontspeak.servebeer.com -H robert@pi
-        $ fab deploy:site=brumatr.noip.me -H robert@pi -f deploy_tools/
+        $ fab deploy:site=brumatr.noip.me -H robert@pi -f deploy_tools/fabfile.py
 
