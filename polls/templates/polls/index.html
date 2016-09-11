@@ -23,11 +23,22 @@
     <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
         <h4>{{ poll.question }}</h4>
+            {% if poll.multi == True %}
+            {{poll.multi}}
+            <fieldset>
+                {% for choice in poll.charchoice_set.all %}
+                    <label class="checkbox control-label"><input type="checkbox" name="idpoll{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
+                {% endfor %}
+            </fieldset>
+
+            {% else %}
+            {{poll.multi}}
             <fieldset id="idpoll{{ poll.pk }}">
                 {% for choice in poll.charchoice_set.all %}
                     <label class="radio control-label"><input type="radio" name="idpoll{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
                 {% endfor %}
             </fieldset>
+            {% endif %}
         <hr>
 	   {% endfor %}
 

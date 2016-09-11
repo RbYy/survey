@@ -19,6 +19,7 @@ class Survey(models.Model):
 
 class Poll(models.Model):
     question = models.CharField(max_length=500)
+    multi = models.BooleanField(default=False)
     survey = models.ManyToManyField(Survey)
 
     def __str__(self):
@@ -50,7 +51,8 @@ class Visitor(models.Model):
         polls = self.survey.poll_set.all()
         return [(poll,
                 [choice.choice_text for choice in
-                self.choices.filter(poll=poll)]) for poll in polls]
+                self.choices.filter(poll=poll)])
+                for poll in polls]
 
     def PrintVisitor(self):
         print(self.CollectData())

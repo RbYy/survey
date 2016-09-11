@@ -14,9 +14,8 @@ def index(request):
         new_visitor = Visitor.objects.create(survey=survey)
         for key in request.POST:
             if key != 'csrfmiddlewaretoken':
-                choice = CharChoice.objects.get(pk=request.POST[key])
-                new_visitor.choices.add(choice)
-                print("resitev!", new_visitor.choices.all())
+                choices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
+                new_visitor.choices.add(*choices)
 
         return HttpResponseRedirect("thankyou/")
 

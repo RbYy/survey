@@ -4,6 +4,118 @@
 		"selected_items":
 		[
 			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"pol",
+				"poll_set"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"background",
+				"background-repeat"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"paddi",
+				"padding"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"sum_d",
+				"sum_dict"
+			],
+			[
+				"cho",
+				"choice"
+			],
+			[
+				"vi",
+				"visitors	statement"
+			],
+			[
+				"PO",
+				"POST"
+			],
+			[
+				"Htt",
+				"HttpResponseRedirect	class"
+			],
+			[
+				"H",
+				"HttpResponse	class"
+			],
+			[
+				"v",
+				"views	module"
+			],
+			[
+				"choi",
+				"choices2	statement"
+			],
+			[
+				"Date",
+				"DateTimeField	class"
+			],
+			[
+				"model",
+				"Model	class"
+			],
+			[
+				"Poll",
+				"PollGroup	class"
+			],
+			[
+				"Fo",
+				"ForeignKey	class"
+			],
+			[
+				"Po",
+				"Poll_group	class"
+			],
+			[
+				"Man",
+				"ManyToManyField	class"
+			],
+			[
+				"poll",
+				"Poll_group	class"
+			],
+			[
+				"co",
+				"core	module"
+			],
+			[
 				"fun",
 				"function"
 			],
@@ -74,10 +186,6 @@
 			[
 				"url",
 				"urlpatterns	statement"
-			],
-			[
-				"Fo",
-				"ForeignKey"
 			],
 			[
 				"Mod",
@@ -236,10 +344,6 @@
 				"deploy_tools"
 			],
 			[
-				"te",
-				"template"
-			],
-			[
 				"ng",
 				"nginx_site_renamed	statement"
 			],
@@ -320,10 +424,6 @@
 				"datetime	class"
 			],
 			[
-				"v",
-				"value"
-			],
-			[
 				"django",
 				"djangoenv	module"
 			],
@@ -360,10 +460,90 @@
 	"buffers":
 	[
 		{
-			"file": "poll.sublime-project",
+			"file": "pollproject/settings.py",
 			"settings":
 			{
-				"buffer_size": 439,
+				"buffer_size": 3325,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pollproject/wsgi.py",
+			"settings":
+			{
+				"buffer_size": 400,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/admin.py",
+			"settings":
+			{
+				"buffer_size": 190,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/polls/raport.html",
+			"settings":
+			{
+				"buffer_size": 1778,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/static/polls/survey.css",
+			"settings":
+			{
+				"buffer_size": 369,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/polls/thankyou.html",
+			"settings":
+			{
+				"buffer_size": 729,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/models.py",
+			"settings":
+			{
+				"buffer_size": 1810,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/views.py",
+			"settings":
+			{
+				"buffer_size": 1619,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/polls/visitors.html",
+			"settings":
+			{
+				"buffer_size": 1940,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "pollproject/urls.py",
+			"settings":
+			{
+				"buffer_size": 977,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/polls/index.html",
+			"settings":
+			{
+				"buffer_size": 1248,
 				"line_ending": "Unix"
 			}
 		}
@@ -592,10 +772,24 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jr/Koda/poll"
+		"/home/jr/Koda/poll",
+		"/home/jr/Koda/poll/pollproject",
+		"/home/jr/Koda/poll/static"
 	],
 	"file_history":
 	[
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/__init__.py",
+		"/home/jr/Koda/poll/pollproject/polls/views.py",
+		"/home/jr/Koda/poll/pollproject/polls/templates/polls/index.html",
+		"/home/jr/Koda/poll/pollproject/polls/models.py",
+		"/home/jr/Koda/poll/pollproject/polls/admin.py",
+		"/home/jr/Koda/poll/pollproject/admin.py",
+		"/home/jr/Koda/poll/polls/views.py",
+		"/home/jr/Koda/poll/polls/models.py",
+		"/home/jr/Koda/poll/poll.sublime-project",
+		"/home/jr/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/jr/Koda/poll/pollproject/polls/__init__.py",
+		"/home/jr/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
 		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/serializers.py",
 		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/permissions.py",
 		"/home/jr/Koda/svincnik/svincnik/svincnik/svincnik/settings.py",
@@ -653,7 +847,6 @@
 		"/home/jr/Koda/quinepy2.py",
 		"/home/jr/Koda/heroku/python-getting-started/bin/activate",
 		"/home/jr/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/home/jr/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/jr/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
 		"/home/jr/.config/sublime-text-3/Packages/Djaneiro/Settings/Python (Django).sublime-settings",
 		"/home/jr/.config/sublime-text-3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
@@ -669,7 +862,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -684,6 +877,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"', ",
+			"group",
+			"swap",
+			"stack",
+			"tab",
 			"sele",
 			"phone",
 			"svincniks",
@@ -756,11 +954,41 @@
 			[
 				{
 					"buffer": 0,
-					"file": "poll.sublime-project",
+					"file": "pollproject/settings.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 439,
+						"buffer_size": 3325,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3301,
+								3301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1215.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "pollproject/wsgi.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 400,
 						"regions":
 						{
 						},
@@ -773,14 +1001,276 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "polls/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								142,
+								142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "polls/templates/polls/raport.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1032,
+								1032
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "polls/static/polls/survey.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 369,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								324,
+								324
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/CSS (Django).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "polls/templates/polls/thankyou.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 729,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								394,
+								394
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "polls/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1243,
+								1243
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "polls/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1594,
+								1594
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "polls/templates/polls/visitors.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1940,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1032,
+								1032
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "pollproject/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								974,
+								974
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "polls/templates/polls/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1248,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1023,
+								1023
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -803,11 +1293,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.54130702836,
 			1.0
 		],
 		"rows":
@@ -859,7 +1356,7 @@
 		],
 		"width": 378.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
@@ -867,7 +1364,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 143.0,
+	"side_bar_width": 298.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
