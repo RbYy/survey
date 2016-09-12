@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
-
+from django.db.models import Count
 from polls.models import *
 
 # Create your views here.
@@ -57,12 +56,20 @@ def raport(request):
 
     for textpoll in textpolls:
         sum_dict[textpoll] = {}
-        for enter in textpoll.textenter_set.filter():
+        #counter = 0
+        distinct = set()
+
+        for enter in TextEnter.objects.filter(poll=textpoll):
+            print(enter.text)
+            distinct.add(enter.text)
+
+        #print('www', distinct)
+        for text in distinct:
             counter = 0
-            for visitor in visitors:
-                if enter in visitor.textentries.all():
+            for enter in TextEnter.objects.filter(poll=textpoll):
+                if text == enter.text:
                     counter += 1
-            sum_dict[textpoll][enter.text] = counter
+            sum_dict[textpoll][text] = counter
     context = {"polls": polls,
                "sum_dict": sum_dict}
     print(sum_dict)
