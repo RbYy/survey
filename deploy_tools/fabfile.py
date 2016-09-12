@@ -171,5 +171,6 @@ def set_gunicorn(site_folder, site_name):
  --workers 3 --bind unix:{0}/myproject.sock \
  pollproject.wsgi:application".format(site_folder))
     sudo("cp {0} {1}".format(gunic_renamed, sysd_service))
+    sudo("systemctl stop gunicorn.{0}.service".format(site_name))
     sudo("systemctl enable gunicorn.{0}.service".format(site_name))
     sudo("systemctl start gunicorn.{0}.service".format(site_name))

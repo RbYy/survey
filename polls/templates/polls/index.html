@@ -24,20 +24,20 @@
         {% for poll in polls %}
         <h4>{{ poll.question }}</h4>
             {% if poll.multi == True %}
-            {{poll.multi}}
-            <fieldset>
-                {% for choice in poll.charchoice_set.all %}
-                    <label class="checkbox control-label"><input type="checkbox" name="idpoll{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
-                {% endfor %}
-            </fieldset>
+                <fieldset>
+                    {% for choice in poll.charchoice_set.all %}
+                        <label class="checkbox control-label"><input type="checkbox" name="idpoll{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
+                    {% endfor %}
+                </fieldset>
 
+            {% elif poll.countries == True %}
+                {% include 'polls/countries.html' %}
             {% else %}
-            {{poll.multi}}
-            <fieldset id="idpoll{{ poll.pk }}">
-                {% for choice in poll.charchoice_set.all %}
-                    <label class="radio control-label"><input type="radio" name="idpoll{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
-                {% endfor %}
-            </fieldset>
+                <fieldset id="idpoll{{ poll.pk }}">
+                    {% for choice in poll.charchoice_set.all %}
+                        <label class="radio control-label"><input type="radio" name="idpoll{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+                    {% endfor %}
+                </fieldset>
             {% endif %}
         <hr>
 	   {% endfor %}
@@ -47,6 +47,7 @@
             <label class="control-label"><input type="text" class="form-control" name="idtextpoll-{{ textpoll.question }}" value="">{{textpoll.question}}</label>
             <hr>
         {% endfor %}
+
         <input type="submit" value="Submit">
     </form>
 </div>

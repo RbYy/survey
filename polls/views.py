@@ -13,17 +13,18 @@ def index(request):
         new_visitor = Visitor.objects.create(survey=survey)
         for key in request.POST:
             if key.startswith('idpoll'):
-                print(key, ' --- ', request.POST[key])
                 charchoices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
-                # textchoices = TextEnter.objects.filter
                 new_visitor.choices.add(*charchoices)
             if key.startswith('idtextpoll'):
                 question = key[11:]
                 textpoll = TextPoll.objects.get(question=question)
-                print('qq', question)
                 text = TextEnter.objects.create(label=question, text=request.POST[key], poll=textpoll)
                 new_visitor.textentries.add(text)
-                # TextEnter.objects.create
+            if key.startswith('country'):
+                pk = key[8:]
+                poll = Poll.objects.get(pk=pk)
+                country, create = CharChoice.objects.get_or_create(choice_text=request.POST[key], poll=poll)
+                new_visitor.choices.add(country)
 
         return HttpResponseRedirect("thankyou/")
 
@@ -56,14 +57,10 @@ def raport(request):
 
     for textpoll in textpolls:
         sum_dict[textpoll] = {}
-        #counter = 0
         distinct = set()
 
         for enter in TextEnter.objects.filter(poll=textpoll):
-            print(enter.text)
             distinct.add(enter.text)
-
-        #print('www', distinct)
         for text in distinct:
             counter = 0
             for enter in TextEnter.objects.filter(poll=textpoll):
@@ -72,7 +69,6 @@ def raport(request):
             sum_dict[textpoll][text] = counter
     context = {"polls": polls,
                "sum_dict": sum_dict}
-    print(sum_dict)
     return render(request, 'polls/raport.html', context)
 
 

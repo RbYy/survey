@@ -20,6 +20,7 @@ class Survey(models.Model):
 class Poll(models.Model):
     question = models.CharField(max_length=500, blank=True)
     multi = models.BooleanField(default=False)
+    countries = models.BooleanField(default=False)
     survey = models.ManyToManyField(Survey)
 
     def __str__(self):
