@@ -42,7 +42,11 @@
         <hr>
 	   {% endfor %}
 
-     
+        {% for textpoll in textpolls %}
+        <!--h4>{{ textpoll.question }}</h4-->
+            <label class="control-label"><input type="text" class="form-control" name="idtextpoll-{{ textpoll.question }}" value="">{{textpoll.question}}</label>
+            <hr>
+        {% endfor %}
         <input type="submit" value="Submit">
     </form>
 </div>

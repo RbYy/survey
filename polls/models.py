@@ -18,8 +18,16 @@ class Survey(models.Model):
 
 
 class Poll(models.Model):
-    question = models.CharField(max_length=500)
+    question = models.CharField(max_length=500, blank=True)
     multi = models.BooleanField(default=False)
+    survey = models.ManyToManyField(Survey)
+
+    def __str__(self):
+        return self.question
+
+
+class TextPoll(models.Model):
+    question = models.CharField(max_length=500, blank=True)
     survey = models.ManyToManyField(Survey)
 
     def __str__(self):
@@ -31,21 +39,25 @@ class CharChoice(models.Model):
     poll = models.ForeignKey(Poll)
 
     def __str__(self):
+
         return self.choice_text
 
 
-class EmailChoice(models.Model):
-    choice_text = models.EmailField()
-    poll = models.ForeignKey(Poll)
+class TextEnter(models.Model):
+    label = models.CharField(max_length=30, blank=True)
+    text = models.CharField(max_length=100, blank=True)
+    poll = models.ForeignKey(TextPoll)
+    include_in_raport = models.BooleanField(default=False)
 
-    def __unicode__(self):
-        return self.choice_text
+    def __str__(self):
+        return self.label + ': ' + self.text
 
 
 class Visitor(models.Model):
     filled = models.DateTimeField(auto_now_add=True)
     survey = models.ForeignKey(Survey)
     choices = models.ManyToManyField(CharChoice)
+    textentries = models.ManyToManyField(TextEnter)
 
     def CollectData(self):
         polls = self.survey.poll_set.all()

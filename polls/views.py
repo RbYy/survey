@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 
-from polls.models import Survey, Poll, CharChoice, Visitor
+from polls.models import *
 
 # Create your views here.
 
@@ -13,15 +13,26 @@ def index(request):
     if request.method == 'POST':
         new_visitor = Visitor.objects.create(survey=survey)
         for key in request.POST:
-            if key != 'csrfmiddlewaretoken':
-                choices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
-                new_visitor.choices.add(*choices)
+            if key.startswith('idpoll'):
+                print(key, ' --- ', request.POST[key])
+                charchoices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
+                # textchoices = TextEnter.objects.filter
+                new_visitor.choices.add(*charchoices)
+            if key.startswith('idtextpoll'):
+                question = key[11:]
+                textpoll = TextPoll.objects.get(question=question)
+                print('qq', question)
+                text = TextEnter.objects.create(label=question, text=request.POST[key], poll=textpoll)
+                new_visitor.textentries.add(text)
+                # TextEnter.objects.create
 
         return HttpResponseRedirect("thankyou/")
 
     polls = Poll.objects.filter(survey=survey)
+    textpolls = TextPoll.objects.filter(survey=survey)
     context = {'survey': survey,
-               'polls': polls}
+               'polls': polls,
+               'textpolls': textpolls}
     return render(request, 'polls/index.html', context)
 
 
@@ -32,17 +43,29 @@ def thankyou(request):
 def raport(request):
     visitors = Visitor.objects.all()
     sum_dict = {}
-    polls = Survey.objects.get(active=True).poll_set.all()
+    active_survey = Survey.objects.get(active=True)
+    polls = active_survey.poll_set.all()
+    textpolls = active_survey.textpoll_set.all()
     for poll in polls:
         sum_dict[poll] = {}
         for choice in poll.charchoice_set.all():
             counter = 0
             for visitor in visitors:
-                if choice in visitor.choices.filter():
+                if choice in visitor.choices.all():
                     counter += 1
             sum_dict[poll][choice.choice_text] = counter
+
+    for textpoll in textpolls:
+        sum_dict[textpoll] = {}
+        for enter in textpoll.textenter_set.filter():
+            counter = 0
+            for visitor in visitors:
+                if enter in visitor.textentries.all():
+                    counter += 1
+            sum_dict[textpoll][enter.text] = counter
     context = {"polls": polls,
                "sum_dict": sum_dict}
+    print(sum_dict)
     return render(request, 'polls/raport.html', context)
 
 
