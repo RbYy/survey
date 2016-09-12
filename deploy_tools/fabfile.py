@@ -62,7 +62,7 @@ def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(settings_path,
         'ALLOWED_HOSTS =.+$',
-        'ALLOWED_HOSTS = ["%s"]' % (site_name,)
+        'ALLOWED_HOSTS = ["%s", "pi"]' % (site_name,)
         )
     secret_key_file = source_folder + '/pollproject/secret_key.py'
     if not exists(secret_key_file):
