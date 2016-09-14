@@ -18,16 +18,14 @@ class Survey(models.Model):
 
 
 class Poll(models.Model):
-    question = models.CharField(max_length=500, blank=True)
-    multi = models.BooleanField(default=False)
-    countries = models.BooleanField(default=False)
-    survey = models.ManyToManyField(Survey)
-
-    def __str__(self):
-        return self.question
-
-
-class TextPoll(models.Model):
+    poll_type = models.CharField(max_length=30, default='multi',
+        choices=(
+                ('multi', 'pick multiple options'),
+                ('one', 'pick one option'),
+                ('countries', 'pick a country from the list'),
+                ('text', 'type text'),
+        )
+    )
     question = models.CharField(max_length=500, blank=True)
     survey = models.ManyToManyField(Survey)
 
@@ -44,28 +42,16 @@ class CharChoice(models.Model):
         return self.choice_text
 
 
-class TextEnter(models.Model):
-    label = models.CharField(max_length=30, blank=True)
-    text = models.CharField(max_length=100, blank=True)
-    poll = models.ForeignKey(TextPoll)
-    include_in_raport = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.label + ': ' + self.text
-
-
 class Visitor(models.Model):
     filled = models.DateTimeField(auto_now_add=True)
     survey = models.ForeignKey(Survey)
     choices = models.ManyToManyField(CharChoice)
-    textentries = models.ManyToManyField(TextEnter)
 
     def CollectData(self):
         polls = self.survey.poll_set.all()
         return [(poll,
-                [choice.choice_text for choice in
-                self.choices.filter(poll=poll)])
-                for poll in polls]
+                 [choice.choice_text for choice in
+                  self.choices.filter(poll=poll)])for poll in polls]
 
     def PrintVisitor(self):
         print(self.CollectData())

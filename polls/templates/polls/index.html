@@ -1,53 +1,45 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-     <meta charset="UTF-8">
+    {% load staticfiles %}
+    <meta charset="UTF-8">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        .content{
-            padding: 100px;
-            padding-left: 100px;
-        }
-        tr {
-            color:lightblue;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
 </head>    
 <body class="container-fluid">
-<div class="content">
+<div class="survey-content">
     <h3>{{ survey.title }}</h3>
     <h4>{{ survey.description }}</h4>
     <hr>
     <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
         <h4>{{ poll.question }}</h4>
-            {% if poll.multi == True %}
+
+            {% if poll.poll_type == 'multi' %}
                 <fieldset>
                     {% for choice in poll.charchoice_set.all %}
-                        <label class="checkbox control-label"><input type="checkbox" name="idpoll{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
+                        <label class="checkbox control-label"><input type="checkbox" name="{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
                     {% endfor %}
                 </fieldset>
-
-            {% elif poll.countries == True %}
-                {% include 'polls/countries.html' %}
-            {% else %}
+            
+            {% elif poll.poll_type == 'one' %}
                 <fieldset id="idpoll{{ poll.pk }}">
                     {% for choice in poll.charchoice_set.all %}
-                        <label class="radio control-label"><input type="radio" name="idpoll{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+                        <label class="radio control-label"><input type="radio" name="{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
                     {% endfor %}
                 </fieldset>
+	   
+            {% elif poll.poll_type == 'text' %}
+                    <label class="control-label"><input type="text" class="form-control" name="{{ poll.pk }}" value=""></label>
+
+            {% elif poll.poll_type == 'countries' %}
+                {% include 'polls/countries.html' %}
+
             {% endif %}
-        <hr>
-	   {% endfor %}
-
-        {% for textpoll in textpolls %}
-        <!--h4>{{ textpoll.question }}</h4-->
-            <label class="control-label"><input type="text" class="form-control" name="idtextpoll-{{ textpoll.question }}" value="">{{textpoll.question}}</label>
-            <hr>
         {% endfor %}
-
+        <hr>
         <input type="submit" value="Submit">
     </form>
 </div>
