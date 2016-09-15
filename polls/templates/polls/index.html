@@ -32,9 +32,14 @@
                         {% for nested_poll in choice.nested.all %}
                             <div class="nested nestedradio{{poll.pk}} nestedid{{choice}}">
                                 {{ nested_poll.question }}
-                                {% for nested_choice in nested_poll.charchoice_set.all %}
-                                    <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
-                                {% endfor %}
+                                {% if nested_poll.poll_type == 'one' %}
+                                    {% for nested_choice in nested_poll.charchoice_set.all %}
+                                        <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
+                                    {% endfor %}
+                                {% elif nested_poll.poll_type == 'text'%}
+                                        <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control" name="{{ nested_poll.pk }}" value=""></label>
+
+                                {% endif %}
                             </div>
                         {% endfor %}
 
@@ -65,6 +70,7 @@ $(document).ready(function(){
         $('.nested'+choice).show()
         console.log($('#idofpet').attr('value'))
     })
+
 })
 
 
