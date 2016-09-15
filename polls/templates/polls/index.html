@@ -27,9 +27,20 @@
             {% elif poll.poll_type == 'one' %}
                 <fieldset id="idpoll{{ poll.pk }}">
                     {% for choice in poll.charchoice_set.all %}
-                        <label class="radio control-label"><input type="radio" name="{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+                        <label class="radio{{poll.pk}} main-radio radio control-label" id="id{{choice}}"><input type="radio" name="{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+
+                        {% for nested_poll in choice.nested.all %}
+                            <div class="nested nestedradio{{poll.pk}} nestedid{{choice}}">
+                                {{ nested_poll.question }}
+                                {% for nested_choice in nested_poll.charchoice_set.all %}
+                                    <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
                     {% endfor %}
                 </fieldset>
+
 	   
             {% elif poll.poll_type == 'text' %}
                     <label class="control-label"><input type="text" class="form-control" name="{{ poll.pk }}" value=""></label>
@@ -43,4 +54,19 @@
         <input type="submit" value="Submit">
     </form>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.nested').hide()
+    $('form').on('click', '.main-radio',function(){
+        choice = $(this).attr('id')
+        poll = $(this).attr('class').split(' ')[0]
+        console.log('dd', name, poll)
+        $('.nested'+poll).hide()
+        $('.nested'+choice).show()
+        console.log($('#idofpet').attr('value'))
+    })
+})
+
+
+</script>
 </body>

@@ -18,16 +18,18 @@ class Survey(models.Model):
 
 
 class Poll(models.Model):
-    poll_type = models.CharField(max_length=30, default='multi',
+    poll_type = models.CharField(
+        max_length=30,
+        default='multi',
         choices=(
-                ('multi', 'pick multiple options'),
-                ('one', 'pick one option'),
-                ('countries', 'pick a country from the list'),
-                ('text', 'type text'),
+            ('multi', 'pick multiple options'),
+            ('one', 'pick one option'),
+            ('countries', 'pick a country from the list'),
+            ('text', 'type text'),
         )
     )
     question = models.CharField(max_length=500, blank=True)
-    survey = models.ManyToManyField(Survey)
+    survey = models.ManyToManyField(Survey, blank=True)
 
     def __str__(self):
         return self.question
@@ -36,6 +38,7 @@ class Poll(models.Model):
 class CharChoice(models.Model):
     choice_text = models.CharField(max_length=200)
     poll = models.ForeignKey(Poll)
+    nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
 
     def __str__(self):
 
