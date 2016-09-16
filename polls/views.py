@@ -22,7 +22,7 @@ def index(request):
                     new_visitor.choices.add(text)
                     if 'e-mail' in poll.question:
                         email = text.choice_text
-                    if 'votre nom' in poll.question:
+                    if 'Votre nom' in poll.question:
                         name = text.choice_text
 
         send_mail('Thanks for visiting us', 'Hello ' + name + ',\n\nwe hope you enjoyed. \
