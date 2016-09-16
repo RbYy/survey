@@ -2,8 +2,8 @@
     text-align: right;  
 
 }
-.question {
-
+.poll-question {
+    padding-top:30px; 
 }
 .blue {
     background-color: #cceeff;
@@ -39,4 +39,12 @@
 
 .nested {
     padding-left: 30px;
+}
+
+.nested-poll-question {
+    padding-top: 10px;
+}
+
+fieldset {
+    padding-left: 50px;
 }

@@ -15,7 +15,7 @@
     <hr>
     <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
-        <h4>{{ poll.question }}</h4>
+        <h4 class="poll-question">{{ poll.question }}</h4>
 
             {% if poll.poll_type == 'multi' %}
                 <fieldset>
@@ -31,7 +31,7 @@
 
                         {% for nested_poll in choice.nested.all %}
                             <div class="nested nestedradio{{poll.pk}} nestedid{{choice}}">
-                                {{ nested_poll.question }}
+                                <div class="nested-poll-question">{{ nested_poll.question }}</div>
                                 {% if nested_poll.poll_type == 'one' %}
                                     {% for nested_choice in nested_poll.charchoice_set.all %}
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
@@ -55,7 +55,7 @@
                     {% for choice in poll.charchoice_set.all %}
                         {% for nested_poll in choice.nested.all %}
                             <div class="nested nestedcountry{{poll.pk}} nestedid{{choice}}">
-                                {{ nested_poll.question }}
+                                <div class="nested-poll-question">{{ nested_poll.question }}</div>
                                 {% if nested_poll.poll_type == 'one' %}
                                     {% for nested_choice in nested_poll.charchoice_set.all %}
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
@@ -77,16 +77,16 @@ $(document).ready(function(){
         choice = $(this).attr('id')
         poll = $(this).attr('class').split(' ')[0]
         console.log('dd', choice, poll)
-        $('.nested' + poll).hide()
-        $('.nested' + choice).show()
+        $('.nested' + poll).hide('slow')
+        $('.nested' + choice).show('slow')
     })
 
     $('select').on('click', 'option', function(){
         choice = $(this).attr('value')
         poll = $(this).attr('class')
         console.log('dd', 'choice: ', choice, 'poll:', poll)
-        $('.nested' + poll).hide()
-        $('.nestedid' + choice).show()
+        $('.nested' + poll).hide('slow')
+        $('.nestedid' + choice).show('slow')
     })
 
 })
