@@ -2,6 +2,8 @@ from django.shortcuts import render
 # from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from polls.models import *
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def index(request):
@@ -18,6 +20,14 @@ def index(request):
                     poll = Poll.objects.get(pk=key)
                     text, create = CharChoice.objects.get_or_create(choice_text=request.POST[key], poll=poll)
                     new_visitor.choices.add(text)
+                    if 'e-mail' in poll.question:
+                        email = text.choice_text
+                    if 'votre nom' in poll.question:
+                        name = text.choice_text
+
+        send_mail('Thanks for visiting us', 'Hello ' + name + ',\n\nwe hope you enjoyed. \
+                  Please, come back soon.\nBye,\n\nMuseum', settings.EMAIL_HOST_USER,
+                  [email], fail_silently=False)
 
         return HttpResponseRedirect("thankyou/")
 
