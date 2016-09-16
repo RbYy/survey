@@ -37,7 +37,7 @@
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
                                     {% endfor %}
                                 {% elif nested_poll.poll_type == 'text'%}
-                                        <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control" name="{{ nested_poll.pk }}" value=""></label>
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control" name="{{ nested_poll.pk }}" value=""></label>
 
                                 {% endif %}
                             </div>
@@ -52,7 +52,18 @@
 
             {% elif poll.poll_type == 'countries' %}
                 {% include 'polls/countries.html' %}
-
+                    {% for choice in poll.charchoice_set.all %}
+                        {% for nested_poll in choice.nested.all %}
+                            <div class="nested nestedcountry{{poll.pk}} nestedid{{choice}}">
+                                {{ nested_poll.question }}
+                                {% if nested_poll.poll_type == 'one' %}
+                                    {% for nested_choice in nested_poll.charchoice_set.all %}
+                                        <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>    
+                        {% endfor %}
+                    {% endfor %}
             {% endif %}
         {% endfor %}
         <hr>
@@ -65,10 +76,17 @@ $(document).ready(function(){
     $('form').on('click', '.main-radio',function(){
         choice = $(this).attr('id')
         poll = $(this).attr('class').split(' ')[0]
-        console.log('dd', name, poll)
-        $('.nested'+poll).hide()
-        $('.nested'+choice).show()
-        console.log($('#idofpet').attr('value'))
+        console.log('dd', choice, poll)
+        $('.nested' + poll).hide()
+        $('.nested' + choice).show()
+    })
+
+    $('select').on('click', 'option', function(){
+        choice = $(this).attr('value')
+        poll = $(this).attr('class')
+        console.log('dd', 'choice: ', choice, 'poll:', poll)
+        $('.nested' + poll).hide()
+        $('.nestedid' + choice).show()
     })
 
 })
