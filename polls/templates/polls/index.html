@@ -27,10 +27,10 @@
             {% elif poll.poll_type == 'one' %}
                 <fieldset id="idpoll{{ poll.pk }}">
                     {% for choice in poll.charchoice_set.all %}
-                        <label class="radio{{poll.pk}} main-radio radio control-label" id="id{{choice}}"><input type="radio" name="{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
+                        <label class="radio{{poll.pk}} main-radio radio control-label" id="id{{choice.pk}}"><input type="radio" name="{{ poll.pk }}" value="{{ choice.pk }}">{{choice.choice_text}}</label>
 
                         {% for nested_poll in choice.nested.all %}
-                            <div class="nested nestedradio{{poll.pk}} nestedid{{choice}}">
+                            <div class="nested nestedradio{{poll.pk}} nestedid{{choice.pk}}">
                                 <div class="nested-poll-question">{{ nested_poll.question }}</div>
                                 {% if nested_poll.poll_type == 'one' %}
                                     {% for nested_choice in nested_poll.charchoice_set.all %}

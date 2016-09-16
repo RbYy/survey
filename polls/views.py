@@ -10,6 +10,7 @@ def index(request):
         new_visitor = Visitor.objects.create(survey=survey)
         for key in request.POST:
             if key != 'csrfmiddlewaretoken':
+                print(key, ' : ', request.POST[key])
                 try:
                     charchoices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
                     new_visitor.choices.add(*charchoices)
