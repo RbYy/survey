@@ -73,7 +73,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $('.nested').hide()
-    $('form').on('click', '.main-radio',function(){
+    $('form').on('change', '.main-radio',function(){
         choice = $(this).attr('id')
         poll = $(this).attr('class').split(' ')[0]
         console.log('dd', choice, poll)
@@ -81,10 +81,10 @@ $(document).ready(function(){
         $('.nested' + choice).show('slow')
     })
 
-    $('select').on('click', 'option', function(){
-        choice = $(this).attr('value')
+    $('select').change(function(){
+        choice = $(this).val()
         poll = $(this).attr('class')
-        console.log('dd', 'choice: ', choice, 'poll:', poll)
+        console.log(choice, poll)
         $('.nested' + poll).hide('slow')
         $('.nestedid' + choice).show('slow')
     })
