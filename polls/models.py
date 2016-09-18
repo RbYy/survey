@@ -1,4 +1,6 @@
 from django.db import models
+from adminsortable.models import SortableMixin
+from adminsortable.fields import SortableForeignKey
 
 
 class Survey(models.Model):
@@ -17,7 +19,12 @@ class Survey(models.Model):
         return self.title + ' -- ' + 'created: ' + time + ' -- ' + active
 
 
-class Poll(models.Model):
+class Poll(SortableMixin):
+
+    class Meta:
+        verbose_name_plural = 'Polls'
+        ordering = ['the_order']
+
     poll_type = models.CharField(
         max_length=30,
         default='multi',
@@ -26,10 +33,15 @@ class Poll(models.Model):
             ('one', 'pick one option'),
             ('countries', 'pick a country from the list'),
             ('text', 'type text'),
+            ('email_now', 'email - save and send at Submit'),
+            ('email', 'email - just save'),
+            ('first_name', 'enter first name'),
         )
     )
     question = models.CharField(max_length=500, blank=True)
-    survey = models.ManyToManyField(Survey, blank=True)
+    survey = SortableForeignKey(Survey, blank=True)
+    first_level = models.BooleanField(default=True)
+    the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
     def __str__(self):
         return self.question
@@ -69,3 +81,9 @@ class Visitor(models.Model):
 
     def __str__(self):
         return self.PrintVisitor()
+
+
+class Email(models.Model):
+    title = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
+    text = models.TextField()

@@ -10,9 +10,19 @@ def index(request):
     survey = Survey.objects.get(active=True)
     if request.method == 'POST':
         new_visitor = Visitor.objects.create(survey=survey)
+        print([f.name for f in Poll._meta.get_fields()])
+        allpollfields = [
+            (f, f.model if f.model != Poll else None)
+            for f in Poll._meta.get_fields()
+            if (f.one_to_many or f.one_to_one) and
+            f.auto_created and not f.concrete
+        ]
+        print(allpollfields)
+        print('request.POST: ', request.POST)
         for key in request.POST:
             if key != 'csrfmiddlewaretoken':
                 print(key, ' : ', request.POST[key])
+
                 try:
                     charchoices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
                     new_visitor.choices.add(*charchoices)
@@ -20,18 +30,24 @@ def index(request):
                     poll = Poll.objects.get(pk=key)
                     text, create = CharChoice.objects.get_or_create(choice_text=request.POST[key], poll=poll)
                     new_visitor.choices.add(text)
-                    if 'e-mail' in poll.question:
+                    if poll.poll_type == 'email_now':
                         email = text.choice_text
-                    if 'Votre nom' in poll.question:
+                        print('email ', email)
+                    if poll.poll_type == 'first_name':
                         name = text.choice_text
-
-        send_mail('Thanks for visiting us', 'Hello ' + name + ',\n\nwe hope you enjoyed. \
-                  Please, come back soon.\nBye,\n\nMuseum', settings.EMAIL_HOST_USER,
-                  [email], fail_silently=False)
+        try:
+            send_mail('Thanks for visiting us',
+                      'Hello ' + name +
+                      ',\n\nwe hope you enjoyed. Please, come back soon.\nBye,\n\nMuseum',
+                      settings.EMAIL_HOST_USER,
+                      [email],
+                      fail_silently=False)
+        except:
+            print('email address not valid')
 
         return HttpResponseRedirect("thankyou/")
 
-    polls = Poll.objects.filter(survey=survey)
+    polls = Poll.objects.filter(survey=survey, first_level=True)
     context = {'survey': survey,
                'polls': polls}
     return render(request, 'polls/index.html', context)

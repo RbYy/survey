@@ -33,11 +33,13 @@
                             <div class="nested nestedradio{{poll.pk}} nestedid{{choice.pk}}">
                                 <div class="nested-poll-question">{{ nested_poll.question }}</div>
                                 {% if nested_poll.poll_type == 'one' %}
+                                    <fieldset class="nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" id="set{{choice.pk}}">
                                     {% for nested_choice in nested_poll.charchoice_set.all %}
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
                                     {% endfor %}
-                                {% elif nested_poll.poll_type == 'text'%}
-                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control" name="{{ nested_poll.pk }}" value=""></label>
+                                    </fieldset>
+                                {% elif nested_poll.poll_type == 'text' or 'first_name' or 'email_now'%}
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
 
                                 {% endif %}
                             </div>
@@ -57,9 +59,10 @@
                             <div class="nested nestedcountry{{poll.pk}} nestedid{{choice}}">
                                 <div class="nested-poll-question">{{ nested_poll.question }}</div>
                                 {% if nested_poll.poll_type == 'one' %}
-                                    {% for nested_choice in nested_poll.charchoice_set.all %}
+                                    <fieldset class="nested nestedcountry{{poll.pk}} nestedid{{choice}}">{% for nested_choice in nested_poll.charchoice_set.all %}
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
                                     {% endfor %}
+                                    </fieldset>
                                 {% endif %}
                             </div>    
                         {% endfor %}
@@ -73,12 +76,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $('.nested').hide()
+    $(".nested").prop('disabled', true);
     $('form').on('change', '.main-radio',function(){
         choice = $(this).attr('id')
         poll = $(this).attr('class').split(' ')[0]
         console.log('dd', choice, poll)
         $('.nested' + poll).hide('slow')
+        $('.nested' + poll).prop('disabled', true);
         $('.nested' + choice).show('slow')
+        $('.nested' + choice).prop('disabled', false);
     })
 
     $('select').change(function(){
@@ -86,7 +92,9 @@ $(document).ready(function(){
         poll = $(this).attr('class')
         console.log(choice, poll)
         $('.nested' + poll).hide('slow')
+        $('.nested' + poll).prop('disabled', true);
         $('.nestedid' + choice).show('slow')
+        $('.nestedid' + choice).prop('disabled', false);
     })
 
 })
