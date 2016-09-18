@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='poll',
             name='survey',
-            field=adminsortable.fields.SortableForeignKey(blank=True, default=0, on_delete=django.db.models.deletion.CASCADE, to='polls.Survey'),
+            field=adminsortable.fields.SortableForeignKey(blank=True, default=9, on_delete=django.db.models.deletion.CASCADE, to='polls.Survey'),
             preserve_default=False,
         ),
     ]
