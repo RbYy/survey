@@ -18,6 +18,9 @@ from django.contrib import admin
 from polls.views import *
 
 
+admin.site.site_title = 'Survey Administration'
+admin.site.index_title = 'Manage Your Surveys'
+admin.site.site_header = 'Survey Administration'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),

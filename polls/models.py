@@ -4,11 +4,17 @@ from adminsortable.fields import SortableForeignKey
 
 
 class Survey(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Surveys'
+        ordering = ['the_order']
+
     title = models.CharField(max_length=100)
     language = models.CharField(max_length=30)
     description = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField()
+    the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
     def __str__(self):
         if self.active is True:
@@ -23,7 +29,7 @@ class Poll(SortableMixin):
 
     class Meta:
         verbose_name_plural = 'Polls'
-        ordering = ['the_order']
+        ordering = ['poll_order']
 
     poll_type = models.CharField(
         max_length=30,
@@ -41,16 +47,22 @@ class Poll(SortableMixin):
     question = models.CharField(max_length=500, blank=True)
     survey = SortableForeignKey(Survey, blank=True)
     first_level = models.BooleanField(default=True)
-    the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    poll_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
     def __str__(self):
         return self.question
 
 
-class CharChoice(models.Model):
+class CharChoice(SortableMixin):
+
+    class Meta:
+        verbose_name_plural = 'Choices'
+        ordering = ['choice_order']
+
     choice_text = models.CharField(max_length=200)
-    poll = models.ForeignKey(Poll)
+    poll = SortableForeignKey(Poll)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
+    choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
     def __str__(self):
 
