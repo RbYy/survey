@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"Pol",
+				"PollAdmin	class"
+			],
+			[
+				"Non",
+				"NonSortableParentAdmin	class"
+			],
+			[
+				"So",
+				"SortableStackedInline	class"
+			],
+			[
+				"non",
+				"NonSortableParentAdmin	class"
+			],
+			[
+				"sort",
+				"SortableForeignKey	class"
+			],
+			[
 				"all",
 				"allpollfields"
 			],
@@ -494,26 +514,6 @@
 			[
 				"cre",
 				"create"
-			],
-			[
-				"ti",
-				"title	Tag"
-			],
-			[
-				"ne",
-				"new_item_text〔variable〕"
-			],
-			[
-				"date",
-				"datetime	class"
-			],
-			[
-				"django",
-				"djangoenv	module"
-			],
-			[
-				"get",
-				"getcwd"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "pollproject/settings.py",
 			"settings":
 			{
-				"buffer_size": 3532,
+				"buffer_size": 3553,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,15 +531,7 @@
 			"file": "polls/admin.py",
 			"settings":
 			{
-				"buffer_size": 191,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/python3.5/site-packages/xorformfields/forms/fields.py",
-			"settings":
-			{
-				"buffer_size": 6069,
+				"buffer_size": 798,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,7 +547,7 @@
 			"file": "polls/models.py",
 			"settings":
 			{
-				"buffer_size": 2361,
+				"buffer_size": 3045,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +555,7 @@
 			"file": "polls/views.py",
 			"settings":
 			{
-				"buffer_size": 2933,
+				"buffer_size": 2958,
 				"line_ending": "Unix"
 			}
 		},
@@ -587,18 +579,15 @@
 			"file": "pollproject/urls.py",
 			"settings":
 			{
-				"buffer_size": 977,
+				"buffer_size": 1121,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE HTML>\n<html>\n<head>\n    {% load staticfiles %}\n    <meta charset=\"UTF-8\">\n    <link href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\n    <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'polls/survey.css' %}\">\n</head>    \n<body class=\"container-fluid\">\n<div class=\"survey-content\">\n    <h3>{{ survey.title }}</h3>\n    <h4>{{ survey.description }}</h4>\n    <hr>\n    <form method=\"post\" name=\"myForm\" role=\"form\" novalidate=\"novalidate\" action=\".\">{% csrf_token %}\n        {% for poll in polls %}\n        <h4 class=\"poll-question\">{{ poll.question }}</h4>\n\n            {% if poll.poll_type == 'multi' %}\n                <fieldset>\n                    {% for choice in poll.charchoice_set.all %}\n                        <label class=\"checkbox control-label\"><input type=\"checkbox\" name=\"{{ poll.pk }}\" value=\"{{choice.pk}}\">{{choice.choice_text}}</label>\n                    {% endfor %}\n                </fieldset>\n            \n            {% elif poll.poll_type == 'one' %}\n                <fieldset id=\"idpoll{{ poll.pk }}\">\n                    {% for choice in poll.charchoice_set.all %}\n                        <label class=\"radio{{poll.pk}} main-radio radio control-label\" id=\"id{{choice.pk}}\"><input type=\"radio\" name=\"{{ poll.pk }}\" value=\"{{ choice.pk }}\">{{choice.choice_text}}</label>\n\n                        {% for nested_poll in choice.nested.all %}\n                            <div class=\"nested nestedradio{{poll.pk}} nestedid{{choice.pk}}\">\n                                <div class=\"nested-poll-question\">{{ nested_poll.question }}</div>\n                                {% if nested_poll.poll_type == 'one' %}\n                                    {% for nested_choice in nested_poll.charchoice_set.all %}\n                                        <label class=\"radio control-label\"><input type=\"radio\" id=\"idof{{ nested_choice }}\" name=\"{{ nested_poll.pk }}\" value=\"{{ nested_choice.pk }}\">{{nested_choice.choice_text}}</label>\n                                    {% endfor %}\n                                {% elif nested_poll.poll_type == 'text'%}\n                                    <label class=\"control-label\"><input type=\"text\" id=\"idof{{ nested_choice }}\" class=\"form-control\" name=\"{{ nested_poll.pk }}\" value=\"\"></label>\n\n                                {% endif %}\n                            </div>\n                        {% endfor %}\n\n                    {% endfor %}\n                </fieldset>\n\n	   \n            {% elif poll.poll_type == 'text' %}\n                    <label class=\"control-label\"><input type=\"text\" class=\"form-control\" name=\"{{ poll.pk }}\" value=\"\"></label>\n\n            {% elif poll.poll_type == 'countries' %}\n                {% include 'polls/countries.html' %}\n                    {% for choice in poll.charchoice_set.all %}\n                        {% for nested_poll in choice.nested.all %}\n                            <div class=\"nested nestedcountry{{poll.pk}} nestedid{{choice}}\">\n                                <div class=\"nested-poll-question\">{{ nested_poll.question }}</div>\n                                {% if nested_poll.poll_type == 'one' %}\n                                    {% for nested_choice in nested_poll.charchoice_set.all %}\n                                        <label class=\"radio control-label\"><input type=\"radio\" id=\"idof{{ nested_choice }}\" name=\"{{ nested_poll.pk }}\" value=\"{{ nested_choice.pk }}\">{{nested_choice.choice_text}}</label>\n                                    {% endfor %}\n                                {% endif %}\n                            </div>    \n                        {% endfor %}\n                    {% endfor %}\n            {% endif %}\n        {% endfor %}\n        <hr>\n        <input type=\"submit\" value=\"Submit\">\n    </form>\n</div>\n<script type=\"text/javascript\">\n$(document).ready(function(){\n    $('.nested').hide()\n    $('form').on('change', '.main-radio',function(){\n        choice = $(this).attr('id')\n        poll = $(this).attr('class').split(' ')[0]\n        console.log('dd', choice, poll)\n        $('.nested' + poll).hide('slow')\n        $('.nested' + choice).show('slow')\n    })\n\n    $('select').change(function(){\n        choice = $(this).val()\n        poll = $(this).attr('class')\n        console.log(choice, poll)\n        $('.nested' + poll).hide('slow')\n        $('.nestedid' + choice).show('slow')\n    })\n\n})\n\n\n</script>\n</body>\n",
 			"file": "polls/templates/polls/index.html",
-			"file_size": 4581,
-			"file_write_time": 131185324468868489,
 			"settings":
 			{
-				"buffer_size": 4581,
+				"buffer_size": 5219,
 				"line_ending": "Unix"
 			}
 		}
@@ -843,6 +832,7 @@
 		"/home/jr/Koda/poll/deploy_tools",
 		"/home/jr/Koda/poll/pollproject",
 		"/home/jr/Koda/poll/polls",
+		"/home/jr/Koda/poll/polls/migrations",
 		"/home/jr/Koda/poll/polls/static",
 		"/home/jr/Koda/poll/polls/static/polls",
 		"/home/jr/Koda/poll/polls/templates",
@@ -850,6 +840,8 @@
 	],
 	"file_history":
 	[
+		"/home/jr/Koda/poll/polls/migrations/0015_auto_20160918_1744.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/xorformfields/forms/fields.py",
 		"/home/jr/Koda/poll/polls/static/polls/survey.css",
 		"/home/jr/Koda/poll/deploy_tools/fabfile.py",
 		"/home/jr/Koda/poll/polls/templates/polls/countries.html",
@@ -1027,7 +1019,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1036,15 +1028,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3532,
+						"buffer_size": 3553,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3532,
-								3532
+								1751,
+								1751
 							]
 						],
 						"settings":
@@ -1054,10 +1046,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1485.0,
+						"translation.y": 450.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1066,15 +1058,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 191,
+						"buffer_size": 798,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								93,
-								93
+								649,
+								649
 							]
 						],
 						"settings":
@@ -1085,41 +1077,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "lib/python3.5/site-packages/xorformfields/forms/fields.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6069,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								311,
-								311
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "polls/templates/polls/raport.html",
 					"semi_transient": false,
 					"settings":
@@ -1145,60 +1107,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "polls/models.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2361,
+						"buffer_size": 3045,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1483,
-								1483
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 135.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 4,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"file": "polls/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2933,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1842,
-								1842
+								319,
+								319
 							]
 						],
 						"settings":
@@ -1213,9 +1139,45 @@
 					},
 					"stack_index": 1,
 					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "polls/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1336,
+								1336
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "polls/templates/polls/countries.html",
 					"semi_transient": false,
 					"settings":
@@ -1245,7 +1207,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "polls/templates/polls/visitors.html",
 					"semi_transient": false,
 					"settings":
@@ -1275,20 +1237,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 7,
 					"file": "pollproject/urls.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 977,
+						"buffer_size": 1121,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								738,
-								738
+								821,
+								821
 							]
 						],
 						"settings":
@@ -1301,24 +1263,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 8,
 					"file": "polls/templates/polls/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4581,
+						"buffer_size": 5219,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1885,
-								2212
+								4272,
+								4272
 							]
 						],
 						"settings":
@@ -1329,10 +1291,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 766.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1366,7 +1328,7 @@
 		"cols":
 		[
 			0.0,
-			0.389505492625,
+			0.645264500304,
 			1.0
 		],
 		"rows":
@@ -1418,7 +1380,7 @@
 		],
 		"width": 378.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

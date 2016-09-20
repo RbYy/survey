@@ -63,6 +63,7 @@ class CharChoice(SortableMixin):
     poll = SortableForeignKey(Poll)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
     choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    created_by_visitor = models.BooleanField(default=True)
 
     def __str__(self):
 
