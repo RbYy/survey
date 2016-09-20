@@ -28,7 +28,10 @@ def index(request):
                     new_visitor.choices.add(*charchoices)
                 except:
                     poll = Poll.objects.get(pk=key)
-                    text, create = CharChoice.objects.get_or_create(choice_text=request.POST[key], poll=poll)
+                    text, create = CharChoice.objects.get_or_create(
+                        choice_text=request.POST[key],
+                        poll=poll,
+                        created_by_visitor=True)
                     new_visitor.choices.add(text)
                     if poll.poll_type == 'email_now':
                         email = text.choice_text
