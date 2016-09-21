@@ -22,22 +22,43 @@ def index(request):
         for key in request.POST:
             if key != 'csrfmiddlewaretoken':
                 print(key, ' : ', request.POST[key])
+                poll = Poll.objects.get(pk=key)
 
-                try:
+                if poll.poll_type == 'multi':
                     charchoices = CharChoice.objects.filter(pk__in=request.POST.getlist(key))
                     new_visitor.choices.add(*charchoices)
-                except:
-                    poll = Poll.objects.get(pk=key)
+
+                    print('multiple: ', key, charchoices)
+                elif poll.poll_type == 'one':
+                    text = CharChoice.objects.get(
+                        pk=request.POST[key])
+                    new_visitor.choices.add(text)
+                else:
                     text, create = CharChoice.objects.get_or_create(
                         choice_text=request.POST[key],
                         poll=poll,
                         created_by_visitor=True)
                     new_visitor.choices.add(text)
-                    if poll.poll_type == 'email_now':
-                        email = text.choice_text
-                        print('email ', email)
-                    if poll.poll_type == 'first_name':
-                        name = text.choice_text
+                for survey_attr in survey.surveyattribute_set.all():
+                    if poll in survey_attr.polls.all():
+                        if survey_attr.attr_type == 'summarize':
+                            survey_attr.summarize(int(text.choice_text))
+
+                        if survey_attr.attr_type == 'count':
+                            d, c = Dicty.objects.get_or_create(name=poll.question)
+                            print('TEXT: ', text.choice_text)
+                            ch = CharChoice.objects.get(pk=text.pk)  # for text is choice.pk sent in request
+                            kv, cc = KeyVal.objects.get_or_create(container=d, key=ch.choice_text)
+                            kv.value = int(kv.value) + 1
+                            kv.save()
+                            survey_attr.dicti = d
+                            survey_attr.save()
+
+                if poll.poll_type == 'email_now':
+                    email = text.choice_text
+                    print('email ', email)
+                if poll.poll_type == 'first_name':
+                    name = text.choice_text
         try:
             send_mail('Thanks for visiting us',
                       'Hello ' + name +

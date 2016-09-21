@@ -100,3 +100,51 @@ class Email(models.Model):
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
     text = models.TextField()
+
+
+class Dicty(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        result = ''
+        for pair in self.keyval_set.all():
+            line = pair.key + ': ' + pair.value + ' || '
+            result += line
+        print(result)
+        return result
+
+
+class KeyVal(models.Model):
+    container = models.ForeignKey(Dicty)
+    key = models.CharField(max_length=50)
+    value = models.CharField(max_length=150, default=0)
+
+
+class SurveyAttribute(SortableMixin):
+    class Meta:
+        verbose_name_plural = 'Survey Attributes'
+        ordering = ['attr_order']
+
+    name = models.CharField(max_length=30)
+    survey = SortableForeignKey(Survey)
+    numeric_value = models.IntegerField(blank=True, null=True)
+    attr_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    attr_type = models.CharField(
+        max_length=30,
+        choices=(
+            ('summarize', 'summarize'),
+            ('count', 'count'),
+            ('average', 'average'),
+        )
+    )
+    polls = models.ManyToManyField(Poll)
+    dicti = models.ForeignKey(Dicty, blank=True, null=True)
+
+    def summarize(self, input):
+        self.numeric_value += int(input)
+        self.save()
+
+    def __str__(self):
+        return 'survey attr: ' + self.name
+
+
