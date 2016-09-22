@@ -49,7 +49,7 @@ class Poll(SortableMixin):
     survey = SortableForeignKey(Survey, blank=True)
     first_level = models.BooleanField(default=True)
     poll_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
-    include_raport = models.BooleanField(default=True)
+    include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
 
@@ -110,11 +110,10 @@ class Dicty(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        result = ''
+        result = self.name + ' \n'
         for pair in self.keyval_set.all():
             line = pair.key + ': ' + pair.value + '\n'
             result += line
-        print(result)
         return result
 
 
@@ -131,22 +130,26 @@ class SurveyAttribute(SortableMixin):
 
     name = models.CharField(max_length=30)
     survey = SortableForeignKey(Survey)
-    numeric_value = models.IntegerField(blank=True, null=True)
-    dicti = models.ForeignKey(Dicty, blank=True, null=True)
+    dicti = models.ForeignKey(Dicty, blank=True, null=True, verbose_name='values')
     attr_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     attr_type = models.CharField(
+        verbose_name='action',
         max_length=30,
         choices=(
             ('summarize', 'summarize'),
-            ('count', 'count'),
-            ('average', 'average'),
+            ('count', 'count answers'),
+            ('average', 'calc average'),
         )
     )
     polls = models.ManyToManyField(Poll)
     
 
     def summarize(self, choice_input):
-        self.numeric_value += int(choice_input)
+        d, c = Dicty.objects.get_or_create(name=self.name)
+        kv, cc = KeyVal.objects.get_or_create(container=d, key='Total')
+        kv.value = int(kv.value) + int(choice_input)
+        kv.save()
+        self.dicti = d
         self.save()
 
     def count(self, poll, choice_input):        

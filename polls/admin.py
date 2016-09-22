@@ -24,8 +24,8 @@ class PollTabularInline(SortableTabularInline):
 
 class SurveyAttributeTabularInline(SortableTabularInline):
     model = SurveyAttribute
-    fields = ['name', 'numeric_value', 'dicti', 'attr_type', 'polls'] 
-    readonly_fields = ['dicti', 'numeric_value']
+    fields = ['name', 'dicti', 'attr_type', 'polls'] 
+    readonly_fields = ['dicti']
     extra = 0
 
 
