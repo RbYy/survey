@@ -45,14 +45,8 @@ def index(request):
                             survey_attr.summarize(int(text.choice_text))
 
                         if survey_attr.attr_type == 'count':
-                            d, c = Dicty.objects.get_or_create(name=poll.question)
-                            print('TEXT: ', text.choice_text)
-                            ch = CharChoice.objects.get(pk=text.pk)  # for text is choice.pk sent in request
-                            kv, cc = KeyVal.objects.get_or_create(container=d, key=ch.choice_text)
-                            kv.value = int(kv.value) + 1
-                            kv.save()
-                            survey_attr.dicti = d
-                            survey_attr.save()
+                            survey_attr.count(poll, text)
+
 
                 if poll.poll_type == 'email_now':
                     email = text.choice_text

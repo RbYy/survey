@@ -15,6 +15,7 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField()
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    hide_ghost = models.BooleanField(default=True)
 
     def __str__(self):
         if self.active is True:
@@ -48,6 +49,9 @@ class Poll(SortableMixin):
     survey = SortableForeignKey(Survey, blank=True)
     first_level = models.BooleanField(default=True)
     poll_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+    include_raport = models.BooleanField(default=True)
+    include_in_details = models.BooleanField(default=True)
+    ghost = models.BooleanField(default=False)
 
     def __str__(self):
         return self.question
@@ -108,7 +112,7 @@ class Dicty(models.Model):
     def __str__(self):
         result = ''
         for pair in self.keyval_set.all():
-            line = pair.key + ': ' + pair.value + ' || '
+            line = pair.key + ': ' + pair.value + '\n'
             result += line
         print(result)
         return result
@@ -128,6 +132,7 @@ class SurveyAttribute(SortableMixin):
     name = models.CharField(max_length=30)
     survey = SortableForeignKey(Survey)
     numeric_value = models.IntegerField(blank=True, null=True)
+    dicti = models.ForeignKey(Dicty, blank=True, null=True)
     attr_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     attr_type = models.CharField(
         max_length=30,
@@ -138,10 +143,19 @@ class SurveyAttribute(SortableMixin):
         )
     )
     polls = models.ManyToManyField(Poll)
-    dicti = models.ForeignKey(Dicty, blank=True, null=True)
+    
 
-    def summarize(self, input):
-        self.numeric_value += int(input)
+    def summarize(self, choice_input):
+        self.numeric_value += int(choice_input)
+        self.save()
+
+    def count(self, poll, choice_input):        
+        d, c = Dicty.objects.get_or_create(name=poll.question)
+        ch = CharChoice.objects.get(pk=choice_input.pk)
+        kv, cc = KeyVal.objects.get_or_create(container=d, key=ch.choice_text)
+        kv.value = int(kv.value) + 1
+        kv.save()
+        self.dicti = d
         self.save()
 
     def __str__(self):

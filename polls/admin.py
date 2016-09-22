@@ -18,9 +18,14 @@ class PollTabularInline(SortableTabularInline):
     model = Poll
     extra = 0
 
+    def get_queryset(self, request):
+        qs = super(PollTabularInline, self).get_queryset(request)
+        return qs
 
 class SurveyAttributeTabularInline(SortableTabularInline):
     model = SurveyAttribute
+    fields = ['name', 'numeric_value', 'dicti', 'attr_type', 'polls'] 
+    readonly_fields = ['dicti', 'numeric_value']
     extra = 0
 
 
