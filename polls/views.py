@@ -47,16 +47,24 @@ def index(request):
                         if survey_attr.attr_type == 'count':
                             survey_attr.count(poll, text)
 
-
                 if poll.poll_type == 'email_now':
                     email = text.choice_text
                     print('email ', email)
+
                 if poll.poll_type == 'first_name':
                     name = text.choice_text
+                    print(name)
         try:
+            split_body = survey.welcome_letter.body.split('//')
+            print(split_body)
+            body = ''
+            for part in split_body:
+                if part == 'first_name':
+                    part = name
+                body += part
+            print(body)
             send_mail('Thanks for visiting us',
-                      'Hello ' + name +
-                      ',\n\nwe hope you enjoyed. Please, come back soon.\nBye,\n\nMuseum',
+                      body,
                       settings.EMAIL_HOST_USER,
                       [email],
                       fail_silently=False)

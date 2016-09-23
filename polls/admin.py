@@ -1,7 +1,11 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Dicty
+from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Dicty, Email
+
+
+class EmailAdmin(admin.ModelAdmin):
+    list_display = ('title', 'subject', 'body',)
 
 
 class ChoiceSortableTabularInline(SortableStackedInline):
@@ -26,9 +30,10 @@ class PollTabularInline(SortableTabularInline):
 
         return qs
 
+
 class SurveyAttributeTabularInline(SortableTabularInline):
     model = SurveyAttribute
-    fields = ['name', 'dicti', 'attr_type', 'polls'] 
+    fields = ['name', 'dicti', 'attr_type', 'polls']
     readonly_fields = ['dicti']
     extra = 0
 
@@ -52,4 +57,5 @@ admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
 admin.site.register(Dicty)
 admin.site.register(CharChoice)
+admin.site.register(Email, EmailAdmin)
 # admin.site.register(SurveyAttribute, Admin)
