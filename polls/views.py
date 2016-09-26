@@ -64,15 +64,15 @@ def index(request):
                     print('ooo', part)
                 body += part
             print(body)
+            send_mail('Thanks for visiting us',
+                body,
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False)
 
         except:
             print('email address not valid')
 
-        send_mail('Thanks for visiting us',
-                  body,
-                  settings.EMAIL_HOST_USER,
-                  [email],
-                  fail_silently=False)
         return HttpResponseRedirect("thankyou/")
 
     polls = Poll.objects.filter(survey=survey, first_level=True)

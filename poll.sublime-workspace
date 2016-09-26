@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"inc",
+				"include_in_raport"
+			],
+			[
+				"split",
+				"split_body\tstatement"
+			],
+			[
+				"Email",
+				"EmailAdmin\tclass"
+			],
+			[
+				"Mo",
+				"ModelAdmin\tclass"
+			],
+			[
 				"choi",
 				"choice_input"
 			],
@@ -29,7 +45,7 @@
 			],
 			[
 				"Ke",
-				"KeyVal	class"
+				"KeyVal\tclass"
 			],
 			[
 				"get_",
@@ -41,35 +57,35 @@
 			],
 			[
 				"survey",
-				"survey_attr	forstmt"
+				"survey_attr\tforstmt"
 			],
 			[
 				"SurveyA",
-				"SurveyAttribute	class"
+				"SurveyAttribute\tclass"
 			],
 			[
 				"Su",
-				"SurveyAttributeTabularInline	class"
+				"SurveyAttributeTabularInline\tclass"
 			],
 			[
 				"Pol",
-				"PollAdmin	class"
+				"PollAdmin\tclass"
 			],
 			[
 				"Non",
-				"NonSortableParentAdmin	class"
+				"NonSortableParentAdmin\tclass"
 			],
 			[
 				"So",
-				"SortableStackedInline	class"
+				"SortableStackedInline\tclass"
 			],
 			[
 				"non",
-				"NonSortableParentAdmin	class"
+				"NonSortableParentAdmin\tclass"
 			],
 			[
 				"sort",
-				"SortableForeignKey	class"
+				"SortableForeignKey\tclass"
 			],
 			[
 				"all",
@@ -77,15 +93,15 @@
 			],
 			[
 				"sock_s",
-				"SOCK_STREAM	instance"
+				"SOCK_STREAM\tinstance"
 			],
 			[
 				"sock",
-				"socket	module"
+				"socket\tmodule"
 			],
 			[
 				"text",
-				"TextField	class"
+				"TextField\tclass"
 			],
 			[
 				"padding",
@@ -101,23 +117,23 @@
 			],
 			[
 				"boo",
-				"BooleanField	class"
+				"BooleanField\tclass"
 			],
 			[
 				"Mut",
-				"MutuallyExclusiveValueField	class"
+				"MutuallyExclusiveValueField\tclass"
 			],
 			[
 				"Per",
-				"PersonForm	class"
+				"PersonForm\tclass"
 			],
 			[
 				"fo",
-				"forms	module"
+				"forms\tmodule"
 			],
 			[
 				"x",
-				"xorformfields	module"
+				"xorformfields\tmodule"
 			],
 			[
 				"pos",
@@ -125,7 +141,7 @@
 			],
 			[
 				"re",
-				"request	param"
+				"request\tparam"
 			],
 			[
 				"qu",
@@ -133,11 +149,11 @@
 			],
 			[
 				"te",
-				"textpoll	statement"
+				"textpoll\tstatement"
 			],
 			[
 				"Te",
-				"TextEnter	class"
+				"TextEnter\tclass"
 			],
 			[
 				"Text",
@@ -145,7 +161,7 @@
 			],
 			[
 				"sum",
-				"sum_dict	statement"
+				"sum_dict\tstatement"
 			],
 			[
 				"tex",
@@ -153,11 +169,11 @@
 			],
 			[
 				"active",
-				"active_survey	statement"
+				"active_survey\tstatement"
 			],
 			[
 				"B",
-				"BooleanField	class"
+				"BooleanField\tclass"
 			],
 			[
 				"ba",
@@ -169,7 +185,7 @@
 			],
 			[
 				"Ema",
-				"EmailChoice	class"
+				"EmailChoice\tclass"
 			],
 			[
 				"padd",
@@ -217,7 +233,7 @@
 			],
 			[
 				"vi",
-				"visitors	statement"
+				"visitors\tstatement"
 			],
 			[
 				"PO",
@@ -225,35 +241,35 @@
 			],
 			[
 				"Htt",
-				"HttpResponseRedirect	class"
+				"HttpResponseRedirect\tclass"
 			],
 			[
 				"H",
-				"HttpResponse	class"
+				"HttpResponse\tclass"
 			],
 			[
 				"Date",
-				"DateTimeField	class"
+				"DateTimeField\tclass"
 			],
 			[
 				"model",
-				"Model	class"
+				"Model\tclass"
 			],
 			[
 				"Fo",
-				"ForeignKey	class"
+				"ForeignKey\tclass"
 			],
 			[
 				"Po",
-				"Poll_group	class"
+				"Poll_group\tclass"
 			],
 			[
 				"Man",
-				"ManyToManyField	class"
+				"ManyToManyField\tclass"
 			],
 			[
 				"co",
-				"core	module"
+				"core\tmodule"
 			],
 			[
 				"fun",
@@ -277,7 +293,7 @@
 			],
 			[
 				"di",
-				"div	Tag"
+				"div\tTag"
 			],
 			[
 				"max",
@@ -285,7 +301,7 @@
 			],
 			[
 				"V",
-				"VRSTE_JEDI	statement"
+				"VRSTE_JEDI\tstatement"
 			],
 			[
 				"Vrsta",
@@ -293,7 +309,7 @@
 			],
 			[
 				"C",
-				"ChoiceField	class"
+				"ChoiceField\tclass"
 			],
 			[
 				"o",
@@ -301,11 +317,11 @@
 			],
 			[
 				"Je",
-				"JediSerializers	class"
+				"JediSerializers\tclass"
 			],
 			[
 				"ret",
-				"RetrieveUpdateDestroyAPIView	class"
+				"RetrieveUpdateDestroyAPIView\tclass"
 			],
 			[
 				"seri",
@@ -313,19 +329,19 @@
 			],
 			[
 				"Li",
-				"ListCreateAPIView	class"
+				"ListCreateAPIView\tclass"
 			],
 			[
 				"res",
-				"rest_framework	module"
+				"rest_framework\tmodule"
 			],
 			[
 				"url",
-				"urlpatterns	statement"
+				"urlpatterns\tstatement"
 			],
 			[
 				"Mod",
-				"Model	class"
+				"Model\tclass"
 			],
 			[
 				"fu",
@@ -333,27 +349,27 @@
 			],
 			[
 				"el",
-				"else	keyword"
+				"else\tkeyword"
 			],
 			[
 				"urll",
-				"urllib	module"
+				"urllib\tmodule"
 			],
 			[
 				"urlli",
-				"urllib2	module"
+				"urllib2\tmodule"
 			],
 			[
 				"th",
-				"thawing-spire-73185	module"
+				"thawing-spire-73185\tmodule"
 			],
 			[
 				"rep",
-				"repl-django	module"
+				"repl-django\tmodule"
 			],
 			[
 				"dic",
-				"dicta	param"
+				"dicta\tparam"
 			],
 			[
 				"auth_",
@@ -361,7 +377,7 @@
 			],
 			[
 				"mode",
-				"Model	class"
+				"Model\tclass"
 			],
 			[
 				"__di",
@@ -369,19 +385,19 @@
 			],
 			[
 				"emp",
-				"EMPTY_ITEM_ERROR	statement"
+				"EMPTY_ITEM_ERROR\tstatement"
 			],
 			[
 				"g",
-				"get_item_input_box	function"
+				"get_item_input_box\tfunction"
 			],
 			[
 				"It",
-				"ItemForm	class"
+				"ItemForm\tclass"
 			],
 			[
 				"Item",
-				"ItemForm	import"
+				"ItemForm\timport"
 			],
 			[
 				"Ite",
@@ -389,15 +405,15 @@
 			],
 			[
 				"E",
-				"EMPTY_ITEM_ERROR	statement"
+				"EMPTY_ITEM_ERROR\tstatement"
 			],
 			[
 				"view",
-				"view_list	function"
+				"view_list\tfunction"
 			],
 			[
 				"e",
-				"error	statement"
+				"error\tstatement"
 			],
 			[
 				"f",
@@ -409,7 +425,7 @@
 			],
 			[
 				"respon",
-				"response	statement"
+				"response\tstatement"
 			],
 			[
 				"asse",
@@ -417,7 +433,7 @@
 			],
 			[
 				"ex",
-				"expected_error	statement"
+				"expected_error\tstatement"
 			],
 			[
 				"asser",
@@ -425,7 +441,7 @@
 			],
 			[
 				"lis",
-				"list_	statement"
+				"list_\tstatement"
 			],
 			[
 				"sta",
@@ -437,11 +453,11 @@
 			],
 			[
 				"si",
-				"site_name	param"
+				"site_name\tparam"
 			],
 			[
 				"sys",
-				"sysd_service	statement"
+				"sysd_service\tstatement"
 			],
 			[
 				"gun",
@@ -449,7 +465,7 @@
 			],
 			[
 				"site",
-				"site_folder	param"
+				"site_folder\tparam"
 			],
 			[
 				"u",
@@ -457,15 +473,15 @@
 			],
 			[
 				"en",
-				"env	instance"
+				"env\tinstance"
 			],
 			[
 				"gu",
-				"gunic_renamed	statement"
+				"gunic_renamed\tstatement"
 			],
 			[
 				"gunic",
-				"gunic_template	statement"
+				"gunic_template\tstatement"
 			],
 			[
 				"sit",
@@ -477,15 +493,15 @@
 			],
 			[
 				"ng",
-				"nginx_site_renamed	statement"
+				"nginx_site_renamed\tstatement"
 			],
 			[
 				"nginx_site_",
-				"nginx_site_renamed	statement"
+				"nginx_site_renamed\tstatement"
 			],
 			[
 				"delpy",
-				"deploy_folder	statement"
+				"deploy_folder\tstatement"
 			],
 			[
 				"ngi",
@@ -493,27 +509,11 @@
 			],
 			[
 				"site_",
-				"site_name	param"
+				"site_name\tparam"
 			],
 			[
 				"deploy_",
 				"deploy_folder"
-			],
-			[
-				"nginx",
-				"nginx_site	statement"
-			],
-			[
-				"deplo",
-				"deploy_tools_path"
-			],
-			[
-				"sour",
-				"source_folder"
-			],
-			[
-				"PG",
-				"PG_DB_SETTINGS	statement"
 			]
 		]
 	},
@@ -523,7 +523,8 @@
 			"file": "pollproject/settings.py",
 			"settings":
 			{
-				"buffer_size": 3553,
+				"buffer_size": 3565,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +532,8 @@
 			"file": "polls/admin.py",
 			"settings":
 			{
-				"buffer_size": 1537,
+				"buffer_size": 1670,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -547,7 +549,8 @@
 			"file": "polls/models.py",
 			"settings":
 			{
-				"buffer_size": 5150,
+				"buffer_size": 5409,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -555,7 +558,8 @@
 			"file": "polls/views.py",
 			"settings":
 			{
-				"buffer_size": 3692,
+				"buffer_size": 3903,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +567,8 @@
 			"file": "polls/templates/polls/countries.html",
 			"settings":
 			{
-				"buffer_size": 17914,
+				"buffer_size": 17990,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -587,7 +592,8 @@
 			"file": "polls/templates/polls/index.html",
 			"settings":
 			{
-				"buffer_size": 5219,
+				"buffer_size": 5518,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -1018,7 +1024,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1027,15 +1033,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3553,
+						"buffer_size": 3565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1751,
-								1751
+								3496,
+								3496
 							]
 						],
 						"settings":
@@ -1045,10 +1051,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 1215.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1057,26 +1063,26 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1537,
+						"buffer_size": 1670,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								724,
-								724
+								1612,
+								1612
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
 						},
-						"translation.x": 0.0,
+						"translation.x": 3.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1106,7 +1112,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1115,15 +1121,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5150,
+						"buffer_size": 5409,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4225,
-								4225
+								3404,
+								3404
 							]
 						],
 						"settings":
@@ -1132,11 +1138,11 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 10.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 1125.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1151,15 +1157,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3692,
+						"buffer_size": 3903,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1602,
-								1602
+								2827,
+								2827
 							]
 						],
 						"settings":
@@ -1169,10 +1175,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 90.0,
+						"translation.y": 541.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1181,15 +1187,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17914,
+						"buffer_size": 17990,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								53,
-								53
+								121,
+								121
 							]
 						],
 						"settings":
@@ -1202,7 +1208,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1232,7 +1238,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1262,7 +1268,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1271,15 +1277,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5219,
+						"buffer_size": 5518,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4272,
-								4272
+								5218,
+								5218
 							]
 						],
 						"settings":
@@ -1290,7 +1296,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1.0,
+						"translation.y": 1170.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,

@@ -10,12 +10,12 @@
 </head>    
 <body class="container-fluid">
 <div class="survey-content">
-    <h3>{{ survey.title }}</h3>
-    <h4>{{ survey.description }}</h4>
+    <h2>{{ survey.title }}</h2>
+    <h3>{{ survey.description }}</h3>
     <hr>
     <form autocomplete="off" method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
-        <h4 class="poll-question">{{ poll.question }}</h4>
+        <h3 class="poll-question">{{ poll.question }}</h3>
 
             {% if poll.poll_type == 'multi' %}
                 <fieldset>
@@ -31,7 +31,7 @@
 
                         {% for nested_poll in choice.nested.all %}
                             <div class="nested nestedradio{{poll.pk}} nestedid{{choice.pk}}">
-                                <div class="nested-poll-question">{{ nested_poll.question }}</div>
+                                <div class="nested-poll-question"><h4>{{ nested_poll.question }}</h4></div>
                                 {% if nested_poll.poll_type == 'one' %}
                                     <fieldset class="nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" id="set{{choice.pk}}">
                                     {% for nested_choice in nested_poll.charchoice_set.all %}

@@ -48,3 +48,10 @@
 fieldset {
     padding-left: 50px;
 }
+
+.radio, .checkbox {
+    font-size: 20px;
+}
+select { 
+    font-size:20px;
+}
