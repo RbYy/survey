@@ -99,6 +99,13 @@ $(document).ready(function(){
 
 })
 
-
+// firefox and safari fix javascript not loading after 'back' button klick
+$(window).unload(function () { $(window).unbind('unload'); });
+$(window).bind('pageshow', function(event) {
+    if (event.originalEvent.persisted) {
+        window.location.reload() 
+    }
+});
+// ---------
 </script>
 </body>
