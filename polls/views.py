@@ -49,11 +49,11 @@ def index(request):
 
                 if poll.poll_type == 'email_now':
                     email = text.choice_text
-                    print('email ', email)
 
                 if poll.poll_type == 'first_name':
                     name = text.choice_text
-                    print(name)
+                else:
+                    name = ''
         try:
             split_body = survey.welcome_letter.body.split('//')
             print(split_body)
