@@ -8,6 +8,7 @@ from django.conf import settings
 
 def index(request):
     survey = Survey.objects.get(active=True)
+    name = ''
     if request.method == 'POST':
         new_visitor = Visitor.objects.create(survey=survey)
         print([f.name for f in Poll._meta.get_fields()])
@@ -52,15 +53,15 @@ def index(request):
 
                 if poll.poll_type == 'first_name':
                     name = text.choice_text
-                else:
-                    name = ''
+                    print('name', name)
         try:
             split_body = survey.welcome_letter.body.split('//')
             print(split_body)
             body = ''
             for part in split_body:
-                if part == 'first_name':
+                if str(part) == 'first_name':
                     part = name
+                    print('ooo', part)
                 body += part
             print(body)
             send_mail('Thanks for visiting us',
