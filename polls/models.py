@@ -91,7 +91,7 @@ class Visitor(models.Model):
     choices = models.ManyToManyField(CharChoice)
 
     def CollectData(self):
-        polls = self.survey.poll_set.all()
+        polls = self.survey.poll_set.filter(include_in_raport=True)
         return [(poll,
                  [choice.choice_text for choice in
                   self.choices.filter(poll=poll)])for poll in polls]
