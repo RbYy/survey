@@ -55,3 +55,7 @@ fieldset {
 select { 
     font-size:20px;
 }
+
+form {
+    padding-bottom: 100px;
+}
