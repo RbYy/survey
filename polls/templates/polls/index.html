@@ -13,7 +13,7 @@
     <h3>{{ survey.title }}</h3>
     <h4>{{ survey.description }}</h4>
     <hr>
-    <form method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
+    <form autocomplete="off" method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
         <h4 class="poll-question">{{ poll.question }}</h4>
 
