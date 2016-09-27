@@ -95,7 +95,7 @@ class Visitor(models.Model):
     subscribed = models.BooleanField(default=True)
 
     def CollectData(self):
-        polls = self.survey.poll_set.filter(include_in_raport=True)
+        polls = self.survey.poll_set.filter(include_in_details=True)
         return [(poll,
                  [choice.choice_text for choice in
                   self.choices.filter(poll=poll)])for poll in polls]

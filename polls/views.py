@@ -92,7 +92,7 @@ def raport(request):
     visitors = Visitor.objects.all()
     sum_dict = {}
     active_survey = Survey.objects.get(active=True)
-    polls = active_survey.poll_set.all()
+    polls = active_survey.poll_set.filter(include_in_raport=True)
     for poll in polls:
         sum_dict[poll] = {}
         for choice in poll.charchoice_set.all():
