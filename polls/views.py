@@ -56,15 +56,14 @@ def index(request):
                     print('name', name)
         try:
             split_body = survey.welcome_letter.body.split('//')
-            print(split_body)
             body = ''
             for part in split_body:
-                if str(part) == 'first_name':
+                if part == 'first_name':
                     part = name
-                    print('ooo', part)
                 body += part
             print(body)
-            send_mail('Thanks for visiting us',
+            send_mail(
+                'Thanks for visiting us',
                 body,
                 settings.EMAIL_HOST_USER,
                 [email],
@@ -83,6 +82,10 @@ def index(request):
 
 def thankyou(request):
     return render(request, 'polls/thankyou.html')
+
+
+def send_newsletter_view(request):
+    pass
 
 
 def raport(request):

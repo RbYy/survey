@@ -36,6 +36,9 @@ class Survey(models.Model):
         time = str(self.created)[:16]
         return self.title + ' -- ' + 'created: ' + time + ' -- ' + active
 
+    def send_newsletter(self):
+        pass
+
 
 class Poll(SortableMixin):
 
@@ -89,6 +92,7 @@ class Visitor(models.Model):
     filled = models.DateTimeField(auto_now_add=True)
     survey = models.ForeignKey(Survey)
     choices = models.ManyToManyField(CharChoice)
+    subscribed = models.BooleanField(default=True)
 
     def CollectData(self):
         polls = self.survey.poll_set.filter(include_in_raport=True)
@@ -157,7 +161,7 @@ class SurveyAttribute(SortableMixin):
         self.save()
 
     def count(self, poll, choice_input):
-        d, c = Dicty.objects.get_or_create(name=poll.question)
+        d, c = Dicty.objects.get_or_create(name=self.name)
         ch = CharChoice.objects.get(pk=choice_input.pk)
         kv, cc = KeyVal.objects.get_or_create(container=d, key=ch.choice_text)
         kv.value = int(kv.value) + 1
