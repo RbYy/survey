@@ -2,6 +2,8 @@ from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
 from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Dicty, Email
+from django.utils.html import format_html
+
 
 
 class EmailAdmin(admin.ModelAdmin):
@@ -55,19 +57,15 @@ class PollAdmin(NonSortableParentAdmin):
 
 class SurveyAttributeAdmin(NonSortableParentAdmin):
     model = SurveyAttribute
-    # inlines = [PollTabularInline]
 
+    def tab(self, obj):
+        return format_html(obj.dicti.dict_table())
 
-class DictyAdmin(admin.ModelAdmin):
-    model = SurveyAttribute
-    fields = ('name', 'dict_table')
-
-    list_display = ('name', 'dict_table')
+    list_display = ('name', 'tab',)
 
 
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
-admin.site.register(Dicty, DictyAdmin)
-admin.site.register(CharChoice)
+# admin.site.register(CharChoice)
 admin.site.register(Email, EmailAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
