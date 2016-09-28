@@ -59,6 +59,7 @@ class Poll(SortableMixin):
             ('email_now', 'email - save and send at Submit'),
             ('email', 'email - just save'),
             ('first_name', 'enter first name'),
+            ('phone', 'telephone number')
         )
     )
     question = models.CharField(max_length=500, blank=True)

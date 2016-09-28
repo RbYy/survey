@@ -42,7 +42,10 @@
                                 {% elif nested_poll.poll_type == 'text' %}
                                     <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
                                 {% elif nested_poll.poll_type == 'first_name' %}
-                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>                                    
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
+
+                                {% elif nested_poll.poll_type == 'phone' %}
+                                    <label class="control-label"><input type="tel" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>                                                                        
                                {% elif nested_poll.poll_type == 'email_now' or 'email' %}
                                     <label class="control-label"><input type="email" id="idof{{ nested_choice }}" class="email form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value="" placeholder="Enter your email"></label>                                    
 
