@@ -39,8 +39,12 @@
                                         <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
                                     {% endfor %}
                                     </fieldset>
-                                {% elif nested_poll.poll_type == 'text' or 'first_name' or 'email_now'%}
+                                {% elif nested_poll.poll_type == 'text' %}
                                     <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
+                                {% elif nested_poll.poll_type == 'first_name' %}
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>                                    
+                               {% elif nested_poll.poll_type == 'email_now' or 'email' %}
+                                    <label class="control-label"><input type="email" id="idof{{ nested_choice }}" class="email form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value="" placeholder="Enter your email"></label>                                    
 
                                 {% endif %}
                             </div>
@@ -52,6 +56,9 @@
 	   
             {% elif poll.poll_type == 'text' %}
                     <label class="control-label"><input type="text" class="form-control" name="{{ poll.pk }}" value=""></label>
+
+            {% elif poll.poll_type == 'email_now' or 'email' %}
+                    <label class="control-label"><input type="email" class="form-control" name="{{ poll.pk }}" value=""></label>                    
 
             {% elif poll.poll_type == 'countries' %}
                 {% include 'polls/countries.html' %}

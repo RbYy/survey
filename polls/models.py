@@ -28,6 +28,7 @@ class Survey(models.Model):
     hide_ghost = models.BooleanField(default=True)
     welcome_letter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_welcome')
     newsletter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_newsletter')
+    publish_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         if self.active is True:
