@@ -1,6 +1,7 @@
 from django.db import models
 from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
+from django.utils.html import format_html
 
 
 class Email(models.Model):
@@ -118,12 +119,16 @@ class Visitor(models.Model):
 class Dicty(models.Model):
     name = models.CharField(max_length=50)
 
-    def __str__(self):
-        result = self.name + ' \n'
+    def dict_table(self):
+        result = '<table><tbody class="dicty-table"><tr><th>' + self.name + '</th><th></th><tr>'
         for pair in self.keyval_set.all():
-            line = pair.key + ': ' + pair.value + '\n'
+            line = '<tr><td>' + pair.key + '</td><td>' + pair.value + '</td></tr>' + '\n'
             result += line
-        return result
+        result += '</tbody></table>'
+        return format_html(result)
+
+    def __str__(self):
+        return self.dict_table()
 
 
 class KeyVal(models.Model):

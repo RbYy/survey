@@ -42,6 +42,11 @@ class SurveyAdmin(NonSortableParentAdmin):
     model = Survey
     inlines = [SurveyAttributeTabularInline, PollTabularInline]
 
+    class Media:
+        extend = False
+        js = ["/static/jquery-3.1.1.js",
+              "/static/admin/js/custom_inlines.js"]
+
 
 class PollAdmin(NonSortableParentAdmin):
     model = Poll
@@ -50,12 +55,19 @@ class PollAdmin(NonSortableParentAdmin):
 
 class SurveyAttributeAdmin(NonSortableParentAdmin):
     model = SurveyAttribute
-    inlines = [PollTabularInline]
+    # inlines = [PollTabularInline]
+
+
+class DictyAdmin(admin.ModelAdmin):
+    model = SurveyAttribute
+    fields = ('name', 'dict_table')
+
+    list_display = ('name', 'dict_table')
 
 
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
-admin.site.register(Dicty)
+admin.site.register(Dicty, DictyAdmin)
 admin.site.register(CharChoice)
 admin.site.register(Email, EmailAdmin)
-# admin.site.register(SurveyAttribute, Admin)
+admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
