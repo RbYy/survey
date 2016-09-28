@@ -156,6 +156,7 @@ class SurveyAttribute(SortableMixin):
         )
     )
     polls = models.ManyToManyField(Poll)
+    include_in_raport = models.BooleanField(default=True)
 
     def summarize(self, choice_input):
         d, c = Dicty.objects.get_or_create(name=self.name)
@@ -175,4 +176,4 @@ class SurveyAttribute(SortableMixin):
         self.save()
 
     def __str__(self):
-        return 'survey attr: ' + self.name
+        return self.name

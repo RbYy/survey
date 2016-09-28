@@ -93,6 +93,7 @@ def raport(request):
     sum_dict = {}
     active_survey = Survey.objects.get(active=True)
     polls = active_survey.poll_set.filter(include_in_raport=True)
+
     for poll in polls:
         sum_dict[poll] = {}
         for choice in poll.charchoice_set.all():
@@ -101,6 +102,12 @@ def raport(request):
                 if choice in visitor.choices.all():
                     counter += 1
             sum_dict[poll][choice.choice_text] = counter
+
+    for survey_attr in active_survey.surveyattribute_set.filter(include_in_raport=True):
+        sum_dict[survey_attr.name] = {}
+
+        for keyval in survey_attr.dicti.keyval_set.all():
+            sum_dict[survey_attr.name][keyval.key] = keyval.value
 
     context = {"polls": polls,
                "sum_dict": sum_dict}
