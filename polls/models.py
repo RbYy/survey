@@ -33,7 +33,7 @@ class Survey(models.Model):
     def url(self):
         self.publish_url = '/{0}/survey/'.format(self.pk)
         self.save()
-        return format_html('<a href="' + self.publish_url + '">view rendered survey</a>')
+        return format_html('<a href="{0}">{0}</a>'.format(self.publish_url))
 
     def __str__(self):
         if self.active is True:
