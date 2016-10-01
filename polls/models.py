@@ -30,6 +30,11 @@ class Survey(models.Model):
     newsletter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_newsletter')
     publish_url = models.URLField(null=True, blank=True)
 
+    def url(self):
+        self.publish_url = '/{0}/survey/'.format(self.pk)
+        self.save()
+        return format_html('<a href="' + self.publish_url + '">view rendered survey</a>')
+
     def __str__(self):
         if self.active is True:
             active = 'active'
@@ -69,6 +74,9 @@ class Poll(SortableMixin):
     include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
+    group = models.CharField(max_length=50, null=True, blank=True, default='')
+
+
 
     def __str__(self):
         return self.question
@@ -124,7 +132,7 @@ class Dicty(models.Model):
     def dict_table(self):
         result = '<table><tbody class="dicty-table"><tr><th>' + self.name + '</th><th></th><tr>'
         for pair in self.keyval_set.all():
-            line = '<tr><td>' + pair.key + '</td><td>' + pair.value + '</td></tr>' + '\n'
+            line = '<tr><td>' + pair.key + '</td><td>' + pair.value + '</td></tr>'
             result += line
         result += '</tbody></table>'
         return format_html(result)

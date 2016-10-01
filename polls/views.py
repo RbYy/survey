@@ -6,8 +6,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-def index(request):
-    survey = Survey.objects.get(active=True)
+def build_survey(request, survey_id):
+    survey = Survey.objects.get(pk=survey_id)
     name = ''
     if request.method == 'POST':
         new_visitor = Visitor.objects.create(survey=survey)

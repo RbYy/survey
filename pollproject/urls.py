@@ -23,7 +23,8 @@ admin.site.index_title = 'Manage Your Surveys'
 admin.site.site_header = 'Survey Administration'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name="index"),
+    # url(r'^$', index, name="index"),
+    url(r'^(?P<survey_id>[0-9]+)/survey/$', build_survey, name='build_survey'),
     url(r'^thankyou/', thankyou, name="thankyou"),
     url(r'^raport/', raport, name="raport"),
     url(r'^details/', details, name="details"),

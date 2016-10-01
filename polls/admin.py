@@ -5,7 +5,6 @@ from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Dicty, Email
 from django.utils.html import format_html
 
 
-
 class EmailAdmin(admin.ModelAdmin):
     list_display = ('title', 'subject', 'body',)
 
@@ -42,6 +41,13 @@ class SurveyAttributeTabularInline(SortableTabularInline):
 
 class SurveyAdmin(NonSortableParentAdmin):
     model = Survey
+    fields = ('title', 'description', 'created', 'url',
+              ('welcome_letter', 'newsletter', 'hide_ghost'),)
+    readonly_fields = ('created', 'url')
+
+    def link(self, obj):
+        return format_html(obj.link_to_rendered())
+
     inlines = [SurveyAttributeTabularInline, PollTabularInline]
 
     class Media:
