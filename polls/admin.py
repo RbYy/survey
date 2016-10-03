@@ -1,7 +1,7 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Dicty, Email
+from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Email, Group
 from django.utils.html import format_html
 
 
@@ -21,6 +21,8 @@ class ChoiceSortableTabularInline(SortableStackedInline):
 
 class PollTabularInline(SortableTabularInline):
     model = Poll
+    fields = ('poll_type', 'question', 'groups', 'first_level', 'include_in_raport',
+              'include_in_details', 'ghost')
     extra = 0
 
     def get_queryset(self, request):
@@ -53,7 +55,9 @@ class SurveyAdmin(NonSortableParentAdmin):
     class Media:
         extend = False
         js = ["/static/jquery-3.1.1.js",
-              "/static/admin/js/custom_inlines.js"]
+              "/static/jquery-ui.min.js",
+              "/static/admin/js/custom_inlines.js"
+              ]
 
 
 class PollAdmin(NonSortableParentAdmin):
@@ -72,6 +76,6 @@ class SurveyAttributeAdmin(NonSortableParentAdmin):
 
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
-# admin.site.register(CharChoice)
+admin.site.register(Group)
 admin.site.register(Email, EmailAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)

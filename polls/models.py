@@ -47,6 +47,13 @@ class Survey(models.Model):
         pass
 
 
+class Group(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Poll(SortableMixin):
 
     class Meta:
@@ -74,9 +81,13 @@ class Poll(SortableMixin):
     include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
-    group = models.CharField(max_length=50, null=True, blank=True, default='')
+    groups = models.ManyToManyField(Group, null=True, blank=True)
 
-
+    def save(self, *args, **kwargs):
+        super(Poll, self).save(*args, **kwargs)
+        if len(self.groups.all()) == 0:
+            group = Group.objects.create(name=self.question)
+            self.groups.add(group)
 
     def __str__(self):
         return self.question
