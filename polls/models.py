@@ -23,7 +23,7 @@ class Dicty(models.Model):
 
 class KeyVal(models.Model):
     container = models.ForeignKey(Dicty)
-    key = models.CharField(max_length=50)
+    key = models.CharField(max_length=500)
     value = models.CharField(max_length=1500, default=0)
 
     def listify(self):
