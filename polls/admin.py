@@ -1,7 +1,7 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Email, Group
+from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Email, Group, Visitor, ChoiceGroup
 from django.utils.html import format_html
 
 
@@ -21,7 +21,7 @@ class ChoiceSortableTabularInline(SortableStackedInline):
 
 class PollTabularInline(SortableTabularInline):
     model = Poll
-    fields = ('poll_type', 'question', 'groups', 'first_level', 'include_in_raport',
+    fields = ('poll_type', 'question', 'group', 'first_level', 'include_in_raport',
               'include_in_details', 'ghost')
     extra = 0
 
@@ -30,8 +30,15 @@ class PollTabularInline(SortableTabularInline):
         survey = qs[0].survey
         if survey.hide_ghost:
             qs = qs.filter(ghost=False)
-
         return qs
+
+
+class VisitorAdmin(admin.ModelAdmin):
+    def tab(self, obj):
+        return format_html(obj.print_visitor())
+
+    model = Visitor
+    # list_display = ('tab',)
 
 
 class SurveyAttributeTabularInline(SortableTabularInline):
@@ -44,11 +51,11 @@ class SurveyAttributeTabularInline(SortableTabularInline):
 class SurveyAdmin(NonSortableParentAdmin):
     model = Survey
     fields = ('title', 'description', 'created', 'url',
-              ('welcome_letter', 'newsletter', 'hide_ghost'),)
-    readonly_fields = ('created', 'url')
+              ('welcome_letter', 'newsletter', 'hide_ghost'), 'update_fixtures')
+    readonly_fields = ('created', 'url', 'update_fixtures')
 
-    def link(self, obj):
-        return format_html(obj.link_to_rendered())
+    def update_fixtures(self, obj):
+        return format_html('<a href="/build/">Build!</a>')
 
     inlines = [SurveyAttributeTabularInline, PollTabularInline]
 
@@ -63,6 +70,7 @@ class SurveyAdmin(NonSortableParentAdmin):
 class PollAdmin(NonSortableParentAdmin):
     model = Poll
     inlines = [ChoiceSortableTabularInline]
+    list_display = ('group', 'question', 'poll_type')
 
 
 class SurveyAttributeAdmin(NonSortableParentAdmin):
@@ -77,5 +85,7 @@ class SurveyAttributeAdmin(NonSortableParentAdmin):
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
 admin.site.register(Group)
+admin.site.register(ChoiceGroup)
 admin.site.register(Email, EmailAdmin)
+admin.site.register(Visitor, VisitorAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)

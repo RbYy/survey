@@ -37,11 +37,11 @@
         <div class="row {{divcolors}}">
             <div class="question col-xs-2"><h4>{{visitor.filled|date:"d M Y, H:i" }}</h4></div>
             <div class="col-xs-10 {{ divcolors }}">
-                {% for key, value in visitor.CollectData %}
+                {% for keyval in visitor.details %}
                 <div class="row">
-                    <div class="chtext {{ divcolors }} col-xs-2 active"><h5>{{key}}</h5></div>
+                    <div class="chtext {{ divcolors }} col-xs-2 active"><h5>{{keyval.key}}</h5></div>
                     <div class="chvalue {{divcolors}} col-xs-10">
-                        {% for choice in value %}
+                        {% for choice in keyval.listify %}
                             <span class="value">{{choice}}</span>
                         {% endfor %} <hr>
                     </div>

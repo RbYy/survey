@@ -2,6 +2,46 @@ from django.db import models
 from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from django.utils.html import format_html
+import re
+
+
+class Dicty(models.Model):
+    name = models.CharField(max_length=50, null=True, blank=True)
+
+    def dict_table(self):
+        result = '<table><tbody class="dicty-table"><tr><th>' + str(self.name) + '</th><th></th><tr>'
+        for pair in self.keyval_set.all():
+            line = '<tr><td>' + pair.key + '</td><td>' + pair.value + '</td></tr>'
+            result += line
+
+        result += '</tbody></table>'
+        return format_html(result)
+
+    def __str__(self):
+        return self.dict_table()
+
+
+class KeyVal(models.Model):
+    container = models.ForeignKey(Dicty)
+    key = models.CharField(max_length=50)
+    value = models.CharField(max_length=1500, default=0)
+
+    def listify(self):
+        return re.split("\[\'|\'\]|\', \'", self.value)
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class ChoiceGroup(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Email(models.Model):
@@ -47,13 +87,6 @@ class Survey(models.Model):
         pass
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
 class Poll(SortableMixin):
 
     class Meta:
@@ -81,13 +114,12 @@ class Poll(SortableMixin):
     include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
-    groups = models.ManyToManyField(Group, null=True, blank=True)
+    group = models.ForeignKey(Group, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         super(Poll, self).save(*args, **kwargs)
-        if len(self.groups.all()) == 0:
-            group = Group.objects.create(name=self.question)
-            self.groups.add(group)
+        if not self.group:
+            self.group, create = Group.objects.get_or_create(name=self.question)
 
     def __str__(self):
         return self.question
@@ -104,9 +136,15 @@ class CharChoice(SortableMixin):
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
     choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     created_by_visitor = models.BooleanField(default=False)
+    group = models.ForeignKey(ChoiceGroup, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super(CharChoice, self).save(*args, **kwargs)
+        if not self.created_by_visitor:
+            if not self.group:
+                self.group, create = ChoiceGroup.objects.get_or_create(name=self.choice_text)
 
     def __str__(self):
-
         return self.choice_text
 
 
@@ -115,47 +153,20 @@ class Visitor(models.Model):
     survey = models.ForeignKey(Survey)
     choices = models.ManyToManyField(CharChoice)
     subscribed = models.BooleanField(default=True)
+    collected_data = models.ForeignKey(Dicty, blank=True, null=True)
 
-    def CollectData(self):
-        polls = self.survey.poll_set.filter(include_in_details=True)
-        return [(poll,
-                 [choice.choice_text for choice in
-                  self.choices.filter(poll=poll)])for poll in polls]
+    def details(self):
+        included_poll_groups = [poll.group for poll in Poll.objects.filter(include_in_details=True)]
+        return self.collected_data.keyval_set.filter(key__in=included_poll_groups)
 
-    def PrintVisitor(self):
-        print(self.CollectData())
-        time = str(self.filled)[:16]
-        data = self.CollectData()
-        rendered = ''
-        for text in data:
-            rendered += ' -- '
-            for i in text:
-                rendered += str(i) + ' '
-        return time + rendered
-
-    def __str__(self):
-        return self.PrintVisitor()
-
-
-class Dicty(models.Model):
-    name = models.CharField(max_length=50)
-
-    def dict_table(self):
-        result = '<table><tbody class="dicty-table"><tr><th>' + self.name + '</th><th></th><tr>'
-        for pair in self.keyval_set.all():
+    def print_visitor(self):
+        result = '<table class="dicty-table"><tr><td>' + str(self.filled) + '</td></tr>'
+        for pair in self.details():
             line = '<tr><td>' + pair.key + '</td><td>' + pair.value + '</td></tr>'
             result += line
-        result += '</tbody></table>'
+
+        result += '</table>'
         return format_html(result)
-
-    def __str__(self):
-        return self.dict_table()
-
-
-class KeyVal(models.Model):
-    container = models.ForeignKey(Dicty)
-    key = models.CharField(max_length=50)
-    value = models.CharField(max_length=150, default=0)
 
 
 class SurveyAttribute(SortableMixin):

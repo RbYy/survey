@@ -16,7 +16,7 @@
     <hr>
     <form autocomplete="off" method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
-        <h3 class="poll-question">{{ poll.question }}</h3>
+        <h3 class="poll-question">{{ poll.question }} </h3>
 
             {% if poll.poll_type == 'multi' %}
                 <fieldset>
@@ -60,8 +60,11 @@
             {% elif poll.poll_type == 'text' %}
                     <label class="control-label"><input type="text" class="form-control" name="{{ poll.pk }}" value=""></label>
 
-            {% elif poll.poll_type == 'email_now' or 'email' %}
-                    <label class="control-label"><input type="email" class="form-control" name="{{ poll.pk }}" value=""></label>                    
+            {% elif poll.poll_type == 'email_now' %}
+                    <label class="control-label"><input type="email" class="form-control" name="{{ poll.pk }}" value=""></label>
+
+            {% elif poll.poll_type == 'email' %}
+                    <label class="control-label"><input type="email" class="form-control" name="{{ poll.pk }}" value=""></label>
 
             {% elif poll.poll_type == 'countries' %}
                 {% include 'polls/countries.html' %}

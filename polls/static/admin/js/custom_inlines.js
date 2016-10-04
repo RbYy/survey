@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.dicty-table > tr.add-row > td > a').hide()
-    m2mWidget = $('.related-widget-wrapper')
+  /*m2mWidget = $('.related-widget-wrapper')
     m2mWidget.addClass('hidden')
     showm2m = m2mWidget.after('<a class="show-groups">Show groups</a>')
     $('.field-groups').on('click', '.show-groups', function() {
@@ -13,5 +13,6 @@ $(document).ready(function(){
         $(this).prev().addClass('hidden')
         $(this).replaceWith('<a class="show-groups">Show groups</a>')
     })
+  */
 })
 
