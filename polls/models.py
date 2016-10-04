@@ -31,14 +31,14 @@ class KeyVal(models.Model):
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=500)
 
     def __str__(self):
         return self.name
 
 
 class ChoiceGroup(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=500)
 
     def __str__(self):
         return self.name
@@ -46,7 +46,7 @@ class ChoiceGroup(models.Model):
 
 class Email(models.Model):
     title = models.CharField(max_length=100)
-    subject = models.CharField(max_length=100)
+    subject = models.CharField(max_length=300)
     body = models.TextField()
 
     def __str__(self):
@@ -131,7 +131,7 @@ class CharChoice(SortableMixin):
         verbose_name_plural = 'Choices'
         ordering = ['choice_order']
 
-    choice_text = models.CharField(max_length=200)
+    choice_text = models.CharField(max_length=500)
     poll = SortableForeignKey(Poll)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
     choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
