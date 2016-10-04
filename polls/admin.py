@@ -77,7 +77,10 @@ class SurveyAttributeAdmin(NonSortableParentAdmin):
     model = SurveyAttribute
 
     def tab(self, obj):
-        return format_html(obj.dicti.dict_table())
+        try:
+            return format_html(obj.dicti.dict_table())
+        except:
+            return 'still empty'
 
     list_display = ('name', 'tab',)
 
