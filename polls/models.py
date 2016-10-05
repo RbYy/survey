@@ -27,7 +27,7 @@ class KeyVal(models.Model):
     value = models.CharField(max_length=1500, default=0)
 
     def listify(self):
-        return re.split("\[\'|\'\]|\', \'", self.value)
+        return re.split("\[\'|\'\]|\', \'|\[\"|\"\]|\", \"", self.value)
 
 
 class Group(models.Model):
