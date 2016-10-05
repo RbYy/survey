@@ -15,7 +15,6 @@ def build_survey(request, survey_id):
         print('request.POST: ', request.POST)
         for key in request.POST:
             if key != 'csrfmiddlewaretoken':
-                print(key, ' : ', request.POST[key])
                 poll = Poll.objects.get(pk=key)
 
                 if poll.poll_type == 'multi':
@@ -29,7 +28,6 @@ def build_survey(request, survey_id):
                     new_visitor.collected_data = data
                     new_visitor.save()
 
-                    print('multiple: ', key, charchoices)
                 elif poll.poll_type == 'one':
                     choice = CharChoice.objects.get(
                         pk=request.POST[key])
@@ -57,7 +55,6 @@ def build_survey(request, survey_id):
                 for survey_attr in survey.surveyattribute_set.all():
                     if poll in survey_attr.polls.all():
                         if survey_attr.attr_type == 'summarize':
-                            print('pollll', poll)
                             survey_attr.summarize(int(choice.choice_text))
 
                         if survey_attr.attr_type == 'count':
@@ -68,7 +65,6 @@ def build_survey(request, survey_id):
 
                 if poll.poll_type == 'first_name':
                     name = choice.choice_text
-                    print('name', name)
         try:
             split_body = survey.welcome_letter.body.split('//')
             body = ''
@@ -76,7 +72,6 @@ def build_survey(request, survey_id):
                 if part == 'first_name':
                     part = name
                 body += part
-            print(body)
             send_mail(
                 'Thanks for visiting us',
                 body,
