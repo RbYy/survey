@@ -124,7 +124,7 @@ def report(request):
                         sum_dict[keyval.key][choice] = 0
                     sum_dict[keyval.key][choice] += 1
 
-    for survey_attr in SurveyAttribute.filter(include_in_raport=True):
+    for survey_attr in SurveyAttribute.objects.filter(include_in_raport=True):
         sum_dict[survey_attr.name] = {}
 
         for keyval in survey_attr.dicti.keyval_set.all():

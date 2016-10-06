@@ -127,7 +127,7 @@ class CharChoice(SortableMixin):
         ordering = ['choice_order']
 
     choice_text = models.CharField(max_length=500)
-    poll = SortableForeignKey(Poll)
+    poll = SortableForeignKey(Poll, null=True)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
     choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     created_by_visitor = models.BooleanField(default=False)
