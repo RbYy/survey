@@ -24,7 +24,7 @@ class PollTabularInline(SortableTabularInline):
     model = Poll
     show_change_link = True
     fields = ('poll_type', 'question', 'group', 'first_level', 'include_in_raport',
-              'include_in_details', 'ghost')
+              'include_in_details', 'ghost',)
     extra = 0
 
     def get_queryset(self, request):

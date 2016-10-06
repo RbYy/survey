@@ -111,7 +111,7 @@ def build_fixture(request):
 def report(request):
     visitors = Visitor.objects.all()
     sum_dict = {}
-    active_survey = Survey.objects.get(active=True)
+    #active_survey = Survey.objects.get(active=True)
 
     included_poll_groups = [poll.group.name for poll in Poll.objects.filter(include_in_raport=True)]
     for visitor in visitors:
@@ -124,7 +124,7 @@ def report(request):
                         sum_dict[keyval.key][choice] = 0
                     sum_dict[keyval.key][choice] += 1
 
-    for survey_attr in active_survey.surveyattribute_set.filter(include_in_raport=True):
+    for survey_attr in SurveyAttribute.filter(include_in_raport=True):
         sum_dict[survey_attr.name] = {}
 
         for keyval in survey_attr.dicti.keyval_set.all():

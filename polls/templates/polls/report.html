@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% load staticfiles %}    
+     <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
+</head>
+
+<body class="container-fluid">
+
+<nav class="navbar navbar-dark navbar-fixed-top">  <a class="navbar-brand">Details</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="/details">Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/">Admin</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/">Preview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/report/">Report</a>
+    </li>
+  </ul>
+</nav>
+<div class="content">
+<table class="table">
+
+    {% for poll, choices in sum_dict.items %}
+        <!--{% cycle "blue" 'white' as divcolors %}-->
+        <tr class="{{divcolors}}">
+            <td class="question col-xs-2"><h4>{{poll}}<h4></td>
+            <td class="col-xs-10">
+                <table class="answers table">
+                {% for key, value in choices.items %}
+                    <tr>
+                        <td class="chtext col-xs-2 active"><h5>{{ key }}</h5></td>
+                        <td class="chvalue col-xs-10"><h6>{{ value }}</h6></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </td>
+        </tr>
+    {% endfor %}
+    
+
+</table>
+</div>
+
+  
+</body>
+</html>

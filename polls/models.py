@@ -63,7 +63,6 @@ class Survey(models.Model):
     language = models.CharField(max_length=30)
     description = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField()
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
     welcome_letter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_welcome')
@@ -76,12 +75,8 @@ class Survey(models.Model):
         return format_html('<a href="{0}">{0}</a>'.format(self.publish_url))
 
     def __str__(self):
-        if self.active is True:
-            active = 'active'
-        else:
-            active = 'non active'
         time = str(self.created)[:16]
-        return self.title + ' -- ' + 'created: ' + time + ' -- ' + active
+        return self.title + ' -- ' + 'created: ' + time
 
     def send_newsletter(self):
         pass
