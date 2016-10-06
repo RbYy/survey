@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^(?P<survey_id>[0-9]+)/survey/$', build_survey, name='build_survey'),
     url(r'^thankyou/', thankyou, name="thankyou"),
     url(r'^build/', build_fixture, name="build"),
-    url(r'^raport/', raport, name="raport"),
+    url(r'^report/', report, name="report"),
     url(r'^details/', details, name="details"),
 
 ]

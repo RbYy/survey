@@ -90,7 +90,7 @@ class Survey(models.Model):
 class Poll(SortableMixin):
 
     class Meta:
-        verbose_name_plural = 'Polls'
+        # verbose_name_plural = u'Polls'
         ordering = ['poll_order']
 
     poll_type = models.CharField(

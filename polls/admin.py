@@ -12,6 +12,7 @@ class EmailAdmin(admin.ModelAdmin):
 class ChoiceSortableTabularInline(SortableStackedInline):
     model = CharChoice
     exclude = ['created_by_visitor']
+    filter_horizontal = ('nested',)
     extra = 0
 
     def get_queryset(self, request):
@@ -21,6 +22,7 @@ class ChoiceSortableTabularInline(SortableStackedInline):
 
 class PollTabularInline(SortableTabularInline):
     model = Poll
+    show_change_link = True
     fields = ('poll_type', 'question', 'group', 'first_level', 'include_in_raport',
               'include_in_details', 'ghost')
     extra = 0
@@ -38,13 +40,15 @@ class VisitorAdmin(admin.ModelAdmin):
         return format_html(obj.print_visitor())
 
     model = Visitor
-    # list_display = ('tab',)
+    date_hierarchy = 'filled'
+    list_display = ('filled',)
 
 
 class SurveyAttributeTabularInline(SortableTabularInline):
     model = SurveyAttribute
     fields = ['name', 'dicti', 'attr_type', 'polls']
     readonly_fields = ['dicti']
+    filter_horizontal = ('polls',)
     extra = 0
 
 

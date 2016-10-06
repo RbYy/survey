@@ -100,13 +100,15 @@ def send_newsletter_view(request):
 
 def build_fixture(request):
     for choice in CharChoice.objects.filter(created_by_visitor=False):
-        choice.group, create = ChoiceGroup.objects.get_or_create(name=choice.choice_text)
+        if not choice.group:
+            choice.group = ChoiceGroup.objects.create(name=choice.choice_text)
     for poll in Poll.objects.all():
-        poll.group, create = Group.objects.get_or_create(name=poll.question)
+        if not poll.group:
+            poll.group = Group.objects.create(name=poll.question)
     return HttpResponseRedirect("/thankyou/")
 
 
-def raport(request):
+def report(request):
     visitors = Visitor.objects.all()
     sum_dict = {}
     active_survey = Survey.objects.get(active=True)
@@ -129,7 +131,7 @@ def raport(request):
             sum_dict[survey_attr.name][keyval.key] = keyval.value
 
     context = {"sum_dict": sum_dict}
-    return render(request, 'polls/raport.html', context)
+    return render(request, 'polls/report.html', context)
 
 
 def details(request):
