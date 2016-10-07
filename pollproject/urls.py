@@ -17,12 +17,16 @@ from django.conf.urls import url
 from django.contrib import admin
 from polls.views import *
 
-
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'
 admin.site.site_header = 'Survey Administration'
+
+visitors = Visitor.objects.all().order_by('-filled')
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/',
+        admin.site.urls,
+        {'extra_context': {'visitors': visitors}}),
     # url(r'^$', index, name="index"),
     url(r'^(?P<survey_id>[0-9]+)/survey/$', build_survey, name='build_survey'),
     url(r'^thankyou/', thankyou, name="thankyou"),

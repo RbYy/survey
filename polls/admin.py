@@ -35,15 +35,6 @@ class PollTabularInline(SortableTabularInline):
         return qs
 
 
-class VisitorAdmin(admin.ModelAdmin):
-    def tab(self, obj):
-        return format_html(obj.print_visitor())
-
-    model = Visitor
-    date_hierarchy = 'filled'
-    list_display = ('filled',)
-
-
 class SurveyAttributeTabularInline(SortableTabularInline):
     model = SurveyAttribute
     fields = ['name', 'dicti', 'attr_type', 'polls']
@@ -94,5 +85,5 @@ admin.site.register(Poll, PollAdmin)
 admin.site.register(Group)
 admin.site.register(ChoiceGroup)
 admin.site.register(Email, EmailAdmin)
-admin.site.register(Visitor, VisitorAdmin)
+admin.site.register(Visitor)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
