@@ -6,17 +6,17 @@
     padding-top:30px; 
 }
 .blue {
-    background-color: #cceeff;
+    background-color: #b3d7e5;
 }
 .white {
-    background-color: #e6f7ff;
+    background-color: #8ec7dd;
 }
 
 .chvalue {
     text-align: left;
 }
 
-.content {
+.content {  
     padding-left: 20px;
 }
  .value {
@@ -57,4 +57,18 @@ select {
 
 form {
     padding-bottom: 100px;
+}
+
+#branding {
+    display: block;
+    color: #ffff66;
+    font-size: 1.7em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 100;
+}
+
+#header {
+    height: 5em;
 }

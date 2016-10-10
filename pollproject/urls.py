@@ -20,6 +20,7 @@ from polls.views import *
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'
 admin.site.site_header = 'Survey Administration'
+admin.site.index_template = 'admin/custom-index.html'
 
 visitors = Visitor.objects.all().order_by('-filled')
 
@@ -31,7 +32,7 @@ urlpatterns = [
     url(r'^(?P<survey_id>[0-9]+)/survey/$', build_survey, name='build_survey'),
     url(r'^thankyou/', thankyou, name="thankyou"),
     url(r'^build/', build_fixture, name="build"),
-    url(r'^report/', report, name="report"),
+    # url(r'^report/', report, name="report"),
     url(r'^details/', details, name="details"),
 
 ]

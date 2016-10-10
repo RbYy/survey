@@ -1,0 +1,51 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+{% block title %}Survey Report{% endblock %}
+{% block extrahead %}{{ block.super }}
+
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
+{% endblock %}
+<h1>{% block branding %}Survey Report{% endblock %}</h1>
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; 
+</div>
+{% endblock %}
+{% endif %} 
+
+
+{% block content %}
+
+<div class="content">
+
+
+<table class="table">
+
+    {% for poll, choices in sum_dict.items %}
+        <!--{% cycle "blue" 'white' as divcolors %}-->
+        <tr class="{{divcolors}}">
+            <td class="question col-xs-2"><h4>{{poll}}<h4></td>
+            <td class="col-xs-10">
+                <table class="answers table">
+                {% for key, value in choices.items %}
+                    <tr>
+                        <td class="chtext col-xs-2 active"><h5>{{ key }}</h5></td>
+                        <td class="chvalue col-xs-10"><h6>{{ value }}</h6></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </td>
+        </tr>
+    {% endfor %}
+    
+ 
+</table>
+</div>
+
+{% endblock %}

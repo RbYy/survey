@@ -111,7 +111,7 @@ def build_fixture(request):
 def report(request):
     visitors = Visitor.objects.all()
     sum_dict = {}
-    #active_survey = Survey.objects.get(active=True)
+    # active_survey = Survey.objects.get(active=True)
 
     included_poll_groups = [poll.group.name for poll in Poll.objects.filter(include_in_raport=True)]
     for visitor in visitors:
