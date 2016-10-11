@@ -143,3 +143,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
