@@ -121,7 +121,7 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 print('project root: ', PROJECT_ROOT)
-STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'static')
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), "static")
 print('static root: ', STATIC_ROOT)
 
 
@@ -132,3 +132,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'musee.famenne.info@gmail.com'
 EMAIL_HOST_PASSWORD = '17rueducommerce'
 EMAIL_PORT = 587
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'survey',
+        'USER': 'survey',
+        'PASSWORD': 'surveyfamenne13',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
