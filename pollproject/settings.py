@@ -121,7 +121,7 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 print('project root: ', PROJECT_ROOT)
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), "static")
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 print('static root: ', STATIC_ROOT)
 
 
