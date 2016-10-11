@@ -1,5 +1,7 @@
 Django==1.10.1
 django-admin-sortable==2.0.19
+gunicorn==19.6.0
+psycopg2==2.6.2
 pytz==2016.7
 requests==2.11.1
 whitenoise==3.2.2
