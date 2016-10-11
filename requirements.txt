@@ -1,3 +1,4 @@
+dj-database-url==0.4.1
 Django==1.10.1
 django-admin-sortable==2.0.19
 gunicorn==19.6.0
