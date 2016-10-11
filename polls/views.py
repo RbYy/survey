@@ -106,34 +106,3 @@ def build_fixture(request):
         if not poll.group:
             poll.group = Group.objects.create(name=poll.question)
     return HttpResponseRedirect("/thankyou/")
-
-
-def report(request):
-    visitors = Visitor.objects.all()
-    sum_dict = {}
-    # active_survey = Survey.objects.get(active=True)
-
-    included_poll_groups = [poll.group.name for poll in Poll.objects.filter(include_in_raport=True)]
-    for visitor in visitors:
-        for keyval in visitor.collected_data.keyval_set.all():
-            if keyval.key in included_poll_groups:
-                if keyval.key not in sum_dict.keys():
-                    sum_dict[keyval.key] = {}
-                for choice in keyval.listify():
-                    if choice not in sum_dict[keyval.key].keys():
-                        sum_dict[keyval.key][choice] = 0
-                    sum_dict[keyval.key][choice] += 1
-
-    for survey_attr in SurveyAttribute.objects.filter(include_in_raport=True):
-        sum_dict[survey_attr.name] = {}
-
-        for keyval in survey_attr.dicti.keyval_set.all():
-            sum_dict[survey_attr.name][keyval.key] = keyval.value
-
-    context = {"sum_dict": sum_dict}
-    return render(request, 'polls/report.html', context)
-
-
-def details(request):
-    visitors = Visitor.objects.all()
-    return render(request, 'polls/visitors.html', {'visitors': visitors})

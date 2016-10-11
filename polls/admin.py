@@ -126,4 +126,8 @@ admin.site.register(ChoiceGroup)
 admin.site.register(Email, EmailAdmin)
 admin.site.register(Visitor)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
-admin.site.index_template = 'admin/index.html'
+
+admin.site.site_title = 'Survey Administration'
+admin.site.index_title = 'Manage Your Surveys'
+admin.site.site_header = 'Survey Administration'
+admin.site.index_template = 'admin/custom-index.html'
