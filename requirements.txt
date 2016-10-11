@@ -2,3 +2,4 @@ Django==1.10.1
 django-admin-sortable==2.0.19
 pytz==2016.7
 requests==2.11.1
+gunicorn==19.6.0
