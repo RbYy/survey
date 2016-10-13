@@ -59,9 +59,12 @@ class PollTabularInline(SortableTabularInline):
 
     def get_queryset(self, request):
         qs = super(PollTabularInline, self).get_queryset(request)
-        survey = qs[0].survey
-        if survey.hide_ghost:
-            qs = qs.filter(ghost=False, user=request.user)
+        try:
+            survey = qs[0].survey
+            if survey.hide_ghost:
+                qs = qs.filter(ghost=False, user=request.user)
+        except:
+            pass
         return qs
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
