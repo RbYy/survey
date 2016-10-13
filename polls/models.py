@@ -2,6 +2,7 @@ from django.db import models
 from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from django.utils.html import format_html
+from django.contrib.auth.models import User
 import re
 
 
@@ -30,7 +31,8 @@ class KeyVal(models.Model):
         return filter(None, re.split("\[\'|\'\]|\', \'|\[\"|\"\]|\", \"|\', \"|\", \'", self.value))
 
 
-class Group(models.Model):
+class PollGroup(models.Model):
+    user = models.ForeignKey(User, null=True)
     name = models.CharField(max_length=500)
 
     def __str__(self):
@@ -38,13 +40,17 @@ class Group(models.Model):
 
 
 class ChoiceGroup(models.Model):
+    user = models.ForeignKey(User, null=True)
     name = models.CharField(max_length=500)
 
     def __str__(self):
         return self.name
 
 
-class Email(models.Model):
+class E_mail(models.Model):
+    class Meta:
+        verbose_name = 'E-mail'
+    user = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=300)
     body = models.TextField()
@@ -59,19 +65,20 @@ class Survey(models.Model):
         verbose_name_plural = 'Surveys'
         ordering = ['the_order']
 
+    user = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=100)
     language = models.CharField(max_length=30)
     description = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
-    welcome_letter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_welcome')
-    newsletter = models.ForeignKey(Email, null=True, blank=True, related_name='survey_newsletter')
+    welcome_letter = models.ForeignKey(E_mail, null=True, blank=True, related_name='survey_welcome')
+    newsletter = models.ForeignKey(E_mail, null=True, blank=True, related_name='survey_newsletter')
     publish_url = models.URLField(null=True, blank=True)
 
     def url(self):
         self.publish_url = '/{0}/survey/'.format(self.pk)
-        self.save()
+        # self.save()
         return format_html('<a href="{0}">{0}</a>'.format(self.publish_url))
 
     def __str__(self):
@@ -88,6 +95,7 @@ class Poll(SortableMixin):
         # verbose_name_plural = u'Polls'
         ordering = ['poll_order']
 
+    user = models.ForeignKey(User, null=True)
     poll_type = models.CharField(
         max_length=30,
         default='multi',
@@ -109,12 +117,7 @@ class Poll(SortableMixin):
     include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
-    group = models.ForeignKey(Group, null=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        super(Poll, self).save(*args, **kwargs)
-        if not self.group:
-            self.group, create = Group.objects.get_or_create(name=self.question)
+    group = models.ForeignKey(PollGroup, null=True, blank=True)
 
     def __str__(self):
         return self.question
@@ -126,6 +129,7 @@ class CharChoice(SortableMixin):
         verbose_name_plural = 'Choices'
         ordering = ['choice_order']
 
+    user = models.ForeignKey(User, null=True)
     choice_text = models.CharField(max_length=500)
     poll = SortableForeignKey(Poll, null=True)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
@@ -133,17 +137,19 @@ class CharChoice(SortableMixin):
     created_by_visitor = models.BooleanField(default=False)
     group = models.ForeignKey(ChoiceGroup, null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        super(CharChoice, self).save(*args, **kwargs)
-        if not self.created_by_visitor:
-            if not self.group:
-                self.group, create = ChoiceGroup.objects.get_or_create(name=self.choice_text)
+    # def save(self, *args, **kwargs):
+    #     print('dsfdsf', args, kwargs)
+    #     super(CharChoice, self).save(*args, **kwargs)
+    #     if not self.created_by_visitor:
+    #         if not self.group:
+    #             self.group, create = ChoiceGroup.objects.get_or_create(name=self.choice_text)
 
     def __str__(self):
         return self.choice_text
 
 
 class Visitor(models.Model):
+    user = models.ForeignKey(User, null=True)
     filled = models.DateTimeField(auto_now_add=True)
     survey = models.ForeignKey(Survey)
     choices = models.ManyToManyField(CharChoice)
@@ -169,6 +175,7 @@ class SurveyAttribute(SortableMixin):
         verbose_name_plural = 'Survey Attributes'
         ordering = ['attr_order']
 
+    user = models.ForeignKey(User, null=True)
     name = models.CharField(max_length=30)
     survey = SortableForeignKey(Survey)
     dicti = models.ForeignKey(Dicty, blank=True, null=True, verbose_name='values')
