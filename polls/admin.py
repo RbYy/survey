@@ -1,7 +1,7 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, E_mail, PollGroup, Visitor, ChoiceGroup
+from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Elmail, PollGroup, Visitor, ChoiceGroup
 from django.utils.html import format_html
 from django.conf.urls import *
 from django.shortcuts import render
@@ -263,7 +263,7 @@ admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
 admin.site.register(PollGroup, PollGroupAdmin)
 admin.site.register(ChoiceGroup, ChoiceGroupAdmin)
-admin.site.register(E_mail, EmailAdmin)
+admin.site.register(Elmail, EmailAdmin)
 admin.site.register(Visitor, VisitorAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
 

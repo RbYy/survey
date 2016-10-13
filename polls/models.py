@@ -47,7 +47,7 @@ class ChoiceGroup(models.Model):
         return self.name
 
 
-class E_mail(models.Model):
+class Elmail(models.Model):
     class Meta:
         verbose_name = 'E-mail'
     user = models.ForeignKey(User, null=True)
@@ -72,8 +72,8 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
-    welcome_letter = models.ForeignKey(E_mail, null=True, blank=True, related_name='survey_welcome')
-    newsletter = models.ForeignKey(E_mail, null=True, blank=True, related_name='survey_newsletter')
+    welcome_letter = models.ForeignKey(Elmail, null=True, blank=True, related_name='survey_welcome')
+    newsletter = models.ForeignKey(Elmail, null=True, blank=True, related_name='survey_newsletter')
     publish_url = models.URLField(null=True, blank=True)
 
     def url(self):
