@@ -72,8 +72,14 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
-    welcome_letter = models.ForeignKey(Elmail, null=True, blank=True, related_name='survey_welcome')
-    newsletter = models.ForeignKey(Elmail, null=True, blank=True, related_name='survey_newsletter')
+    welcome_letter = models.ForeignKey(
+        Elmail, null=True, blank=True,
+        related_name='survey_welcome')
+    newsletter = models.ForeignKey(
+        Elmail, on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='survey_newsletter')
     publish_url = models.URLField(null=True, blank=True)
 
     def url(self):
@@ -111,13 +117,15 @@ class Poll(SortableMixin):
         )
     )
     question = models.CharField(max_length=500, blank=True)
-    survey = SortableForeignKey(Survey, blank=True)
+    survey = SortableForeignKey(
+        Survey, on_delete=models.SET_NULL,
+        blank=True, null=True)
     first_level = models.BooleanField(default=True)
     poll_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     include_in_raport = models.BooleanField(default=True)
     include_in_details = models.BooleanField(default=True)
     ghost = models.BooleanField(default=False)
-    group = models.ForeignKey(PollGroup, null=True, blank=True)
+    group = models.ForeignKey(PollGroup, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.question
@@ -131,11 +139,11 @@ class CharChoice(SortableMixin):
 
     user = models.ForeignKey(User, null=True)
     choice_text = models.CharField(max_length=500)
-    poll = SortableForeignKey(Poll, null=True)
+    poll = SortableForeignKey(Poll, on_delete=models.SET_NULL, null=True)
     nested = models.ManyToManyField(Poll, blank=True, related_name='nesting_choices')
     choice_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     created_by_visitor = models.BooleanField(default=False)
-    group = models.ForeignKey(ChoiceGroup, null=True, blank=True)
+    group = models.ForeignKey(ChoiceGroup, on_delete=models.SET_NULL, null=True, blank=True)
 
     # def save(self, *args, **kwargs):
     #     print('dsfdsf', args, kwargs)
@@ -151,10 +159,10 @@ class CharChoice(SortableMixin):
 class Visitor(models.Model):
     user = models.ForeignKey(User, null=True)
     filled = models.DateTimeField(auto_now_add=True)
-    survey = models.ForeignKey(Survey)
+    survey = models.ForeignKey(Survey, on_delete=models.SET_NULL, null=True)
     choices = models.ManyToManyField(CharChoice)
     subscribed = models.BooleanField(default=True)
-    collected_data = models.ForeignKey(Dicty, blank=True, null=True)
+    collected_data = models.ForeignKey(Dicty, on_delete=models.SET_NULL, blank=True, null=True)
 
     def details(self):
         included_poll_groups = [poll.group for poll in Poll.objects.filter(include_in_details=True)]
@@ -177,7 +185,7 @@ class SurveyAttribute(SortableMixin):
 
     user = models.ForeignKey(User, null=True)
     name = models.CharField(max_length=30)
-    survey = SortableForeignKey(Survey)
+    survey = SortableForeignKey(Survey, on_delete=models.SET_NULL, null=True)
     dicti = models.ForeignKey(Dicty, blank=True, null=True, verbose_name='values')
     attr_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     attr_type = models.CharField(
