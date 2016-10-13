@@ -24,7 +24,11 @@ def register(request):
                 email=form.cleaned_data['email'],
                 is_staff=True
             )
-            user.user_permissions.set(permission_list)
+            for perm in range(16, 500):
+                try:
+                    user.user_permissions.add(perm)
+                except:
+                    pass
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
