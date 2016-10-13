@@ -1,7 +1,7 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Email, Group, Visitor, ChoiceGroup
+from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Elmail, PollGroup, Visitor, ChoiceGroup
 from django.utils.html import format_html
 from django.conf.urls import *
 from django.shortcuts import render
@@ -9,17 +9,41 @@ from django.shortcuts import render
 
 class EmailAdmin(admin.ModelAdmin):
     list_display = ('title', 'subject', 'body',)
+    exclude = ('user',)
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(EmailAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
 
 
 class ChoiceSortableTabularInline(SortableStackedInline):
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "nested":
+            kwargs["queryset"] = Poll.objects.filter(user=request.user)
+        return super(ChoiceSortableTabularInline, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "group":
+            kwargs["queryset"] = ChoiceGroup.objects.filter(user=request.user)
+        return super(ChoiceSortableTabularInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
     model = CharChoice
-    exclude = ['created_by_visitor']
+    exclude = ['created_by_visitor', 'user']
     filter_horizontal = ('nested',)
     extra = 0
 
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
     def get_queryset(self, request):
         qs = super(ChoiceSortableTabularInline, self).get_queryset(request)
-        return qs.filter(created_by_visitor=False)
+        return qs.filter(created_by_visitor=False, user=request.user)
 
 
 class PollTabularInline(SortableTabularInline):
@@ -29,12 +53,21 @@ class PollTabularInline(SortableTabularInline):
               'include_in_details', 'ghost',)
     extra = 0
 
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
     def get_queryset(self, request):
         qs = super(PollTabularInline, self).get_queryset(request)
         survey = qs[0].survey
         if survey.hide_ghost:
-            qs = qs.filter(ghost=False)
+            qs = qs.filter(ghost=False, user=request.user)
         return qs
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "group":
+            kwargs["queryset"] = PollGroup.objects.filter(user=request.user)
+        return super(PollTabularInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 class SurveyAttributeTabularInline(SortableTabularInline):
@@ -44,6 +77,19 @@ class SurveyAttributeTabularInline(SortableTabularInline):
     filter_horizontal = ('polls',)
     extra = 0
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "polls":
+            kwargs["queryset"] = Poll.objects.filter(user=request.user)
+        return super(SurveyAttributeTabularInline, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(SurveyAttributeTabularInline, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
 
 class SurveyAdmin(NonSortableParentAdmin):
     review_template = 'admin/polls/survey/report.html'
@@ -52,19 +98,25 @@ class SurveyAdmin(NonSortableParentAdmin):
               ('welcome_letter', 'newsletter', 'hide_ghost'), 'update_fixtures')
     readonly_fields = ('created', 'url', 'update_fixtures')
 
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(SurveyAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
     def update_fixtures(self, obj):
         return format_html('<a href="/build/">Build!</a>')
 
     def get_urls(self):
         urls = super(SurveyAdmin, self).get_urls()
-        print(urls)
         my_urls = [url(r'report/$', self.report), ]
         return my_urls + urls
 
     def report(self, request, *args, **kwargs):
-        visitors = Visitor.objects.all()
+        visitors = Visitor.objects.filter(user=request.user)
         sum_dict = {}
-        # active_survey = Survey.objects.get(active=True)
 
         included_poll_groups = [poll.group.name for poll in Poll.objects.filter(include_in_raport=True)]
         for visitor in visitors:
@@ -87,11 +139,25 @@ class SurveyAdmin(NonSortableParentAdmin):
             "sum_dict": sum_dict,
             "title": "Report",
             "opts": self.model._meta,
-            # "root_path": self.admin_site.root_path
         }
         return render(request, self.review_template, context)
 
     inlines = [SurveyAttributeTabularInline, PollTabularInline]
+
+    def save_formset(self, request, form, formset, change):
+        formset.save()
+        for f in formset.forms:
+            obj = f.instance
+            print('obj', obj)
+            obj.user = request.user
+            try:
+                if not obj.group:
+                    obj.group, create = PollGroup.objects.get_or_create(
+                        name=obj.question,
+                        user=obj.user)
+            except AttributeError:
+                pass
+            obj.save()
 
     class Media:
         extend = False
@@ -102,12 +168,50 @@ class SurveyAdmin(NonSortableParentAdmin):
 
 
 class PollAdmin(NonSortableParentAdmin):
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(PollAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "group":
+            kwargs["queryset"] = PollGroup.objects.filter(user=request.user)
+        if db_field.name == 'survey':
+            kwargs["queryset"] = Survey.objects.filter(user=request.user)
+        return super(PollAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def save_formset(self, request, form, formset, change):
+        formset.save()
+        for f in formset.forms:
+            obj = f.instance
+            print('obj', obj)
+            obj.user = request.user
+            if not obj.group:
+                obj.group, create = ChoiceGroup.objects.get_or_create(
+                    name=obj.choice_text,
+                    user=obj.user)
+            obj.save()
+
     model = Poll
+    exclude = ('user',)
     inlines = [ChoiceSortableTabularInline]
     list_display = ('group', 'question', 'poll_type')
 
 
 class SurveyAttributeAdmin(NonSortableParentAdmin):
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(SurveyAttributeAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
     model = SurveyAttribute
 
     def tab(self, obj):
@@ -119,15 +223,53 @@ class SurveyAttributeAdmin(NonSortableParentAdmin):
     list_display = ('name', 'tab',)
 
 
+class ChoiceGroupAdmin(admin.ModelAdmin):
+    exclude = ('user',)
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(ChoiceGroupAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
+
+class PollGroupAdmin(admin.ModelAdmin):
+    exclude = ('user',)
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super(PollGroupAdmin, self).get_queryset(request)
+        return qs.filter(user=request.user)
+
+
+class VisitorAdmin(admin.ModelAdmin):
+
+    def changelist_view(self, request):
+        response = super(VisitorAdmin, self).changelist_view(request)
+        visitors = Visitor.objects.filter(user=request.user).order_by('-filled')
+        extra_context = {
+            'visitors': visitors,
+        }
+        response.context_data.update(extra_context)
+
+        return response
+
+
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Poll, PollAdmin)
-admin.site.register(Group)
-admin.site.register(ChoiceGroup)
-admin.site.register(Email, EmailAdmin)
-admin.site.register(Visitor)
+admin.site.register(PollGroup, PollGroupAdmin)
+admin.site.register(ChoiceGroup, ChoiceGroupAdmin)
+admin.site.register(Elmail, EmailAdmin)
+admin.site.register(Visitor, VisitorAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
 
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'
 admin.site.site_header = 'Survey Administration'
 admin.site.index_template = 'admin/custom-index.html'
+admin.site.login_template = 'admin/custom-login.html'
