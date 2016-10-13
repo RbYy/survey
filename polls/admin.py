@@ -9,6 +9,7 @@ from django.shortcuts import render
 
 class EmailAdmin(admin.ModelAdmin):
     list_display = ('title', 'subject', 'body',)
+    exclude = ('user',)
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
