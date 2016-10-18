@@ -1,0 +1,4 @@
+pollproject/* merge=ours
+requirements.txt merge=ours
+Procfile merge=ours
+runtime merge=ours
