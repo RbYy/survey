@@ -171,8 +171,16 @@ class SurveyAdmin(NonSortableParentAdmin):
 
 
 class PollAdmin(NonSortableParentAdmin):
+    model = Poll
+    exclude = ('user',)
+    inlines = [ChoiceSortableTabularInline]
+    list_display = ('group', 'question', 'poll_type')
 
     def save_model(self, request, obj, form, change):
+        if not obj.group:
+            obj.group, create = ChoiceGroup.objects.get_or_create(
+                name=obj.question,
+                user=obj.user)
         obj.user = request.user
         obj.save()
 
@@ -206,6 +214,8 @@ class PollAdmin(NonSortableParentAdmin):
 
 
 class SurveyAttributeAdmin(NonSortableParentAdmin):
+    list_display = ('name', 'tab',)
+    model = SurveyAttribute
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -215,15 +225,11 @@ class SurveyAttributeAdmin(NonSortableParentAdmin):
         qs = super(SurveyAttributeAdmin, self).get_queryset(request)
         return qs.filter(user=request.user)
 
-    model = SurveyAttribute
-
     def tab(self, obj):
         try:
             return format_html(obj.dicti.dict_table())
         except:
             return 'still empty'
-
-    list_display = ('name', 'tab',)
 
 
 class ChoiceGroupAdmin(admin.ModelAdmin):
@@ -255,11 +261,7 @@ class VisitorAdmin(admin.ModelAdmin):
     def changelist_view(self, request):
         response = super(VisitorAdmin, self).changelist_view(request)
         visitors = Visitor.objects.filter(user=request.user).order_by('-filled')
-        extra_context = {
-            'visitors': visitors,
-        }
-        response.context_data.update(extra_context)
-
+        response.context_data.update({'visitors': visitors})
         return response
 
 
