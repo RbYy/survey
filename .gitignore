@@ -5,5 +5,4 @@ lib/
 *.pyc
 **/__pycache__/
 /static/
-pollproject/
 
