@@ -2,10 +2,12 @@ from django.shortcuts import render
 # from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from polls.models import *
-from django.core.mail import send_mail
+from django.core.mail import get_connection, send_mail
 from django.conf import settings
 from polls.forms import RegistrationForm
 from django.contrib.auth import authenticate, login
+from django.core.cache import cache
+cache.clear()
 
 permission_list = []
 
@@ -103,6 +105,7 @@ def build_survey(request, survey_id):
 
                 if poll.poll_type == 'first_name':
                     name = choice.choice_text
+        
         try:
             split_body = survey.welcome_letter.body.split('//')
             body = ''
@@ -110,21 +113,28 @@ def build_survey(request, survey_id):
                 if part == 'first_name':
                     part = name
                 body += part
+
             send_mail(
                 'Thanks for visiting us',
                 body,
-                settings.EMAIL_HOST_USER,
+                survey.user.preferences['email_settings__email_host_user'],
                 [email],
+                connection=get_connection(
+                    host=survey.user.preferences['email_settings__comment_notifications_enabled'],
+                    port=survey.user.preferences['email_settings__email_port'],
+                    password=survey.user.preferences['email_settings__email_password'],
+                    username=survey.user.preferences['email_settings__email_host_user'],
+                    use_tls=survey.user.preferences['email_settings__enable_TSL']),
                 fail_silently=False)
-
         except:
             print('email address not valid')
-
+        print('password', survey.user.preferences['email_settings__email_password'])
         return HttpResponseRedirect("/thankyou/")
 
     polls = Poll.objects.filter(survey=survey, first_level=True)
     context = {'survey': survey,
                'polls': polls}
+    print('pref: ', survey.user.preferences['email_settings__email_host_user'])
     return render(request, 'polls/index.html', context)
 
 

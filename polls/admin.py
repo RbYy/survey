@@ -1,10 +1,45 @@
 from django.contrib import admin
 from adminsortable.admin import\
     NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
-from polls.models import Survey, Poll, CharChoice, SurveyAttribute, Elmail, PollGroup, Visitor, ChoiceGroup
+from polls.models import Survey, Poll, CharChoice,\
+    SurveyAttribute, Elmail, PollGroup, Visitor, ChoiceGroup
 from django.utils.html import format_html
 from django.conf.urls import *
 from django.shortcuts import render
+from dynamic_preferences.admin import *
+from polls.forms import CustomPreferenceForm
+# from polls.customadminclview import changelist_view as customclview
+
+
+class CustomPreferenceAdmin(UserPreferenceAdmin):
+    form = CustomPreferenceForm
+    changelist_form = CustomPreferenceForm
+    list_display_links = None
+    actions = None
+    list_display = ('verbose_name', 'help_text', 'raw_value')
+
+    def get_queryset(self, request):
+        qs = super(CustomPreferenceAdmin, self).get_queryset(request)
+        return qs.filter(instance=request.user)
+
+    def has_delete_permission(request, obj=None):
+        return False
+
+    def has_add_permission(request, obj=None):
+        return False
+
+    # def save_model(self, request, obj, form, change):
+    #     if not obj:
+    #         pass
+    #     else:
+    #         super(CustomPreferenceAdmin, self).save_model(self, request, obj, form, change)
+
+    # def save_related(self, request, form, formsets, change):
+    #     pass
+
+    # def changelist_view(self, request, extra_context=None):
+    #     print('lllllllllllllllllllllllllllll')
+    #     customclview(self, request, extra_context=None)
 
 
 class EmailAdmin(admin.ModelAdmin):
@@ -272,6 +307,9 @@ admin.site.register(ChoiceGroup, ChoiceGroupAdmin)
 admin.site.register(Elmail, EmailAdmin)
 admin.site.register(Visitor, VisitorAdmin)
 admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
+admin.site.unregister(GlobalPreferenceModel)
+admin.site.unregister(UserPreferenceModel)
+admin.site.register(UserPreferenceModel, CustomPreferenceAdmin)
 
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'

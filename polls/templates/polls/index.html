@@ -8,11 +8,28 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
+    <style type="text/css">
+        .headline {
+            font-size: {{survey.user.preferences.render_settings__head_size}}%;
+        }
+        .description {
+            font-size: {{survey.user.preferences.render_settings__desc_size}}%;
+        }
+        fieldset {
+            font-size: {{survey.user.preferences.render_settings__choice_size}}%;
+        }
+        .poll-question, .nested-poll-question{
+            font-size: {{survey.user.preferences.render_settings__head_size}}%; 
+        }
+
+    </style>
 </head>    
 <body class="container-fluid">
 <div class="survey-content">
-    <h2>{{ survey.title }}</h2>
-    <h3>{{ survey.description }}</h3>
+    {{survey.user}}
+    {{preferences.email_settings__email_host_user}}
+    <p class="headline">{{ survey.title }}</p>
+    <p class="description">{{ survey.description }}</p>
     <hr>
     <form autocomplete="off" method="post" name="myForm" role="form" novalidate="novalidate" action=".">{% csrf_token %}
         {% for poll in polls %}
