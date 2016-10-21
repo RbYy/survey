@@ -5,6 +5,7 @@ django-dynamic-preferences==0.8.2
 django-picklefield==0.3.2
 gunicorn==19.6.0
 persisting-theory==0.2.1
+Pillow==3.4.2
 psycopg2==2.6.2
 pytz==2016.7
 requests==2.11.1
