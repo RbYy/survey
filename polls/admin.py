@@ -28,19 +28,6 @@ class CustomPreferenceAdmin(UserPreferenceAdmin):
     def has_add_permission(request, obj=None):
         return False
 
-    # def save_model(self, request, obj, form, change):
-    #     if not obj:
-    #         pass
-    #     else:
-    #         super(CustomPreferenceAdmin, self).save_model(self, request, obj, form, change)
-
-    # def save_related(self, request, form, formsets, change):
-    #     pass
-
-    # def changelist_view(self, request, extra_context=None):
-    #     print('lllllllllllllllllllllllllllll')
-    #     customclview(self, request, extra_context=None)
-
 
 class EmailAdmin(admin.ModelAdmin):
     list_display = ('title', 'subject', 'body',)
@@ -133,8 +120,8 @@ class SurveyAdmin(NonSortableParentAdmin):
     review_template = 'admin/polls/survey/report.html'
     model = Survey
     fields = ('title', 'description', 'created', 'url',
-              ('welcome_letter', 'newsletter', 'hide_ghost'), 'update_fixtures')
-    readonly_fields = ('created', 'url', 'update_fixtures')
+              ('welcome_letter', 'newsletter', 'hide_ghost'), 'update_fixtures', 'logo',)
+    readonly_fields = ('created', 'url', 'update_fixtures',)
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user

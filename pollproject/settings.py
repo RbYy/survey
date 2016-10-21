@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dynamic_preferences.processors.global_preferences',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -125,9 +126,11 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 print('project root: ', PROJECT_ROOT)
 STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'static')
 print('static root: ', STATIC_ROOT)
+MEDIA_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'media')
 
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

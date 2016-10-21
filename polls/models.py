@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from django.utils.html import format_html
@@ -72,6 +73,7 @@ class Survey(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
+    logo = models.ImageField(null=True, blank=True)
     welcome_letter = models.ForeignKey(
         Elmail, null=True, blank=True,
         related_name='survey_welcome')

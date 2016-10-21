@@ -105,7 +105,6 @@ def build_survey(request, survey_id):
 
                 if poll.poll_type == 'first_name':
                     name = choice.choice_text
-        
         try:
             split_body = survey.welcome_letter.body.split('//')
             body = ''
@@ -128,13 +127,11 @@ def build_survey(request, survey_id):
                 fail_silently=False)
         except:
             print('email address not valid')
-        print('password', survey.user.preferences['email_settings__email_password'])
         return HttpResponseRedirect("/thankyou/")
 
     polls = Poll.objects.filter(survey=survey, first_level=True)
     context = {'survey': survey,
                'polls': polls}
-    print('pref: ', survey.user.preferences['email_settings__email_host_user'])
     return render(request, 'polls/index.html', context)
 
 
