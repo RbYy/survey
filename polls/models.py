@@ -5,6 +5,7 @@ from adminsortable.fields import SortableForeignKey
 from django.utils.html import format_html
 from django.contrib.auth.models import User
 import re
+from dynamic_preferences.models import PerInstancePreferenceModel
 
 
 class Dicty(models.Model):
@@ -66,6 +67,15 @@ class Survey(models.Model):
         verbose_name_plural = 'Surveys'
         ordering = ['the_order']
 
+    FONT_CHOICES = (
+        ('Times', "'Times New Roman', Times, serif"),
+        ('Monospace', "'Courier New', Courier, monospace"),
+        ('Sans', "Arial, Helvetica, sans-serif"),
+        ('Century Gothic', "'Century Gothic', CenturyGothic, AppleGothic, sans-serif;"),
+        ('Futura', "Futura, 'Trebuchet MS', Arial, sans-serif"),
+        ('Garamond', "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif"),
+        ('Rockwel', "Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif"),
+    )
     user = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=100)
     language = models.CharField(max_length=30)
@@ -74,6 +84,19 @@ class Survey(models.Model):
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
     logo = models.ImageField(null=True, blank=True)
+    header_size = models.IntegerField(default=150, verbose_name='Title Size')
+    description_size = models.IntegerField(default=100)
+    question_size = models.IntegerField(default=100)
+    choice_size = models.IntegerField(default=80)
+    left_margin = models.IntegerField(default=10)
+    choice_indent = models.IntegerField(default=10)
+    nested_indent = models.IntegerField(default=10)
+    background_color = models.CharField(max_length=40, default='white')
+    header_color = models.CharField(max_length=40, default='black', verbose_name='Title Color')
+    description_color = models.CharField(max_length=40, default='black')
+    question_color = models.CharField(max_length=40, default='black')
+    choice_color = models.CharField(max_length=40, default='black')
+    font = models.CharField(max_length=30, choices=FONT_CHOICES, default='Sans', verbose_name='Font Family')
     welcome_letter = models.ForeignKey(
         Elmail, null=True, blank=True,
         related_name='survey_welcome')

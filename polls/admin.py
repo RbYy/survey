@@ -118,10 +118,29 @@ class SurveyAttributeTabularInline(SortableTabularInline):
 
 class SurveyAdmin(NonSortableParentAdmin):
     review_template = 'admin/polls/survey/report.html'
-    model = Survey
-    fields = ('title', 'description', 'created', 'url',
-              ('welcome_letter', 'newsletter', 'hide_ghost'), 'update_fixtures', 'logo',)
-    readonly_fields = ('created', 'url', 'update_fixtures',)
+
+    readonly_fields = ('created', 'url',)
+
+    fieldsets = (
+        (None,
+            {
+                'fields':
+                    ('title', 'description', 'created', 'url',
+                        ('welcome_letter', 'newsletter', 'hide_ghost'),)
+            }),
+        ('Rendering options',
+            {
+                'classes': ('collapse',),
+                'fields':
+                    (
+                        ('header_size', 'header_color'),
+                        ('description_size', 'description_color'),
+                        ('question_size', 'question_color'),
+                        ('choice_size', 'choice_color'),
+                        ('choice_indent', 'nested_indent'),
+                        'background_color', 'font',
+                        ('left_margin', 'logo')
+                )}))
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -167,7 +186,9 @@ class SurveyAdmin(NonSortableParentAdmin):
         }
         return render(request, self.review_template, context)
 
-    inlines = [SurveyAttributeTabularInline, PollTabularInline]
+    inlines = [
+        SurveyAttributeTabularInline,
+        PollTabularInline]
 
     def save_formset(self, request, form, formset, change):
         formset.save()
@@ -190,6 +211,7 @@ class SurveyAdmin(NonSortableParentAdmin):
               "/static/jquery-ui.min.js",
               "/static/admin/js/custom_inlines.js"
               ]
+        css = {'all': ("/static/admin/css/custom-admin.css",)}
 
 
 class PollAdmin(NonSortableParentAdmin):
@@ -297,6 +319,7 @@ admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
 admin.site.unregister(GlobalPreferenceModel)
 admin.site.unregister(UserPreferenceModel)
 admin.site.register(UserPreferenceModel, CustomPreferenceAdmin)
+# admin.site.register(SurveyPreferenceModel, SurveyPreferenceAdmin)
 
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'

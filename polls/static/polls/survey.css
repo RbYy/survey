@@ -16,36 +16,12 @@
     text-align: left;
 }
 
-.content {  
-    padding-left: 20px;
-}
  .value {
     text-align: center;
 }
 
-.navbar {
-    background-color: gray;
-}
-
-.navbar-brand, .nav-link {
-    color: white;
-}
-
-.survey-content {
-    padding-top: 100px;
-    padding-left: 10%;
-}
-
-.nested {
-    padding-left: 30px;
-}
-
 .nested-poll-question {
     padding-top: 10px;
-}
-
-fieldset {
-    padding-left: 50px;
 }
 
 .radio, .checkbox {

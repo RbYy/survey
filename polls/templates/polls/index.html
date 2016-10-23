@@ -9,25 +9,40 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
     <style type="text/css">
+        body {
+            background-color: {{survey.background_color}};
+            font-family: {{survey.font}};
+        }
+        .survey-content {
+            padding-top: 10%;
+            padding-left: {{survey.left_margin}}%;
+        }
         .headline {
-            font-size: {{survey.user.preferences.render_settings__head_size}}%;
+            font-size: {{survey.header_size}}%;
         }
         .description {
-            font-size: {{survey.user.preferences.render_settings__desc_size}}%;
+            font-size: {{survey.description_size}}%;
+            color: {{survey.description_color}};
         }
-        fieldset {
-            font-size: {{survey.user.preferences.render_settings__choice_size}}%;
+        fieldset, select, .radio, .checkbox {
+            font-size: {{survey.choice_size}}%;
+            color: {{survey.choice_color}};
         }
         .poll-question, .nested-poll-question{
-            font-size: {{survey.user.preferences.render_settings__head_size}}%; 
+            font-size: {{survey.question_size}}%;
+            color: {{survey.question_color}}
         }
-
+        .nested {
+            padding-left: {{survey.nested_indent}}%;
+        }
+        fieldset {
+            padding-left: {{survey.choice_indent}}%;
+        }
     </style>
 </head>    
 <body class="container-fluid">
 <div class="survey-content">
-    {{survey.user}}
-    {{preferences.email_settings__email_host_user}}
+
     <p class="headline">{{ survey.title }}</p>
     <p class="description">{{ survey.description }}</p>
     <hr>
