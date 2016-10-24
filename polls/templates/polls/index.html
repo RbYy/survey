@@ -13,8 +13,9 @@
         body {
             background-color: {{survey.background_color}};
             font-family: {{survey.font}};
-            height: 100%;
-            width: 100%;
+        }
+        #logo{    
+            height: 500px;
         }
         .survey-content {
             position: absolute;
@@ -47,14 +48,17 @@
         option, select{
             color: #595959;
         }
-        #logo {
+        #logo img {
             height: {{survey.logo_height}}%;
-            width: auto;
+            width: 100%;
         }
+
+
     </style>
 </head>    
 <body class="container-fluid">
-<div id="logo"><img src="{% cropped_thumbnail survey 'cropping' %}"></div><div class="survey-content">
+<div id="logo"><img src="{% cropped_thumbnail survey 'cropping' %}" class="img-responsive"</div>
+<div class="survey-content">
 
     <p class="headline">{{ survey.title }}</p>
     <p class="description">{{ survey.description }}</p>
