@@ -8,14 +8,18 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/survey.css' %}">
+    {% load cropping %}
     <style type="text/css">
         body {
             background-color: {{survey.background_color}};
             font-family: {{survey.font}};
+            height: 100%;
+            width: 100%;
         }
         .survey-content {
-            padding-top: {{survey.top_margin}}%;
-            padding-left: {{survey.left_margin}}%;
+            position: absolute;
+            top: {{survey.top_margin}}%;
+            left: {{survey.left_margin}}%;
         }
         .headline {
             font-size: {{survey.header_size}}%;
@@ -43,10 +47,14 @@
         option, select{
             color: #595959;
         }
+        #logo {
+            height: {{survey.logo_height}}%;
+            width: auto;
+        }
     </style>
 </head>    
 <body class="container-fluid">
-<div class="survey-content">
+<div id="logo"><img src="{% cropped_thumbnail survey 'cropping' %}"></div><div class="survey-content">
 
     <p class="headline">{{ survey.title }}</p>
     <p class="description">{{ survey.description }}</p>

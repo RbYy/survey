@@ -1,8 +1,11 @@
 dj-database-url==0.4.1
-Django==1.10.1
+Django==1.10.2
 django-admin-sortable==2.0.19
+django-appconf==1.0.1
 django-dynamic-preferences==0.8.2
+django-image-cropping==1.0.3
 django-picklefield==0.3.2
+easy-thumbnails==2.3
 gunicorn==19.6.0
 persisting-theory==0.2.1
 Pillow==3.4.2

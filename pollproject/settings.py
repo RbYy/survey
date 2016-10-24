@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import dj_database_url
+from easy_thumbnails.conf import Settings as thumbnail_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
+    'image_cropping',
     'dynamic_preferences',
     'adminsortable',
-    'polls'
+    'polls',
 ]
 
 MIDDLEWARE = [
@@ -182,3 +185,7 @@ DYNAMIC_PREFERENCES = {
     # Use this to disable checking preferences names. This can be useful to debug things
     'VALIDATE_NAMES': True,
 }
+
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS

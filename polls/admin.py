@@ -8,6 +8,7 @@ from django.conf.urls import *
 from django.shortcuts import render
 from dynamic_preferences.admin import *
 from polls.forms import CustomPreferenceForm
+from image_cropping import ImageCroppingMixin
 # from polls.customadminclview import changelist_view as customclview
 
 
@@ -116,7 +117,7 @@ class SurveyAttributeTabularInline(SortableTabularInline):
         return qs.filter(user=request.user)
 
 
-class SurveyAdmin(NonSortableParentAdmin):
+class SurveyAdmin(ImageCroppingMixin, NonSortableParentAdmin):
     review_template = 'admin/polls/survey/report.html'
 
     readonly_fields = ('created', 'url',)
@@ -139,7 +140,9 @@ class SurveyAdmin(NonSortableParentAdmin):
                         ('choice_size', 'choice_color'),
                         ('choice_indent', 'nested_indent'),
                         'background_color', 'font',
-                        ('left_margin', 'logo')
+                        ('logo', 'logo_height'),
+                        ('cropping'),
+                        ('left_margin', 'top_margin'),
                 )}))
 
     def save_model(self, request, obj, form, change):
