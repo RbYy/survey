@@ -42,14 +42,10 @@ def register(request):
 
 
 def build_survey(request, survey_id):
-    # user = request.user
-    # for p in range(16, 500):
-    #     permission_list.append(p)
-    # user.user_permissions.set(permission_list)
     survey = Survey.objects.get(pk=survey_id)
     name = ''
     if request.method == 'POST':
-        new_visitor = Visitor.objects.create(survey=survey, user=request.user)
+        new_visitor = Visitor.objects.create(survey=survey, user=survey.user)
         data = Dicty.objects.create(name=new_visitor.pk)
         print('request.POST: ', request.POST)
         for key in request.POST:
@@ -83,7 +79,7 @@ def build_survey(request, survey_id):
                         choice_text=request.POST[key],
                         poll=poll,
                         created_by_visitor=True,
-                        user=request.user)
+                        user=survey.user)
                     new_visitor.choices.add(choice)
                     KeyVal.objects.create(
                         container=data,
