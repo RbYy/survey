@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='survey',
             name='logo',
-            field=image_cropping.fields.ImageCropField(null=True, upload_to=''),
+            field=image_cropping.fields.ImageCropField(null=True, blank=True, upload_to=''),
         ),
     ]
