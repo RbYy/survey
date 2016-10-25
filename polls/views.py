@@ -110,7 +110,7 @@ def build_survey(request, survey_id):
                 body += part
 
             send_mail(
-                'Thanks for visiting us',
+                survey.welcome_letter.subject,
                 body,
                 survey.user.preferences['email_settings__email_host_user'],
                 [email],
@@ -121,6 +121,22 @@ def build_survey(request, survey_id):
                     username=survey.user.preferences['email_settings__email_host_user'],
                     use_tls=survey.user.preferences['email_settings__enable_TSL']),
                 fail_silently=False)
+            message = ''
+
+            if survey.notify:
+                send_mail(
+                    'submit notification',
+                    message,
+                    survey.user.preferences['email_settings__email_host_user'],
+                    [survey.user.email],
+                    html_message=new_visitor.print_visitor(),
+                    connection=get_connection(
+                        host=survey.user.preferences['email_settings__comment_notifications_enabled'],
+                        port=survey.user.preferences['email_settings__email_port'],
+                        password=survey.user.preferences['email_settings__email_password'],
+                        username=survey.user.preferences['email_settings__email_host_user'],
+                        use_tls=survey.user.preferences['email_settings__enable_TSL']),
+                    fail_silently=False)
         except:
             print('email address not valid')
         return HttpResponseRedirect("/thankyou/")

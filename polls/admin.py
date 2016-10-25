@@ -126,7 +126,7 @@ class SurveyAdmin(ImageCroppingMixin, NonSortableParentAdmin):
         (None,
             {
                 'fields':
-                    ('title', 'description', 'created', 'url',
+                    ('title', 'description', 'created', 'url', 'notify',
                         ('welcome_letter', 'newsletter', 'hide_ghost'),)
             }),
         ('Rendering options',

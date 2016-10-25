@@ -81,6 +81,7 @@ class Survey(models.Model):
     language = models.CharField(max_length=30)
     description = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
+    notify = models.BooleanField(default=False, verbose_name='Receive email notification for every submit')
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
     logo = ImageCropField(null=True, blank=True)
