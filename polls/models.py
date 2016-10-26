@@ -88,7 +88,7 @@ class Survey(models.Model):
     notify = models.BooleanField(default=False, verbose_name='Receive email notification for every submit')
     the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     hide_ghost = models.BooleanField(default=True)
-    logo = ImageCropField(null=True, blank=True, upload_to='/survey/',)
+    logo = ImageCropField(null=True, blank=True, upload_to='media/',)
     cropping = ImageRatioField('logo', '430x360', free_crop=True)
     logo_height = models.IntegerField(default=20)
     header_size = models.IntegerField(default=180, verbose_name='Title Size')

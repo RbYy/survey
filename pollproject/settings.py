@@ -126,21 +126,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print('project root: ', PROJECT_ROOT)
-STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 print('static root: ', STATIC_ROOT)
-MEDIA_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'media')
+MEDIA_ROOT = PROJECT_ROOT
 
-
-
-
-MEDIA_URL = 'https://www.googleapis.com/robot/v1/metadata/x509/micro-progress-120711%40appspot.gserviceaccount.com/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'musee.famenne.info@gmail.com'
-# EMAIL_HOST_PASSWORD = '17rueducommerce'
+# EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
 DATABASES = {
@@ -153,7 +149,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -187,16 +182,14 @@ DYNAMIC_PREFERENCES = {
     # Use this to disable checking preferences names. This can be useful to debug things
     'VALIDATE_NAMES': True,
 }
-STATIC_URL = '/static/'
 THUMBNAIL_PROCESSORS = (
     'image_cropping.thumbnail_processors.crop_corners',
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
-# AWS_QUERYSTRING_AUTH = False
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'plasticnakanta'
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-os.environ['S3_USE_SIGV4'] = 'True'
+MEDIA_URL = 'http://%s.s3.amazonaws.com/survey/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
