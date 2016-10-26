@@ -134,7 +134,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'media')
 
 
 
-STATIC_URL = '/static/'
+
 MEDIA_URL = 'https://www.googleapis.com/robot/v1/metadata/x509/micro-progress-120711%40appspot.gserviceaccount.com/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -187,14 +187,15 @@ DYNAMIC_PREFERENCES = {
     # Use this to disable checking preferences names. This can be useful to debug things
     'VALIDATE_NAMES': True,
 }
-
+STATIC_URL = '/static/'
 THUMBNAIL_PROCESSORS = (
     'image_cropping.thumbnail_processors.crop_corners',
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
-AWS_QUERYSTRING_AUTH = False
-AWS_ACCESS_KEY_ID = os.environ('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ('AWS_SECRET_ACCESS_KEY')
+# AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_STORAGE_BUCKET_NAME = os.environ('S3_BUCKET_NAME')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
 MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+#STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
