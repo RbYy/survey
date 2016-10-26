@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'easy_thumbnails',
     'image_cropping',
     'dynamic_preferences',
@@ -132,8 +133,9 @@ print('static root: ', STATIC_ROOT)
 MEDIA_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'media')
 
 
+
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://www.googleapis.com/robot/v1/metadata/x509/micro-progress-120711%40appspot.gserviceaccount.com/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -190,3 +192,9 @@ THUMBNAIL_PROCESSORS = (
     'image_cropping.thumbnail_processors.crop_corners',
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = 'AKIAJJCKJRLVEGZC4WOA'
+AWS_SECRET_ACCESS_KEY = '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'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_STORAGE_BUCKET_NAME = 'sudja_lopov'
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
