@@ -144,7 +144,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'survey',
         'USER': 'survey',
-        'PASSWORD': 'survey',
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -177,7 +177,7 @@ DYNAMIC_PREFERENCES = {
     'SECTION_KEY_SEPARATOR': '__',
 
     # Use this to disable caching of preference. This can be useful to debug things
-    'ENABLE_CACHE': False,
+    'ENABLE_CACHE': True,
 
     # Use this to disable checking preferences names. This can be useful to debug things
     'VALIDATE_NAMES': True,
