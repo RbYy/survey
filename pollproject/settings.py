@@ -127,9 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print('project root: ', PROJECT_ROOT)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-print('static root: ', STATIC_ROOT)
 MEDIA_ROOT = PROJECT_ROOT
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -149,7 +147,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)

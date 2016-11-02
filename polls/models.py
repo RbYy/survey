@@ -6,10 +6,12 @@ from django.utils.html import format_html
 from django.contrib.auth.models import User
 import re
 from image_cropping import ImageRatioField, ImageCropField
-#from gdstorage.storage import GoogleDriveStorage
+from django.core.mail import get_connection, send_mail
+
+# from gdstorage.storage import GoogleDriveStorage
 
 # Define Google Drive Storage
-#gd_storage = GoogleDriveStorage()
+# gd_storage = GoogleDriveStorage()
 
 
 class Dicty(models.Model):
@@ -127,6 +129,48 @@ class Survey(models.Model):
     def send_newsletter(self):
         pass
 
+    def send_welcome_letter(self, email, name):
+        try:
+            split_body = self.welcome_letter.body.split('//')
+            body = ''
+            for part in split_body:
+                if part == 'first_name':
+                    part = name
+                body += part
+
+            send_mail(
+                self.welcome_letter.subject,
+                body,
+                self.user.preferences['email_settings__email_host_user'],
+                [email],
+                connection=get_connection(
+                    host=self.user.preferences['email_settings__comment_notifications_enabled'],
+                    port=self.user.preferences['email_settings__email_port'],
+                    password=self.user.preferences['email_settings__email_password'],
+                    username=self.user.preferences['email_settings__email_host_user'],
+                    use_tls=self.user.preferences['email_settings__enable_TSL']),
+                fail_silently=False)
+        except:
+            print('email address not valid')
+
+    def send_submit_notification_email(self, new_visitor):
+        try:
+            send_mail(
+                'submit notification',
+                '',
+                self.user.preferences['email_settings__email_host_user'],
+                [self.user.email],
+                html_message=new_visitor.print_visitor(),
+                connection=get_connection(
+                    host=self.user.preferences['email_settings__comment_notifications_enabled'],
+                    port=self.user.preferences['email_settings__email_port'],
+                    password=self.user.preferences['email_settings__email_password'],
+                    username=self.user.preferences['email_settings__email_host_user'],
+                    use_tls=self.user.preferences['email_settings__enable_TSL']),
+                fail_silently=False)
+        except:
+            print('email settings not valid')
+
 
 class Poll(SortableMixin):
 
@@ -160,6 +204,43 @@ class Poll(SortableMixin):
     ghost = models.BooleanField(default=False)
     group = models.ForeignKey(PollGroup, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def multichoice_handle(self, request, key, new_visitor, data):
+        charchoices = CharChoice.objects.filter(
+            pk__in=request.POST.getlist(key))
+        new_visitor.choices.add(*charchoices)
+        KeyVal.objects.create(
+            container=data,
+            key=self.group.name,
+            value=str([choice.group.name for choice in charchoices]))
+        new_visitor.collected_data = data
+        new_visitor.save()
+
+    def onechoice_handle(self, request, key, new_visitor, data):
+        choice = CharChoice.objects.get(
+            pk=request.POST[key])
+        new_visitor.choices.add(choice)
+        KeyVal.objects.create(
+            container=data,
+            key=self.group.name,
+            value=choice.group.name)
+        new_visitor.collected_data = data
+        new_visitor.save()
+
+    def textinput_handle(self, request, key, new_visitor, data, survey):
+        choice, create = CharChoice.objects.get_or_create(
+            choice_text=request.POST[key],
+            poll=self,
+            created_by_visitor=True,
+            user=survey.user)
+        new_visitor.choices.add(choice)
+        KeyVal.objects.create(
+            container=data,
+            key=self.group.name,
+            value=choice)
+        new_visitor.collected_data = data
+        new_visitor.save()
+        return choice
+
     def __str__(self):
         return self.question
 
@@ -179,7 +260,6 @@ class CharChoice(SortableMixin):
     group = models.ForeignKey(ChoiceGroup, on_delete=models.SET_NULL, null=True, blank=True)
 
     # def save(self, *args, **kwargs):
-    #     print('dsfdsf', args, kwargs)
     #     super(CharChoice, self).save(*args, **kwargs)
     #     if not self.created_by_visitor:
     #         if not self.group:

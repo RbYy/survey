@@ -1,0 +1,1261 @@
+[
+{
+    "model": "polls.dicty",
+    "pk": 1,
+    "fields": {
+        "name": "1"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 2,
+    "fields": {
+        "name": "2"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 3,
+    "fields": {
+        "name": "3"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 4,
+    "fields": {
+        "name": "4"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 5,
+    "fields": {
+        "name": "5"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 6,
+    "fields": {
+        "name": "6"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 7,
+    "fields": {
+        "name": "7"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 8,
+    "fields": {
+        "name": "8"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 9,
+    "fields": {
+        "name": "9"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 10,
+    "fields": {
+        "name": "10"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 11,
+    "fields": {
+        "name": "11"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 12,
+    "fields": {
+        "name": "12"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 13,
+    "fields": {
+        "name": "13"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 14,
+    "fields": {
+        "name": "14"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 15,
+    "fields": {
+        "name": "15"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 16,
+    "fields": {
+        "name": "16"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 17,
+    "fields": {
+        "name": "17"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 18,
+    "fields": {
+        "name": "18"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 19,
+    "fields": {
+        "name": "19"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 20,
+    "fields": {
+        "name": "20"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 21,
+    "fields": {
+        "name": "21"
+    }
+},
+{
+    "model": "polls.dicty",
+    "pk": 22,
+    "fields": {
+        "name": "22"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 1,
+    "fields": {
+        "container": 1,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 2,
+    "fields": {
+        "container": 2,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 3,
+    "fields": {
+        "container": 3,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 4,
+    "fields": {
+        "container": 4,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 5,
+    "fields": {
+        "container": 5,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 6,
+    "fields": {
+        "container": 6,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 7,
+    "fields": {
+        "container": 7,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 8,
+    "fields": {
+        "container": 8,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 9,
+    "fields": {
+        "container": 9,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 10,
+    "fields": {
+        "container": 10,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 11,
+    "fields": {
+        "container": 11,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 12,
+    "fields": {
+        "container": 12,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 13,
+    "fields": {
+        "container": 12,
+        "key": "muti",
+        "value": "['blabla', 'heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 14,
+    "fields": {
+        "container": 13,
+        "key": "muti",
+        "value": "['heheeh', 'parampampam']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 15,
+    "fields": {
+        "container": 13,
+        "key": "one",
+        "value": "vfsdgfds"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 16,
+    "fields": {
+        "container": 13,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 17,
+    "fields": {
+        "container": 14,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 18,
+    "fields": {
+        "container": 15,
+        "key": "one",
+        "value": "fdsfdsf"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 19,
+    "fields": {
+        "container": 15,
+        "key": "muti",
+        "value": "['blabla', 'heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 20,
+    "fields": {
+        "container": 15,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 21,
+    "fields": {
+        "container": 16,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 22,
+    "fields": {
+        "container": 16,
+        "key": "one",
+        "value": "vdfs"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 23,
+    "fields": {
+        "container": 16,
+        "key": "muti",
+        "value": "['heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 24,
+    "fields": {
+        "container": 17,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 25,
+    "fields": {
+        "container": 17,
+        "key": "one",
+        "value": "vdfs"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 26,
+    "fields": {
+        "container": 17,
+        "key": "muti",
+        "value": "['heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 27,
+    "fields": {
+        "container": 18,
+        "key": "email",
+        "value": ""
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 28,
+    "fields": {
+        "container": 18,
+        "key": "muti",
+        "value": "['heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 29,
+    "fields": {
+        "container": 18,
+        "key": "one",
+        "value": "vdfs"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 30,
+    "fields": {
+        "container": 19,
+        "key": "muti",
+        "value": "['heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 31,
+    "fields": {
+        "container": 19,
+        "key": "one",
+        "value": "vdfs"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 32,
+    "fields": {
+        "container": 19,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 33,
+    "fields": {
+        "container": 20,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 34,
+    "fields": {
+        "container": 20,
+        "key": "one",
+        "value": "vdfs"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 35,
+    "fields": {
+        "container": 20,
+        "key": "muti",
+        "value": "['heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 36,
+    "fields": {
+        "container": 21,
+        "key": "one",
+        "value": "fdsfdsf"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 37,
+    "fields": {
+        "container": 21,
+        "key": "muti",
+        "value": "['blabla', 'heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 38,
+    "fields": {
+        "container": 21,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 39,
+    "fields": {
+        "container": 22,
+        "key": "muti",
+        "value": "['blabla', 'heheeh']"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 40,
+    "fields": {
+        "container": 22,
+        "key": "email",
+        "value": "robert.brumat@siol.net"
+    }
+},
+{
+    "model": "polls.keyval",
+    "pk": 41,
+    "fields": {
+        "container": 22,
+        "key": "one",
+        "value": "fdsfdsf"
+    }
+},
+{
+    "model": "polls.pollgroup",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "name": "email"
+    }
+},
+{
+    "model": "polls.pollgroup",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "name": "muti"
+    }
+},
+{
+    "model": "polls.pollgroup",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "name": "one"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "name": "blabla"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "name": "heheeh"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "name": "parampampam"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "name": "fdsfdsf"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "name": "vdfs"
+    }
+},
+{
+    "model": "polls.choicegroup",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "name": "vfsdgfds"
+    }
+},
+{
+    "model": "polls.elmail",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "title": "zahvala za naro\u010dilo",
+        "subject": "va\u0161e naro\u010dilo je bilo prejeto",
+        "body": "hvala za naro\u010dilo"
+    }
+},
+{
+    "model": "polls.survey",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "title": "survrey1",
+        "language": "",
+        "description": "to je druga testna anketa",
+        "created": "2016-10-24T11:05:27.566Z",
+        "notify": true,
+        "the_order": 0,
+        "hide_ghost": true,
+        "logo": "/survey/001.JPG",
+        "cropping": "0,336,1600,587",
+        "logo_height": 20,
+        "header_size": 180,
+        "description_size": 150,
+        "question_size": 130,
+        "choice_size": 100,
+        "left_margin": 10,
+        "top_margin": 5,
+        "choice_indent": 5,
+        "nested_indent": 5,
+        "background_color": "white",
+        "header_color": "black",
+        "description_color": "black",
+        "question_color": "black",
+        "choice_color": "black",
+        "font": "Sans",
+        "welcome_letter": 1,
+        "newsletter": null,
+        "publish_url": null
+    }
+},
+{
+    "model": "polls.survey",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "title": "fdsfdsf",
+        "language": "",
+        "description": "fdsfdsfsdf",
+        "created": "2016-10-24T11:30:17.557Z",
+        "notify": false,
+        "the_order": 0,
+        "hide_ghost": true,
+        "logo": "/survey/005.JPG",
+        "cropping": "0,341,1600,832",
+        "logo_height": 50,
+        "header_size": 180,
+        "description_size": 150,
+        "question_size": 130,
+        "choice_size": 100,
+        "left_margin": 10,
+        "top_margin": 5,
+        "choice_indent": 5,
+        "nested_indent": 5,
+        "background_color": "blue",
+        "header_color": "black",
+        "description_color": "black",
+        "question_color": "black",
+        "choice_color": "black",
+        "font": "Sans",
+        "welcome_letter": null,
+        "newsletter": null,
+        "publish_url": null
+    }
+},
+{
+    "model": "polls.survey",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "title": "uzizi",
+        "language": "",
+        "description": "itiutiu",
+        "created": "2016-10-26T20:46:28.146Z",
+        "notify": false,
+        "the_order": 0,
+        "hide_ghost": true,
+        "logo": "/survey/010.JPG",
+        "cropping": "0,0,1600,1200",
+        "logo_height": 20,
+        "header_size": 180,
+        "description_size": 150,
+        "question_size": 130,
+        "choice_size": 100,
+        "left_margin": 10,
+        "top_margin": 5,
+        "choice_indent": 5,
+        "nested_indent": 5,
+        "background_color": "white",
+        "header_color": "black",
+        "description_color": "black",
+        "question_color": "black",
+        "choice_color": "black",
+        "font": "Sans",
+        "welcome_letter": null,
+        "newsletter": null,
+        "publish_url": null
+    }
+},
+{
+    "model": "polls.survey",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "title": "dfdsfsdf",
+        "language": "",
+        "description": "fdsfdsfsd",
+        "created": "2016-10-26T21:46:41.082Z",
+        "notify": false,
+        "the_order": 0,
+        "hide_ghost": true,
+        "logo": "media/033.JPG",
+        "cropping": "0,0,1600,1200",
+        "logo_height": 20,
+        "header_size": 180,
+        "description_size": 150,
+        "question_size": 130,
+        "choice_size": 100,
+        "left_margin": 10,
+        "top_margin": 5,
+        "choice_indent": 5,
+        "nested_indent": 5,
+        "background_color": "white",
+        "header_color": "black",
+        "description_color": "black",
+        "question_color": "black",
+        "choice_color": "black",
+        "font": "Sans",
+        "welcome_letter": null,
+        "newsletter": null,
+        "publish_url": null
+    }
+},
+{
+    "model": "polls.survey",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "title": "sacxasc",
+        "language": "",
+        "description": "casccs",
+        "created": "2016-10-26T22:57:48.090Z",
+        "notify": false,
+        "the_order": 0,
+        "hide_ghost": true,
+        "logo": "media/009.JPG",
+        "cropping": "0,0,1600,1200",
+        "logo_height": 20,
+        "header_size": 180,
+        "description_size": 150,
+        "question_size": 130,
+        "choice_size": 100,
+        "left_margin": 10,
+        "top_margin": 5,
+        "choice_indent": 5,
+        "nested_indent": 5,
+        "background_color": "white",
+        "header_color": "black",
+        "description_color": "black",
+        "question_color": "black",
+        "choice_color": "black",
+        "font": "Sans",
+        "welcome_letter": null,
+        "newsletter": null,
+        "publish_url": null
+    }
+},
+{
+    "model": "polls.poll",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "poll_type": "email_now",
+        "question": "email",
+        "survey": 1,
+        "first_level": true,
+        "poll_order": 1,
+        "include_in_raport": true,
+        "include_in_details": true,
+        "ghost": false,
+        "group": 1
+    }
+},
+{
+    "model": "polls.poll",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "poll_type": "multi",
+        "question": "muti",
+        "survey": 1,
+        "first_level": true,
+        "poll_order": 2,
+        "include_in_raport": true,
+        "include_in_details": true,
+        "ghost": false,
+        "group": 2
+    }
+},
+{
+    "model": "polls.poll",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "poll_type": "one",
+        "question": "one",
+        "survey": 1,
+        "first_level": true,
+        "poll_order": 3,
+        "include_in_raport": true,
+        "include_in_details": true,
+        "ghost": false,
+        "group": 3
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "choice_text": "robert.brumat@siol.net",
+        "poll": 1,
+        "choice_order": 1,
+        "created_by_visitor": true,
+        "group": null,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "choice_text": "blabla",
+        "poll": 2,
+        "choice_order": 2,
+        "created_by_visitor": false,
+        "group": 1,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "choice_text": "heheeh",
+        "poll": 2,
+        "choice_order": 3,
+        "created_by_visitor": false,
+        "group": 2,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "choice_text": "parampampam",
+        "poll": 2,
+        "choice_order": 4,
+        "created_by_visitor": false,
+        "group": 3,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "choice_text": "",
+        "poll": 1,
+        "choice_order": 5,
+        "created_by_visitor": true,
+        "group": null,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "choice_text": "fdsfdsf",
+        "poll": 3,
+        "choice_order": 6,
+        "created_by_visitor": false,
+        "group": 4,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "choice_text": "vdfs",
+        "poll": 3,
+        "choice_order": 7,
+        "created_by_visitor": false,
+        "group": 5,
+        "nested": []
+    }
+},
+{
+    "model": "polls.charchoice",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "choice_text": "vfsdgfds",
+        "poll": 3,
+        "choice_order": 8,
+        "created_by_visitor": false,
+        "group": 6,
+        "nested": []
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:13:42.032Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 1,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:17:08.451Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 2,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:20:08.090Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 3,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:21:23.132Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 4,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:21:57.152Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 5,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:24:58.697Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 6,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:25:42.336Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 7,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:36:05.209Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 8,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:45:31.260Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 9,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:46:56.923Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 10,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "filled": "2016-10-24T22:58:47.298Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 11,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T11:58:11.541Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 12,
+        "choices": [
+            2,
+            3,
+            5
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T12:25:57.463Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 13,
+        "choices": [
+            3,
+            4,
+            5,
+            8
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 14,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:04:33.889Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 14,
+        "choices": [
+            1
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 15,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:09:02.032Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 15,
+        "choices": [
+            2,
+            3,
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 16,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:10:40.966Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 16,
+        "choices": [
+            3,
+            5,
+            7
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 17,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:19:02.631Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 17,
+        "choices": [
+            3,
+            5,
+            7
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 18,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:20:03.578Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 18,
+        "choices": [
+            3,
+            5,
+            7
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 19,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:45:35.443Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 19,
+        "choices": [
+            1,
+            3,
+            7
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 20,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:48:45.536Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 20,
+        "choices": [
+            1,
+            3,
+            7
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 21,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:58:21.608Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 21,
+        "choices": [
+            1,
+            2,
+            3,
+            6
+        ]
+    }
+},
+{
+    "model": "polls.visitor",
+    "pk": 22,
+    "fields": {
+        "user": 1,
+        "filled": "2016-11-02T13:58:48.208Z",
+        "survey": 1,
+        "subscribed": true,
+        "collected_data": 22,
+        "choices": [
+            1,
+            2,
+            3,
+            6
+        ]
+    }
+}
+]
