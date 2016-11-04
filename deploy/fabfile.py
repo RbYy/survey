@@ -28,12 +28,12 @@ def deploy(site=None):
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     PG_DB_SETTINGS = _create_pg_database()
+    apt_get("postgresql libpq-dev libjpeg-dev zlib1g-dev nginx git python3 python3-pip")
     _get_latest_source(source_folder)
     _update_settings(source_folder, site, PG_DB_SETTINGS)
     _update_virtualenv(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
-    apt_get("nginx")
     set_nginx(site_folder, site)
     set_gunicorn(site_folder, site)
 
