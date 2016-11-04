@@ -3,10 +3,10 @@ Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=someuser
-Group=somegroup
-WorkingDirectory=/home/someuser/sites/SITENAME/source
-ExecStart=/home/someuser/sites/SITENAME/virtualenv/bin/gunicorn --workers 3 --bind unix:/home/someuser/sites/SITENAME/myproject.sock gettingstarted.wsgi:application
+User=<USER>
+Group=<GROUP>
+WorkingDirectory=/home/<USER>/sites/<SITENAME>/source
+ExecStart=/home/<USER>/sites/<SITENAME>/virtualenv/bin/gunicorn --workers 3 --bind unix:/home/<USER>/sites/<SITENAME>/myproject.sock project.wsgi:application
 
 
 [Install]

@@ -28,12 +28,14 @@ def deploy(site=None):
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     PG_DB_SETTINGS = _create_pg_database()
+    apt_get("postgresql libtiff5-dev zlib1g-dev \
+    libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev \
+    python-tk libpq-dev nginx git python3 python3-dev python3-setuptools python3-pip")
     _get_latest_source(source_folder)
     _update_settings(source_folder, site, PG_DB_SETTINGS)
     _update_virtualenv(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
-    apt_get("nginx")
     set_nginx(site_folder, site)
     set_gunicorn(site_folder, site)
 
@@ -59,7 +61,7 @@ def _get_latest_source(source_folder):
 def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
     settings_path = source_folder + '/pollproject/settings.py'
     # requirements_path = source_folder + '/requirements.txt'
-    # sed(settings_path, "DEBUG = True", "DEBUG = False")
+    sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(settings_path,
         'ALLOWED_HOSTS =.+$',
         'ALLOWED_HOSTS = ["%s", "pi"]' % (site_name,)
@@ -71,7 +73,7 @@ def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
         append(secret_key_file, "SECRET_KEY = '%s'" % (key,))
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')
     append(settings_path, '\n%s' % (PG_DB_SETTINGS))
-    STATIC_PATH = 'STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), "static")'
+    STATIC_PATH = 'STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), "static")'
     sed(settings_path, 'STATIC_ROOT = os.+$', STATIC_PATH)
     # append(requirements_path, 'psycopg2==2.6.2\ngunicorn==19.6.0')
 
