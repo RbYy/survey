@@ -73,7 +73,7 @@ def _update_settings(source_folder, site_name, PG_DB_SETTINGS):
         append(secret_key_file, "SECRET_KEY = '%s'" % (key,))
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')
     append(settings_path, '\n%s' % (PG_DB_SETTINGS))
-    STATIC_PATH = 'STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), "static")'
+    STATIC_PATH = 'STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), "static")'
     sed(settings_path, 'STATIC_ROOT = os.+$', STATIC_PATH)
     # append(requirements_path, 'psycopg2==2.6.2\ngunicorn==19.6.0')
 
