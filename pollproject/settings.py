@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
 import dj_database_url
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
@@ -79,16 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pollproject.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -131,11 +122,6 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 MEDIA_ROOT = PROJECT_ROOT
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'musee.famenne.info@gmail.com'
-# EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
 
 DATABASES = {
     'default': {
@@ -192,3 +178,11 @@ THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'plasticnakanta'
 MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
