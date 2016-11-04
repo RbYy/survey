@@ -28,7 +28,9 @@ def deploy(site=None):
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     PG_DB_SETTINGS = _create_pg_database()
-    apt_get("postgresql libpq-dev libjpeg-dev zlib1g-dev nginx git python3 python3-pip")
+    apt_get("postgresql libtiff5-dev zlib1g-dev \
+    libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev \
+    python-tk libpq-dev nginx git python3 python3-dev python3-setuptools python3-pip")
     _get_latest_source(source_folder)
     _update_settings(source_folder, site, PG_DB_SETTINGS)
     _update_virtualenv(source_folder)
