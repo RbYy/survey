@@ -4,15 +4,15 @@ Django==1.10.2
 django-admin-sortable==2.0.19
 django-appconf==1.0.2
 django-dynamic-preferences==0.8.2
+Pillow==2.9
 django-image-cropping==1.0.3
 django-picklefield==0.3.2
 # django-storages==1.5.1
-easy-thumbnails==2.3
+# easy-thumbnails==2.3
 gunicorn==19.6.0
 httplib2==0.9.2
 persisting-theory==0.2.1
 # Pillow==3.4.2
-# Pillow==2.9
 # psycopg2==2.6.2
 python-dateutil==2.5.3
 pytz==2016.7
