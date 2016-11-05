@@ -1,6 +1,6 @@
 Provisioning a new site
-    - this is how I usually do it
 =======================
+This is how I usually do it
 
 ## Required packages:
 
@@ -50,7 +50,7 @@ eg, on Debian, Ubuntu:
 
 
 ## Update application settings
-    * Appent the following to the end of <path_to_source>/pollproject/setings.py
+    * Append the following to the end of <path_to_source>/pollproject/setings.py
 
         DATABASES = {
             'default': {
@@ -73,7 +73,6 @@ eg, on Debian, Ubuntu:
 
 
 ## Nginx Virtual Host config 
-
     * see nginx.template.conf (in <path_to_source>/deploy_tools)
     * update paths; replace <SITENAME> with, eg, my-domain.com 
     * copy it to /etc/nginx/sites-available
@@ -86,9 +85,7 @@ eg, on Debian, Ubuntu:
         $ sudo service nginx reload
 
 
-
 ## Upstart Job
-
     * see gunicorn-upstart.template.conf (in <path_to_source>/deploy_tools)
     * update paths, user, group, path to wsgi (project.wsgi to pollproject.wsgi);
     * replace <SITENAME> with, eg, my-domain.com
@@ -112,5 +109,5 @@ The steps listed above are wrapped in a script which uses "fabric" and connects 
 	    eg, $ fab deploy:site=my-domain.com -H username@domain
         $ fab deploy:site=my-domain.com -H username@domain -f deploy_tools/fabfile.py
 
-Tested on Ubuntu 16.04 and OSMC (Debian 8.6 on Raspberry Pi 3)
+Tested on Ubuntu 16.04 and OSMC (Debian 8.6 on Raspberry Pi 3)  
 Good luck!
