@@ -44,9 +44,9 @@ eg, on Debian, Ubuntu:
 
 ## Create Database
     $ sudo systemctl enable postgresql
-    $ sudo psql -c "CREATE USER <database_user> WITH PASSWORD <database_password>
-    $ sudo psql -c "CREATE DATABASE <database_name> WITH OWNER <database_user>
-    $ sudo psql -c "ALTER ROLE <database_user> WITH CREATEDB
+    $ sudo psql -c "CREATE USER <database_user> WITH PASSWORD <database_password>"
+    $ sudo psql -c "CREATE DATABASE <database_name> WITH OWNER <database_user>"
+    $ sudo psql -c "ALTER ROLE <database_user> WITH CREATEDB"
 
 
 ## Update application settings
