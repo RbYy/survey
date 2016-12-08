@@ -125,16 +125,16 @@ MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'survey',
-#         'USER': 'survey',
-#         'PASSWORD': os.environ.get('PG_PASSWORD'),
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'survey',
+        'USER': 'survey',
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # print(db_from_env)

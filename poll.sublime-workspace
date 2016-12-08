@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"vis",
+				"visitors_list\tstatement"
+			],
+			[
+				"STA",
+				"STATIC_URL"
+			],
+			[
+				"db",
+				"db_from_env\tstatement"
+			],
+			[
+				"P",
+				"PROJECT_ROOT\tstatement"
+			],
+			[
+				"Medi",
+				"MEDIA_ROOT\tstatement"
+			],
+			[
+				"gd",
+				"gd_storage\tstatement"
+			],
+			[
+				"Bo",
+				"BooleanField\tclass"
+			],
+			[
 				"text-a",
 				"text-align"
 			],
@@ -486,34 +514,6 @@
 			[
 				"Man",
 				"ManyToManyField\tclass"
-			],
-			[
-				"co",
-				"core\tmodule"
-			],
-			[
-				"fun",
-				"function"
-			],
-			[
-				"ap",
-				"myApp"
-			],
-			[
-				"gitH",
-				"githubService"
-			],
-			[
-				"con",
-				"controller"
-			],
-			[
-				"Ma",
-				"MathService"
-			],
-			[
-				"max",
-				"max_length"
 			]
 		]
 	},
@@ -523,19 +523,7 @@
 			"file": "polls/admin.py",
 			"settings":
 			{
-				"buffer_size": 11555,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<!DOCTYPE HTML>\n<html>\n<head>\n    {% load staticfiles %}\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <link href=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\n    <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"{% static 'polls/survey.css' %}\">\n    {% load cropping %}\n    <style type=\"text/css\">\n        body {\n            background-color: {{survey.background_color}};\n            font-family: {{survey.font}};\n        }\n        .survey-content {\n            position: absolute;\n            top: {{survey.top_margin}}%;\n            left: {{survey.left_margin}}%;\n        }\n        .headline {\n            font-size: {{survey.header_size}}%;\n            color: {{survey.header_color}};\n        }\n        .description {\n            font-size: {{survey.description_size}}%;\n            color: {{survey.description_color}};\n        }\n        fieldset, select, .radio, .checkbox {\n            font-size: {{survey.choice_size}}%;\n            font-weight: normal;\n            color: {{survey.choice_color}};\n        }\n        .poll-question, .nested-poll-question{\n            font-size: {{survey.question_size}}%;\n            color: {{survey.question_color}}\n        }\n        .nested {\n            padding-left: {{survey.nested_indent}}%;\n        }\n        fieldset {\n            padding-left: {{survey.choice_indent}}%;\n        }\n        option, select{\n            color: #595959;\n        }\n        #logo {\n            height: {{survey.logo_height}}%;\n            width: auto;\n        }\n    </style>\n</head>    \n<body class=\"container-fluid\">\n<img src=\"{% cropped_thumbnail survey 'cropping' %}\">\n<div class=\"survey-content\">\n\n    <p class=\"headline\">{{ survey.title }}</p>\n    <p class=\"description\">{{ survey.description }}</p>\n    <hr>\n    <form autocomplete=\"off\" method=\"post\" name=\"myForm\" role=\"form\" novalidate=\"novalidate\" action=\".\">{% csrf_token %}\n        {% for poll in polls %}\n        <h3 class=\"poll-question\">{{ poll.question }} </h3>\n\n            {% if poll.poll_type == 'multi' %}\n                <fieldset>\n                    {% for choice in poll.charchoice_set.all %}\n                        <label class=\"checkbox control-label\"><input type=\"checkbox\" name=\"{{ poll.pk }}\" value=\"{{choice.pk}}\">{{choice.choice_text}}</label>\n                    {% endfor %}\n                </fieldset>\n            \n            {% elif poll.poll_type == 'one' %}\n                <fieldset id=\"idpoll{{ poll.pk }}\">\n                    {% for choice in poll.charchoice_set.all %}\n                        <label class=\"radio{{poll.pk}} main-radio radio control-label\" id=\"id{{choice.pk}}\"><input type=\"radio\" name=\"{{ poll.pk }}\" value=\"{{ choice.pk }}\">{{choice.choice_text}}</label>\n\n                        {% for nested_poll in choice.nested.all %}\n                            <div class=\"nested nestedradio{{poll.pk}} nestedid{{choice.pk}}\">\n                                <div class=\"nested-poll-question\"><h4>{{ nested_poll.question }}</h4></div>\n                                {% if nested_poll.poll_type == 'one' %}\n                                    <fieldset class=\"nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}\" id=\"set{{choice.pk}}\">\n                                    {% for nested_choice in nested_poll.charchoice_set.all %}\n                                        <label class=\"radio control-label\"><input type=\"radio\" id=\"idof{{ nested_choice }}\" name=\"{{ nested_poll.pk }}\" value=\"{{ nested_choice.pk }}\">{{nested_choice.choice_text}}</label>\n                                    {% endfor %}\n                                    </fieldset>\n                                {% elif nested_poll.poll_type == 'text' %}\n                                    <label class=\"control-label\"><input type=\"text\" id=\"idof{{ nested_choice }}\" class=\"form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}\" name=\"{{ nested_poll.pk }}\" value=\"\"></label>\n                                {% elif nested_poll.poll_type == 'first_name' %}\n                                    <label class=\"control-label\"><input type=\"text\" id=\"idof{{ nested_choice }}\" class=\"form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}\" name=\"{{ nested_poll.pk }}\" value=\"\"></label>\n\n                                {% elif nested_poll.poll_type == 'phone' %}\n                                    <label class=\"control-label\"><input type=\"tel\" id=\"idof{{ nested_choice }}\" class=\"form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}\" name=\"{{ nested_poll.pk }}\" value=\"\"></label>                                                                        \n                               {% elif nested_poll.poll_type == 'email_now' or 'email' %}\n                                    <label class=\"control-label\"><input type=\"email\" id=\"idof{{ nested_choice }}\" class=\"email form-control nested nestedradio{{poll.pk}} nestedid{{ choice.pk }}\" name=\"{{ nested_poll.pk }}\" value=\"\" placeholder=\"Enter your email\"></label>                                    \n\n                                {% endif %}\n                            </div>\n                        {% endfor %}\n\n                    {% endfor %}\n                </fieldset>\n\n\t   \n            {% elif poll.poll_type == 'text' %}\n                    <label class=\"control-label\"><input type=\"text\" class=\"form-control\" name=\"{{ poll.pk }}\" value=\"\"></label>\n\n            {% elif poll.poll_type == 'email_now' %}\n                    <label class=\"control-label\"><input type=\"email\" class=\"form-control\" name=\"{{ poll.pk }}\" value=\"\"></label>\n\n            {% elif poll.poll_type == 'email' %}\n                    <label class=\"control-label\"><input type=\"email\" class=\"form-control\" name=\"{{ poll.pk }}\" value=\"\"></label>\n\n            {% elif poll.poll_type == 'countries' %}\n                {% include 'polls/countries.html' %}\n                    {% for choice in poll.charchoice_set.all %}\n                        {% for nested_poll in choice.nested.all %}\n                            <div class=\"nested nestedcountry{{poll.pk}} nestedid{{choice}}\">\n                                <div class=\"nested-poll-question\">{{ nested_poll.question }}</div>\n                                {% if nested_poll.poll_type == 'one' %}\n                                    <fieldset class=\"nested nestedcountry{{poll.pk}} nestedid{{choice}}\">{% for nested_choice in nested_poll.charchoice_set.all %}\n                                        <label class=\"radio control-label\"><input type=\"radio\" id=\"idof{{ nested_choice }}\" name=\"{{ nested_poll.pk }}\" value=\"{{ nested_choice.pk }}\">{{nested_choice.choice_text}}</label>\n                                    {% endfor %}\n                                    </fieldset>\n                                {% endif %}\n                            </div>    \n                        {% endfor %}\n                    {% endfor %}\n            {% endif %}\n        {% endfor %}\n        <hr>\n        <input type=\"submit\" value=\"Submit\">\n    </form>\n</div>\n<script type=\"text/javascript\">\n$(document).ready(function(){\n    $('.nested').hide()\n    $(\".nested\").prop('disabled', true);\n    $('form').on('change', '.main-radio',function(){\n        choice = $(this).attr('id')\n        poll = $(this).attr('class').split(' ')[0]\n        console.log('dd', choice, poll)\n        $('.nested' + poll).hide('slow')\n        $('.nested' + poll).prop('disabled', true);\n        $('.nested' + choice).show('slow')\n        $('.nested' + choice).prop('disabled', false);\n    })\n\n    $('select').change(function(){\n        choice = $(this).val()\n        poll = $(this).attr('class')\n        console.log(choice, poll)\n        $('.nested' + poll).hide('slow')\n        $('.nested' + poll).prop('disabled', true);\n        $('.nestedid' + choice).show('slow')\n        $('.nestedid' + choice).prop('disabled', false);\n    })\n\n})\n\n// firefox and safari fix javascript not loading after 'back' button klick\n$(window).unload(function () { $(window).unbind('unload'); });\n$(window).bind('pageshow', function(event) {\n    if (event.originalEvent.persisted) {\n        window.location.reload() \n    }\n});\n// ---------\n</script>\n</body>\n",
-			"file": "polls/templates/polls/index.html",
-			"file_size": 8368,
-			"file_write_time": 131217796220733544,
-			"settings":
-			{
-				"buffer_size": 8370,
+				"buffer_size": 11493,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -545,6 +533,32 @@
 			"settings":
 			{
 				"buffer_size": 17990,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/admin/polls/visitor/change_list.html",
+			"settings":
+			{
+				"buffer_size": 3490,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "deploy_tools/fabfile.py",
+			"settings":
+			{
+				"buffer_size": 6447,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/templates/polls/index.html",
+			"settings":
+			{
+				"buffer_size": 8476,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -568,28 +582,19 @@
 			}
 		},
 		{
-			"file": "polls/models.py",
-			"settings":
-			{
-				"buffer_size": 9283,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "polls/forms.py",
-			"settings":
-			{
-				"buffer_size": 2342,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "polls/views.py",
 			"settings":
 			{
-				"buffer_size": 5884,
+				"buffer_size": 3418,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "polls/models.py",
+			"settings":
+			{
+				"buffer_size": 12819,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -598,7 +603,7 @@
 			"file": "pollproject/settings.py",
 			"settings":
 			{
-				"buffer_size": 5734,
+				"buffer_size": 5922,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -844,36 +849,42 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jr/Koda/poll",
-		"/home/jr/Koda/poll/deploy_tools",
-		"/home/jr/Koda/poll/include",
-		"/home/jr/Koda/poll/lib",
-		"/home/jr/Koda/poll/lib/python3.5",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/management/__pycache__",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/management/commands",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/templates",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/templates/dynamic_preferences",
-		"/home/jr/Koda/poll/pollproject",
-		"/home/jr/Koda/poll/pollproject/survey",
 		"/home/jr/Koda/poll/polls",
-		"/home/jr/Koda/poll/polls/static",
-		"/home/jr/Koda/poll/polls/static/admin",
-		"/home/jr/Koda/poll/polls/static/polls",
 		"/home/jr/Koda/poll/polls/templates",
-		"/home/jr/Koda/poll/polls/templates/admin",
-		"/home/jr/Koda/poll/polls/templates/admin/polls",
-		"/home/jr/Koda/poll/polls/templates/admin/polls/charchoice",
-		"/home/jr/Koda/poll/polls/templates/admin/polls/poll",
-		"/home/jr/Koda/poll/polls/templates/admin/polls/survey",
-		"/home/jr/Koda/poll/polls/templates/admin/polls/visitor",
-		"/home/jr/Koda/poll/polls/templates/polls",
-		"/home/jr/Koda/poll/static",
-		"/home/jr/Koda/poll/static/admin",
-		"/home/jr/Koda/poll/static/admin/css"
+		"/home/jr/Koda/poll/polls/templates/polls"
 	],
 	"file_history":
 	[
+		"/home/jr/Koda/poll/lab.py",
+		"/home/jr/Koda/poll/requirements.txt",
+		"/home/jr/Koda/poll/pollproject/wsgi.py",
+		"/home/jr/Koda/poll/deploy_tools/nginx.site.template",
+		"/home/jr/Koda/poll/deploy_tools/gunicorn.service.template",
+		"/home/jr/Koda/poll/deploy_tools/provisioning_notes.md",
+		"/home/jr/Koda/poll/polls/tests.py",
+		"/home/jr/Koda/poll/polls/fixtures/polls_views_testdata.json",
+		"/home/jr/Koda/poll/lib/python3.5/functools.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/sites.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/adminsortable/admin.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/options.py",
+		"/home/jr/Koda/poll/handlers.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/image_cropping/templatetags/cropping.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/test/testcases.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django-storages.egg-link",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django_google_storage/storage.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/core/files/storage.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django_google_storage/utils.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django_google_storage/file.py",
+		"/home/jr/Koda/poll/polls/forms.py",
+		"/home/jr/Koda/poll/polls/migrations/0077_auto_20161025_2100.py",
+		"/home/jr/Koda/poll/polls/static/0072_auto_20161024_1138.py",
+		"/home/jr/Koda/poll/polls/migrations/0071_auto_20161024_1135.py",
+		"/home/jr/Koda/poll/polls/migrations/0075_survey_notify.py",
+		"/home/jr/Koda/poll/polls/static/0073_auto_20161024_1140.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/image_cropping/fields.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/core/management/base.py",
+		"/home/jr/Koda/poll/manage.py",
+		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/core/management/__init__.py",
 		"/home/jr/Koda/poll/polls/dynamic_preferences_registry.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/serializers.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/models.py",
@@ -883,21 +894,15 @@
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/registries.py",
 		"/home/jr/Koda/poll/polls/survey_preferences_registry.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/managers.py",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/options.py",
 		"/home/jr/Koda/poll/polls/templates/admin/custom-index.html",
 		"/home/jr/Koda/poll/polls/templates/polls/index.html",
 		"/home/jr/Koda/poll/pollproject/urls.py",
-		"/home/jr/Koda/poll/pollproject/wsgi.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/settings.py",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/sites.py",
-		"/home/jr/Koda/poll/lib/python3.5/site-packages/adminsortable/admin.py",
-		"/home/jr/Koda/poll/requirements.txt",
 		"/home/jr/Koda/poll/polls/customadminclview.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/dynamic_preferences/types.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/contenttypes/models.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/models.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/forms/fields.py",
-		"/home/jr/Koda/poll/polls/forms.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/gis/gdal/base.py",
 		"/home/jr/Koda/poll/polls/static/polls/survey.css",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/forms/widgets.py",
@@ -929,7 +934,6 @@
 		"/home/jr/Koda/poll/polls/migrations/0015_auto_20160918_1744.py",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/xorformfields/forms/fields.py",
 		"/home/jr/Koda/poll/deploy_tools/fabfile.py",
-		"/home/jr/Koda/poll/deploy_tools/provisioning_notes.md",
 		"/home/jr/Koda/poll/polls/templates/polls/thankyou.html",
 		"/home/jr/Koda/poll/lib/python3.5/site-packages/django/contrib/admin/__init__.py",
 		"/home/jr/Koda/poll/pollproject/polls/views.py",
@@ -978,30 +982,7 @@
 		"/usr/lib/python2.7/unittest/__init__.py",
 		"/home/jr/Koda/heroku/thawing-spire-73185/hello/static/base.css",
 		"/home/jr/buildozer.spec",
-		"/home/jr/Koda/heroku/thawing-spire-73185/hello/tests.py",
-		"/home/jr/Koda/buildozer-venv.sh",
-		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/fabfile.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/functional_tests/tests.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/gunicorn.service.template",
-		"/home/jr/Koda/heroku/thawing-spire-73185/deploy_tools/nginx.site.template",
-		"/home/jr/Koda/restlab/restlab/lab.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/gettingstarted/settings_pg.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/prijava",
-		"/home/jr/Koda/heroku/include/python3.5m/eval.h",
-		"/home/jr/Koda/heroku/thawing-spire-73185/hello/templates/list.html",
-		"/home/jr/Koda/heroku/thawing-spire-73185/functional_tests.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/hello/templates/base.html",
-		"/home/jr/Koda/heroku/thawing-spire-73185/djangoenv.py",
-		"/home/jr/Koda/heroku/thawing-spire-73185/README.md",
-		"/home/jr/Koda/heroku/thawing-spire-73185/.env",
-		"/home/jr/.config/sublime-text-3/Packages/Django Manage Commands/DjangoCommands.sublime-settings",
-		"/home/jr/Koda/heroku/thawing-spire-73185/repl-django.py",
-		"/home/jr/.config/sublime-text-3/Packages/Plugin Debugger/debug_example.py",
-		"/home/jr/Koda/quinepy2.py",
-		"/home/jr/Koda/heroku/python-getting-started/bin/activate",
-		"/home/jr/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/home/jr/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
-		"/home/jr/.config/sublime-text-3/Packages/Djaneiro/Settings/Python (Django).sublime-settings"
+		"/home/jr/Koda/heroku/thawing-spire-73185/hello/tests.py"
 	],
 	"find":
 	{
@@ -1020,6 +1001,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"user",
+			"permission_lis",
+			"permission_",
+			"pil_",
+			"surv",
+			"user",
 			"conte",
 			"preference_models",
 			"prefernce_models",
@@ -1109,7 +1096,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -1118,15 +1105,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11555,
+						"buffer_size": 11493,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5187,
-								5187
+								11206,
+								11206
 							]
 						],
 						"settings":
@@ -1134,44 +1121,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1568.0,
+						"translation.y": 4336.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "polls/templates/polls/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8370,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1803,
-								1857
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 225.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "polls/templates/polls/countries.html",
 					"semi_transient": true,
 					"settings":
@@ -1197,11 +1154,101 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "polls/templates/admin/polls/visitor/change_list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3378,
+								3378
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "deploy_tools/fabfile.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6447,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								446,
+								446
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "polls/templates/polls/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1276,
+								1276
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1680.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "static/admin/css/custom-admin.css",
 					"semi_transient": false,
 					"settings":
@@ -1226,11 +1273,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "polls/static/polls/survey.css",
 					"semi_transient": false,
 					"settings":
@@ -1256,60 +1303,30 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 5,
-					"file": "polls/models.py",
+					"buffer": 7,
+					"file": "polls/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9283,
+						"buffer_size": 3418,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2984,
-								2984
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 811.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "polls/forms.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2342,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								816,
-								816
+								1760,
+								1760
 							]
 						],
 						"settings":
@@ -1322,54 +1339,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "polls/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5884,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5015,
-								5015
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1020.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 8,
-					"file": "pollproject/settings.py",
+					"file": "polls/models.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5734,
+						"buffer_size": 12819,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1189,
-								1189
+								1294,
+								1294
 							]
 						],
 						"settings":
@@ -1379,10 +1366,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2160.0,
+						"translation.y": 4396.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "pollproject/settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3113,
+								3113
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1395.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1416,7 +1433,7 @@
 		"cols":
 		[
 			0.0,
-			0.525216768668,
+			0.50965418574,
 			1.0
 		],
 		"rows":
@@ -1480,7 +1497,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 352.0,
+	"side_bar_width": 243.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
