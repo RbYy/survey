@@ -280,7 +280,10 @@ class Visitor(models.Model):
     def details(self):
         included_poll_groups = [poll.group for poll in Poll.objects.filter(include_in_details=True)]
         print(included_poll_groups)
-        return self.collected_data.keyval_set.filter(key__in=included_poll_groups)
+        try:
+            return self.collected_data.keyval_set.filter(key__in=included_poll_groups)
+        except:
+            print('err')
 
     def print_visitor(self):
         result = '<table class="dicty-table"><tr><td>' + str(self.filled) + '</td></tr>'
