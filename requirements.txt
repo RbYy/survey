@@ -1,4 +1,4 @@
-# boto==2.43.0
+boto==2.43.0
 dj-database-url==0.4.1
 Django==1.10.2
 django-admin-sortable==2.0.19
