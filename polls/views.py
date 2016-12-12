@@ -65,11 +65,13 @@ def build_survey(request, survey_id):
 
                 if poll.poll_type == 'first_name':
                     name = choice.choice_text
+        try:
+            survey.send_welcome_letter(email, name)
 
-        survey.send_welcome_letter(email, name)
-
-        if survey.notify:
-            survey.send_submit_notification_email(new_visitor)
+            if survey.notify:
+                survey.send_submit_notification_email(new_visitor)
+        except UnboundLocalError:
+            print('no email provided')
 
         return HttpResponseRedirect("/thankyou/")
 
