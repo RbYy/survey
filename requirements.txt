@@ -1,5 +1,5 @@
 # boto==2.43.0
-# dj-database-url==0.4.1
+dj-database-url==0.4.1
 Django==1.10.2
 django-admin-sortable==2.0.19
 django-appconf==1.0.2
@@ -18,4 +18,4 @@ pytz==2016.7
 requests==2.11.1
 rsa==3.4.2
 six==1.10.0
-# whitenoise==3.2.2
+whitenoise==3.2.2
