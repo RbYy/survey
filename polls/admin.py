@@ -197,7 +197,6 @@ class SurveyAdmin(ImageCroppingMixin, NonSortableParentAdmin):
         formset.save()
         for f in formset.forms:
             obj = f.instance
-            print('obj', obj)
             obj.user = request.user
             try:
                 if not obj.group:
@@ -322,7 +321,6 @@ admin.site.register(SurveyAttribute, SurveyAttributeAdmin)
 admin.site.unregister(GlobalPreferenceModel)
 admin.site.unregister(UserPreferenceModel)
 admin.site.register(UserPreferenceModel, CustomPreferenceAdmin)
-# admin.site.register(SurveyPreferenceModel, SurveyPreferenceAdmin)
 
 admin.site.site_title = 'Survey Administration'
 admin.site.index_title = 'Manage Your Surveys'
