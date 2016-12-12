@@ -279,6 +279,7 @@ class Visitor(models.Model):
 
     def details(self):
         included_poll_groups = [poll.group for poll in Poll.objects.filter(include_in_details=True)]
+        print(included_poll_groups)
         return self.collected_data.keyval_set.filter(key__in=included_poll_groups)
 
     def print_visitor(self):
