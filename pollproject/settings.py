@@ -187,6 +187,7 @@ MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    print('switch to sqlite for testing ...')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
