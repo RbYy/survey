@@ -7,7 +7,8 @@ from django.core.files import File
 
 
 class SurveyRenderTests(TestCase):
-    # fixtures = ['polls_views_testdata.json']
+    fixtures = ['testdata.json']
+
     def setUp(self):
         user = User(username='xxx', email='fdsf@sdf.ss')
         user.save()
@@ -24,7 +25,8 @@ class SurveyRenderTests(TestCase):
     def test_if_survey_renders(self):
 
         self.assertEqual(self.response.status_code, 200)
-        self.assertContains(self.response, '<p class="headline">SurveyTitle</p>')
+        print(self.response.content)
+        self.assertContains(self.response, '<p class="headline">survey1</p>')
 
     def test_if_logo_loads(self):
         # self.assertContains(self.response, '053.JPG')
