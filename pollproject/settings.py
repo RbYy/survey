@@ -194,3 +194,4 @@ if 'test' in sys.argv or 'test_coverage' in sys.argv:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+

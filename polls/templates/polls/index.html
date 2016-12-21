@@ -70,7 +70,30 @@
             {% if poll.poll_type == 'multi' %}
                 <fieldset>
                     {% for choice in poll.charchoice_set.all %}
-                        <label class="checkbox control-label"><input type="checkbox" name="{{ poll.pk }}" value="{{choice.pk}}">{{choice.choice_text}}</label>
+                        <label class="checkbox control-label"><input type="checkbox" name="{{ poll.pk }}" class="multi{{poll.pk}} checkable" value="{{choice.pk}}" id="id{{choice.pk}}">{{choice.choice_text}}</label>
+
+                        {% for nested_poll in choice.nested.all %}
+                            <div class="nested nestedmulti{{poll.pk}} nestedid{{choice.pk}}">
+                                <div class="nested-poll-question"><h4>{{ nested_poll.question }}</h4></div>
+                                {% if nested_poll.poll_type == 'one' %}
+                                    <fieldset class="nested nestedmulti{{poll.pk}} nestedid{{ choice.pk }}" id="set{{choice.pk}}">
+                                    {% for nested_choice in nested_poll.charchoice_set.all %}
+                                        <label class="radio control-label"><input type="radio" id="idof{{ nested_choice }}" name="{{ nested_poll.pk }}" value="{{ nested_choice.pk }}">{{nested_choice.choice_text}}</label>
+                                    {% endfor %}
+                                    </fieldset>
+                                {% elif nested_poll.poll_type == 'text' %}
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedmulti{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
+                                {% elif nested_poll.poll_type == 'first_name' %}
+                                    <label class="control-label"><input type="text" id="idof{{ nested_choice }}" class="form-control nested nestedmulti{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>
+
+                                {% elif nested_poll.poll_type == 'phone' %}
+                                    <label class="control-label"><input type="tel" id="idof{{ nested_choice }}" class="form-control nested nestedmulti{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value=""></label>                                                                        
+                               {% elif nested_poll.poll_type == 'email_now' or 'email' %}
+                                    <label class="control-label"><input type="email" id="idof{{ nested_choice }}" class="email form-control nested nestedmulti{{poll.pk}} nestedid{{ choice.pk }}" name="{{ nested_poll.pk }}" value="" placeholder="Enter your email"></label>                                    
+
+                                {% endif %}
+                            </div>
+                        {% endfor %}                        
                     {% endfor %}
                 </fieldset>
             
@@ -138,26 +161,26 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('.nested').hide()
-    $(".nested").prop('disabled', true);
+    $('.nested').hide().prop('disabled', true);
     $('form').on('change', '.main-radio',function(){
-        choice = $(this).attr('id')
-        poll = $(this).attr('class').split(' ')[0]
-        console.log('dd', choice, poll)
-        $('.nested' + poll).hide('slow')
-        $('.nested' + poll).prop('disabled', true);
-        $('.nested' + choice).show('slow')
-        $('.nested' + choice).prop('disabled', false);
+        $('.nested' + $(this).attr('class').split(' ')[0]).hide('slow').prop('disabled', true);
+        $('.nested' + $(this).attr('id')).show('slow').prop('disabled', false);
     })
+
+    $(".checkable").change(function() {
+        choice = $(this).attr('id')
+        if(this.checked) {
+            $('.nested' + choice).show('slow').prop('disabled', false);
+        }else{
+            $('.nested' + choice).hide('slow').prop('disabled', true);
+        }
+    });
 
     $('select').change(function(){
         choice = $(this).val()
         poll = $(this).attr('class')
-        console.log(choice, poll)
-        $('.nested' + poll).hide('slow')
-        $('.nested' + poll).prop('disabled', true);
-        $('.nestedid' + choice).show('slow')
-        $('.nestedid' + choice).prop('disabled', false);
+        $('.nested' + poll).hide('slow').prop('disabled', true);
+        $('.nestedid' + choice).show('slow').prop('disabled', false);
     })
 
 })

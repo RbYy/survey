@@ -60,3 +60,4 @@ class RegistrationTest(TestCase):
         self.assertEqual(response.redirect_chain[0], ('/admin/', 302))
         self.assertTrue(User.objects.get(username='yyy'))
 
+
